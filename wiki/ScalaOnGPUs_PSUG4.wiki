@@ -166,7 +166,7 @@ http://code.google.com/p/nativelibs4java/source/browse/branches/OpenCL-BridJ/lib
 
 == Ce que font les autres ==
 
-François, du PSUG, m'a pointé vers des threads très intéressants concernant les problématiques d'optimisation du code Scala d'une part ([http://scala-programming-language.1934581.n4.nabble.com/Compiler-plugin-how-to-access-predefined-types-td2441815.html#a2441815 1] et [http://scala-programming-language.1934581.n4.nabble.com/optimizing-simple-fors-td2545502.html#a2545502 2], et l'[http://scala-programming-language.1934581.n4.nabble.com/JavaCL-ScalaCL-vs-JNA-JNI-OpenCL-or-CUDA-td2401785.html#a2401785 utilisation du GPU depuis Scala] d'autre part.
+François, du PSUG, m'a pointé vers des threads très intéressants concernant les problématiques d'optimisation du code Scala d'une part ([http://scala-programming-language.1934581.n4.nabble.com/Compiler-plugin-how-to-access-predefined-types-td2441815.html#a2441815 1] et [http://scala-programming-language.1934581.n4.nabble.com/optimizing-simple-fors-td2545502.html#a2545502 2]), et l'[http://scala-programming-language.1934581.n4.nabble.com/JavaCL-ScalaCL-vs-JNA-JNI-OpenCL-or-CUDA-td2401785.html#a2401785 utilisation du GPU depuis Scala] d'autre part.
 
 == Pistes de développement ==
 
