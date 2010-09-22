@@ -1,3 +1,5 @@
+Suite à notre petit atelier *Scala on GPUs* au [http://groups.google.com/group/paris-scala-user-group Paris Scala User Group] du 21 septembre 2010 chez Xebia
+
 = Qu'est-ce qu'OpenCL ? = 
 
 OpenCL est une API multi-plateforme qui permet d'exécuter du code généraliste sur les cartes graphiques (ou sur le processeur central, ou les deux). L'architecture des cartes graphiques se prêtant naturellement aux calculs massivement parallèles, ceci permet d'effectuer des calculs numérique bien plus rapidement qu'en Java, Scala ou même C ou Fortran.
