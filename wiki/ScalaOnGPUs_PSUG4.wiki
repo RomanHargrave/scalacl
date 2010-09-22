@@ -93,6 +93,7 @@ Array[AnyRef](CLBuffer[Int], CLBuffer[Float], CLBuffer[Double], CLBuffer[Long], 
 }}}
 
 Que fait-on de ce tableau ?
+  * On lit ou écrit dedans avec un NIO Buffer ou un pointeur [http://code.google.com/p/bridj/ BridJ]
   * On le mappe vers un autre tableau de façon asynchrone, en respectant les events d'écriture et de lecture associés au tableau (opérations en cours)
   * On le filtre vers... un CLFilteredArray[T].
 
