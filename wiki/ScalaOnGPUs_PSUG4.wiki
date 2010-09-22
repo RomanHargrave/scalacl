@@ -1,4 +1,5 @@
 #summary Summary (in french) of "Scala on GPUs" workshop at Paris Scala User Group meeting of sept 21st, 2010
+#labels PSUG,Meeting
 
 Suite à notre petit atelier *Scala on GPUs* au [http://groups.google.com/group/paris-scala-user-group Paris Scala User Group] du 21 septembre 2010 chez Xebia, voici une restitution (peut-être un peu trop académique) des sujets abordés.
 
@@ -65,8 +66,8 @@ Facile, en utilisant une combinaison de collections OpenCL et d'un plugin de com
 Les collections Scala sont très riches et bien conçues.
 
 Personnellement en pratique j'utilise principalement les types et méthodes suivants :
-- IndexedSeq (Array), Map, Set, IntRange
-- map, flatMap, filter, foreach, grouped, view + force, size, head / tail / last / init
+  * IndexedSeq (Array), Map, Set, IntRange
+  * map, flatMap, filter, foreach, grouped, view + force, size, head / tail / last / init
 
 Pour implémenter des collections proches par leur design et leur utilisation des collections standard, OpenCL ne nous propose comme matériau que des tableaux natifs un peu frustes. 
 
@@ -90,8 +91,8 @@ Array[AnyRef](CLBuffer[Int], CLBuffer[Float], CLBuffer[Double], CLBuffer[Long], 
 }}}
 
 Que fait-on de ce tableau ?
-- On le mappe vers un autre tableau sans souci.
-- On le filtre vers... un CLFilteredArray[T].
+  * On le mappe vers un autre tableau de façon asynchrone, en respectant les events d'écriture et de lecture associés au tableau (opérations en cours)
+  * On le filtre vers... un CLFilteredArray[T].
 
 === `CLFilteredArray[T]` ===
 
