@@ -53,7 +53,7 @@ Du coup, la multiplication a.mmult(b).mmult(c) retourne tout de suite une Matrix
 
 [http://code.google.com/p/nativelibs4java/source/browse/trunk/libraries/OpenCL/Blas/ Les sources de JavaCL BLAS sont ici].
 
-Après avoir ajouté un certain nombre d'opérations vectorielles, je me suis rendu à l'évidence : on peut généraliser ça (donc on doit), retour à la case Scala !
+Après avoir ajouté un certain nombre d'opérations vectorielles, je me suis rendu à l'évidence : on peut généraliser ça (on peut le faire, donc on doit le faire :-)), retour à la case Scala !
 
 = ScalaCL v2 =
 
