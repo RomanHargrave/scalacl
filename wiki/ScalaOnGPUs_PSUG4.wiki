@@ -101,9 +101,9 @@ Que fait-on de ce tableau ?
 C'est juste l'assemblage d'un `CLArray[T]` et d'un `CLArray[Boolean]` qui indique si la case correspondante est présente ou pas (non filtrée).
 
 Qu'en fait-on ?
-- On le convertit en `CLArray[T]` avec toCLArray (il faut le compacter, ce qu'on peut faire par exemple en deux passes : une somme préfixée du bitmap de présence et une copie utilisant la somme préfixée)
-- On calcule sa taille en prenant la dernière valeur de la somme préfixée
-- On le mappe en un nouveau `CLFilteredArray[V]` avec `f: T => V` en copiant le bitmap de présence et en n'opérant `f` que sur les cases présentes.
+  * On le convertit en `CLArray[T]` avec toCLArray (il faut le compacter, ce qu'on peut faire par exemple en deux passes : une somme préfixée du bitmap de présence et une copie utilisant la somme préfixée)
+  * On calcule sa taille en prenant la dernière valeur de la somme préfixée
+  * On le mappe en un nouveau `CLFilteredArray[V]` avec `f: T => V` en copiant le bitmap de présence et en n'opérant `f` que sur les cases présentes.
 
 === Les autres collections ===
 
@@ -126,9 +126,9 @@ Le compilateur Scala opère en de nombreuses passes (nommées phases, cf. http:/
 Une [http://www.scala-lang.org/api/current/scala/reflect/generic/Universe.html API riche] exploitant habilement le pattern matching et des visiteurs permet d'écrire des analyses et transformations de code très facilement.
 
 Le principe est simple, sa mise en application l'est à peine moins :
-- on part du [http://lampsvn.epfl.ch/svn-repos/scala/scala/trunk/docs/examples/plugintemplate/ projet exemple plugintemplate] (dans les sources de Scala) qui nous permet de disposer d'un plugin en qq minutes
-- on utilise les options `-Xprint:phase` et/ou `-Yshow-trees` pour comprendre les patterns que l'on va essayer de matcher
-- on matche les expressions que l'on souhaite et on les transforme comme on veut (attention à bien utiliser des blocks `atOwner(tree.symbol) { ... }` pour transformer l'arbre si on est dans un Transformer).
+  * on part du [http://lampsvn.epfl.ch/svn-repos/scala/scala/trunk/docs/examples/plugintemplate/ projet exemple plugintemplate] (dans les sources de Scala) qui nous permet de disposer d'un plugin en qq minutes
+  * on utilise les options `-Xprint:phase` et/ou `-Yshow-trees` pour comprendre les patterns que l'on va essayer de matcher
+  * on matche les expressions que l'on souhaite et on les transforme comme on veut (attention à bien utiliser des blocks `atOwner(tree.symbol) { ... }` pour transformer l'arbre si on est dans un Transformer).
 
 Voici par exemple comment on matche `Seq[String](a, b)` :
 {{{
@@ -171,11 +171,11 @@ François, du PSUG, m'a pointé vers des threads très intéressants concernant 
 == Pistes de développement ==
 
 Comme je ne compte pas m'arrêter en si bon chemin, voici qq pistes que j'aimerais explorer :
-- autovectorisation des boucles s'y prêtant (c'est plein de pièges, donc intéressant)
-- transformation automatique de `col.map(f).map(g)` en `col.map(f.compose(g))`
-- détection des collections "qui ne sortent pas" et qui peuvent être mutées sur place : `a.filter(f).toCLArray.map(_ * 2)` (le CLArray créé peut reservir pour stocker le résultat final)
-- precache des sommes préfixées de `CLFilteredArray[T]` en fonction des appels ultérieurs à .size ou .toCLArray détéctés par le compilateur.
-- transformation automatique des `Array[T]` en `CLArray[T]` : *ScalaCL peut devenir un compilateur optimisant généraliste !*
+  * autovectorisation des boucles s'y prêtant (c'est plein de pièges, donc intéressant)
+  * transformation automatique de `col.map(f).map(g)` en `col.map(f.compose(g))`
+  * détection des collections "qui ne sortent pas" et qui peuvent être mutées sur place : `a.filter(f).toCLArray.map(_ * 2)` (le CLArray créé peut reservir pour stocker le résultat final)
+  * pré-cache des sommes préfixées de `CLFilteredArray[T]` en fonction des appels ultérieurs à .size ou .toCLArray détéctés par le compilateur.
+  * transformation automatique des `Array[T]` en `CLArray[T]` : *ScalaCL peut devenir un compilateur optimisant généraliste !*
 
 == Participer ==
 
