@@ -51,6 +51,8 @@ Après ces premiers essais, je me suis tourné vers la librairie UJMP (http://ww
 J'ai rapidement compris que j'avais tout intérêt à exploiter le caractère asynchrone d'OpenCL : lorsqu'on ajoute un job à file d'exécution, l'appel retourne un CLEvent, un objet que l'on pourra poller et sur lequel on pourra attendre pour s'assurer que le job est fini. Mais on peut également dire à d'autres jobs d'attendre des events.
 Du coup, la multiplication a.mmult(b).mmult(c) retourne tout de suite une Matrix, mais celle-ci n'est pas encore calculée (elle le sera en background, et la lecture d'une de ses composantes bloquera tant que les deux multiplications ne seront pas terminées).
 
+[http://code.google.com/p/nativelibs4java/source/browse/trunk/libraries/OpenCL/Blas/ Les sources de JavaCL BLAS sont ici].
+
 Après avoir ajouté un certain nombre d'opérations vectorielles, je me suis rendu à l'évidence : on peut généraliser ça (donc on doit), retour à la case Scala !
 
 = ScalaCL v2 =
