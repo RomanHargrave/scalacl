@@ -62,15 +62,15 @@ DISABLE_SCALACL_PLUGIN=1 scalac ...
 = TODO =
 
 General optimizations
-  * ~~Array.foreach~~
-  * ~~Array.map~~
-  * ~~for (i <- x to y by z) body~~
-  * Array.tabulate
-  * Array.reduceLeft / reduceRight
-  * Array.foldLeft / foldRight
-  * Array.scanLeft / scanRight
-  * col.map(f).map(g) : col.map(g(f(_)))
-  * col.filter(f).filter(g)
+  * ~~`Array.foreach`~~
+  * ~~`Array.map`~~
+  * ~~`for (i <- x to y by z) body`~~
+  * `Array.tabulate`
+  * `Array.reduceLeft` / reduceRight
+  * `Array.foldLeft` / foldRight
+  * `Array.scanLeft` / scanRight
+  * `col.map(f).map(g)` : `col.map(g(f(_)))`
+  * `col.filter(f).filter(g)`
 
 OpenCL optimizations
   * CLCol.map, CLCol.filter :
