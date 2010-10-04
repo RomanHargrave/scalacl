@@ -75,6 +75,7 @@ General optimizations
 OpenCL optimizations
   * CLCol.map, CLCol.filter :
     * ~~lambda function to OpenCL kernel~~
+    * reduceLeft, foldLeft, scanLeft (+ Right), sum...
   * CLArrayView, CLFilteredArrayView
   * escape analysis, reuse of compatible outputs
   * autovectorization
