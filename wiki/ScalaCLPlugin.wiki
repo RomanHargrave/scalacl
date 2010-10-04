@@ -8,6 +8,11 @@ The ScalaCL Compiler Plugin transforms Scala functions in `CLCol.map`, `CLCol.fo
 It also optimizes simple int-range foreach loops and `Array[T].foreach`, `Array[T].map` loops by transforming them into equivalent while loops (which are much faster). Examples of supported generalist rewrites can be found in the automatic tests :
 [http://code.google.com/p/nativelibs4java/source/browse/branches/OpenCL-BridJ/libraries/OpenCL/ScalaCLPlugin/src/test/scala/scalacl/]
 
+= Where is the source code ? =
+
+  * [http://code.google.com/p/nativelibs4java/source/browse/branches/OpenCL-BridJ/libraries/OpenCL/ScalaCL2/ ScalaCL Collections]
+  * [http://code.google.com/p/nativelibs4java/source/browse/branches/OpenCL-BridJ/libraries/OpenCL/ScalaCLPlugin/ ScalaCL Compiler Plugin]
+
 = Using the plugin =
 
 You can use the ScalaCLPlugin with any of the following options :
