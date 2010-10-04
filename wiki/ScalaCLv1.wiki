@@ -2,7 +2,12 @@
 
 <font color='red'>*Important:* ScalaCLv1 is no longer maintained, all development efforts are  put on ScalaCLv2</font>
 
-A simple DSL for (limited) parallel expressions execution on GPUs (proof-of-concept quality) :
+ScalaCLv1 was a simple DSL for (limited) parallel expressions execution on GPUs (proof-of-concept quality).
+
+It was introduced in this blog post :
+[http://ochafik.free.fr/blog/?p=207 ScalaCL: Reap OpenCL’s benefits without learning its syntax (Scala DSL for transparently parallel computations)]
+
+Here's a simple example :
 {{{
 class VectorAdd(i: Dim) extends Program(i) {
 	val a = FloatsVar
@@ -11,4 +16,4 @@ class VectorAdd(i: Dim) extends Program(i) {
 	content = result := a + b
 }
 }}}
-[http://nativelibs4java.googlecode.com/svn/trunk/libraries/OpenCL/ScalaCL/src/main/scala/scalacl/ScalaCLTest.scala See the complete exemple...]
+[http://nativelibs4java.googlecode.com/svn/trunk/libraries/OpenCL/ScalaCL/src/main/scala/scalacl/ScalaCLTest.scala See the complete example...]
