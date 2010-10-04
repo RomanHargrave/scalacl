@@ -5,7 +5,7 @@ ScalaCL v1 is compiled as part of NativeLibs4Java's SVN trunk.
 
 ScalaCL v2 (in development) relies on the BridJ port of JavaCL (+ on the latest BridJ version), which resides in a branch but needs the trunk BridJ version.
 
-To build it :
+To build ScalaCL v2 :
   * [http://code.google.com/p/javacl/wiki/Build Build NativeLibs4Java's trunk projects] (needed to get the latest version of BridJ)
   * Checkout the OpenCL-BridJ branch and build it :
   {{{
@@ -17,6 +17,14 @@ mvn install -Dmaven.test.skip=true
 cd ScalaCL2
 mvn install
 
+cd ScalaCLPlugin
+mvn install
+}}}
+
+The [ScalaCLPlugin ScalaCL Compiler Plugin] can be built independently with the following instructions :
+
+{{{
+svn checkout http://nativelibs4java.googlecode.com/svn/branches/OpenCL-BridJ/libraries/OpenCL/ScalaCLPlugin ScalaCLPlugin
 cd ScalaCLPlugin
 mvn install
 }}}
