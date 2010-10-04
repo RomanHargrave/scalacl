@@ -7,11 +7,11 @@ It also optimizes simple int-range foreach loops and `Array[T].foreach`, `Array[
 [http://code.google.com/p/nativelibs4java/source/browse/branches/OpenCL-BridJ/libraries/OpenCL/ScalaCLPlugin/src/test/scala/scalacl/]
 
 You can use the ScalaCLPlugin with any of the following options :
-  * install it using sbaz :
+  * install it using [http://www.scala-lang.org/node/93 sbaz] :
 {{{
 sbaz install scalacl-compiler-plugin
 }}}
-  * use it with Maven :
+  * use it with [http://maven.apache.org/ Maven] :
 {{{
     <repositories>
     ...
@@ -40,7 +40,7 @@ sbaz install scalacl-compiler-plugin
     </plugins>
   </build>
 }}}
-  * use it with sbt :
+  * use it with [http://code.google.com/p/simple-build-tool/ sbt] :
 {{{
 import sbt._
 class ScalaCLTest(info: ProjectInfo) extends DefaultProject(info) with AutoCompilerPlugins
