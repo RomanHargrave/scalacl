@@ -49,3 +49,8 @@ class ScalaCLTest(info: ProjectInfo) extends DefaultProject(info) with AutoCompi
   val scalacl = compilerPlugin("com.nativelibs4java" % "scalacl-compiler-plugin" % "1.0-SNAPSHOT")
 }
 }}}
+
+The plugin is enabled by default. To disable it, set the environment variable DISABLE_SCALACL_PLUGIN to 1 :
+{{{
+DISABLE_SCALACL_PLUGIN=1 scalac ...
+}}}
