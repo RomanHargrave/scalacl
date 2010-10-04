@@ -5,6 +5,7 @@
 ScalaCLv1 was a simple DSL for (limited) parallel expressions execution on GPUs (proof-of-concept quality).
 
 It was introduced in this blog post :
+
 [http://ochafik.free.fr/blog/?p=207 ScalaCL: Reap OpenCL’s benefits without learning its syntax (Scala DSL for transparently parallel computations)]
 
 Here's a simple example :
