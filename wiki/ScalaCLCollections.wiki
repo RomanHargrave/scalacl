@@ -12,9 +12,20 @@ See [http://code.google.com/p/nativelibs4java/source/browse/branches/OpenCL-Brid
 
 Supports :
   * T of AnyVal types and of tuples of AnyVals or tuples (unlimited nesting of tuples up to arity 8, with AnyVal leaves)
-  * map, filter
+  * read/write from/to a BridJ [http://nativelibs4java.sourceforge.net/sites/nl4j-runtime-parent/bridj/apidocs/org/bridj/Pointer.html Pointer]
+  * asynchronous map
+  * asynchronous filter
+  * asynchronous clone
+  * respect of the order of read/write operations (attempting to read a buffer for which many write operations are still queued will block until these operations are completed)
 
-Represented as an array of component arrays (tuples components are flattened).
+Represented as an array of component arrays (tuples components are flattened). The array :
+{{{
+CLArray[(Int, Float, (Double, Long, (Byte, Short)))]
+}}}
+is represented as the following array of flattened component arrays :
+{{{
+Array[AnyRef](CLBuffer[Int], CLBuffer[Float], CLBuffer[Double], CLBuffer[Long], CLBuffer[Byte], CLBuffer[Short])
+}}}
 
 = `CLFilteredArray[T]` =
 
@@ -22,5 +33,17 @@ Composed of a `CLArray[T]` and a presence map (for now, a `CLArray[Boolean]`).
 
 Supports
   * Same types as `CLArray[T]`
-  * map, filter
+  * asynchronous map
+  * asynchronous filter
   * toArray using an intermediate prefix sum array, which still has to be greatly improved
+
+
+= `CLArrayView[T]` = 
+
+Contains a reference to a `CLArray[T]` and a list of pending function applications (.map(f) and .filter(f) calls).
+
+When forced, it attempts to creates a single OpenCL kernel that is un on the target array.
+
+= `CLFilteredArrayView[T]` = 
+
+Same as `CLArrayView[T]`, but for `CLFilteredArray[T]` instances
