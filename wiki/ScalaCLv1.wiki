@@ -1,0 +1,14 @@
+#summary First version of ScalaCL: a limited parallel expressions DSL
+
+A simple DSL for (limited) parallel expressions execution on GPUs (proof-of-concept quality) :
+{{{
+class VectorAdd(i: Dim) extends Program(i) {
+	val a = FloatsVar
+	val b = FloatsVar
+	var result = FloatsVar
+	content = result := a + b
+}
+}}}
+[http://nativelibs4java.googlecode.com/svn/trunk/libraries/OpenCL/ScalaCL/src/main/scala/scalacl/ScalaCLTest.scala See the complete exemple...]
+
+<font color='red'>ScalaCLv1 is no longer maintained, all development efforts are  put on ScalaCLv2</font>
