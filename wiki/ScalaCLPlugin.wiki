@@ -1,0 +1,53 @@
+#summary Details on the ScalaCL Compiler Plugin (transforms Scala functions into OpenCL Kernels and optimizes general code)
+#labels Featured
+
+The ScalaCL Compiler Plugin transforms Scala functions in `CLCol.map`, `CLCol.foreach` and `CLCol.filter` into OpenCL kernels (effectively running these functions on the GPU via OpenCL).
+
+It also optimizes simple int-range foreach loops and `Array[T].foreach`, `Array[T].map` loops by transforming them into equivalent while loops (which are much faster).
+
+Examples of supported generalist rewrites can be found in the automatic tests :
+[http://code.google.com/p/nativelibs4java/source/browse/branches/OpenCL-BridJ/libraries/OpenCL/ScalaCLPlugin/src/test/scala/scalacl/]
+
+You can use the ScalaCLPlugin with any of the following options :
+  * install it using sbaz :
+{{{
+sbaz install scalacl-compiler-plugin
+}}}
+  * use it with Maven :
+{{{
+    <repositories>
+    ...
+    <repository>
+      <id>nativelibs4java</id>
+      <name>nativelibs4java Maven2 Repository</name>
+      <url>http://nativelibs4java.sourceforge.net/maven</url>
+    </repository>
+  </repositories>
+  <build>
+    ...
+    <plugins>
+    	<plugin>
+          <groupId>org.scala-tools</groupId>
+          <artifactId>maven-scala-plugin</artifactId>
+          <configuration>
+            <compilerPlugins>
+              <compilerPlugin>
+                <groupId>com.nativelibs4java</groupId>
+                <artifactId>scalacl-compiler</artifactId>
+                <version>1.0-SNAPSHOT</version>
+              </compilerPlugin>
+            </compilerPlugins>
+          </configuration>
+        </plugin>
+    </plugins>
+  </build>
+}}}
+  * use it with sbt :
+{{{
+import sbt._
+class ScalaCLTest(info: ProjectInfo) extends DefaultProject(info) with AutoCompilerPlugins
+{
+  val nativelibs4javaRepo = "NativeLibs4Java Repository" at "http://nativelibs4java.sourceforge.net/maven/"
+  val scalacl = compilerPlugin("com.nativelibs4java" % "scalacl-compiler-plugin" % "1.0-SNAPSHOT")
+}
+}}}
