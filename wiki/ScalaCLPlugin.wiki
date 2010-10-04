@@ -69,7 +69,7 @@ DISABLE_SCALACL_PLUGIN=1 scalac ...
 General optimizations
   * _OK_ ~~`Array.foreach`~~
   * _OK_ ~~`Array.map`~~
-  * _OK_ ~~`for (i <- x to y by z) body`~~
+  * _OK_ ~~`for (i <- x to/until y [by z]) body`~~
   * `Array.tabulate`
   * `Array.reduceLeft` / reduceRight
   * `Array.foldLeft` / foldRight
