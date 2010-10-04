@@ -1,10 +1,14 @@
 #summary Details on the ScalaCL Compiler Plugin (transforms Scala functions into OpenCL Kernels and optimizes general code)
 #labels Featured
 
+= What is it ? =
+
 The ScalaCL Compiler Plugin transforms Scala functions in `CLCol.map`, `CLCol.foreach` and `CLCol.filter` into OpenCL kernels (effectively running these functions on the GPU via OpenCL).
 
 It also optimizes simple int-range foreach loops and `Array[T].foreach`, `Array[T].map` loops by transforming them into equivalent while loops (which are much faster). Examples of supported generalist rewrites can be found in the automatic tests :
 [http://code.google.com/p/nativelibs4java/source/browse/branches/OpenCL-BridJ/libraries/OpenCL/ScalaCLPlugin/src/test/scala/scalacl/]
+
+= Using the plugin =
 
 You can use the ScalaCLPlugin with any of the following options :
   * install it using [http://www.scala-lang.org/node/93 sbaz] :
@@ -54,3 +58,24 @@ The plugin is enabled by default. To disable it, set the environment variable DI
 {{{
 DISABLE_SCALACL_PLUGIN=1 scalac ...
 }}}
+
+= TODO =
+
+General optimizations
+  * ~~Array.foreach~~
+  * ~~Array.map~~
+  * ~~for (i <- x to y by z) body~~
+  * Array.tabulate
+  * Array.reduceLeft / reduceRight
+  * Array.foldLeft / foldRight
+  * Array.scanLeft / scanRight
+  * col.map(f).map(g) : col.map(g(f(_)))
+  * col.filter(f).filter(g)
+
+OpenCL optimizations
+  * CLCol.map, CLCol.filter :
+    * ~~lambda function to OpenCL kernel~~
+  * CLArrayView, CLFilteredArrayView
+  * escape analysis, reuse of compatible outputs
+  * autovectorization
+  * auto-ScalaCL-ization
