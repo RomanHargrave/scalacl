@@ -70,6 +70,7 @@ General optimizations
   * _OK_ ~~`Array.foreach`~~
   * _OK_ ~~`Array.map`~~
   * _OK_ ~~`for (i <- x to/until y [by z]) body`~~
+  * `for (i <- range) body` (will be slower than `for (i <- x to y)` because we need to test Range.isInclusive)
   * `Array.tabulate`
   * `Array.reduceLeft` / reduceRight
   * `Array.foldLeft` / foldRight
