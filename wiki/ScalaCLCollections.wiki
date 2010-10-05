@@ -2,7 +2,7 @@
 
 *Work in progress*
 
-ScalaCL's collection use the [http://code.google.com/p/bridj/ BridJ] port of [http://code.google.com/p/javacl/ JavaCL], which has a much lower overhead than the regular JavaCL build.
+ScalaCL's collection use the [http://code.google.com/p/bridj/ BridJ] port of [http://code.google.com/p/javacl/ JavaCL], which has a much lower overhead than the regular JavaCL build (this helps improving BridJ, as new real-world use-cases emerge).
 
 Reading and writing to / from collections hence uses the [http://nativelibs4java.sourceforge.net/sites/nl4j-runtime-parent/bridj/apidocs/org/bridj/Pointer.html BridJ Pointer class] rather than NIO Buffers, but it is trivial to wrap direct NIO Buffers as BridJ Pointers and vice-versa.
 
