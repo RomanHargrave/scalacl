@@ -34,7 +34,8 @@ sbaz install scalacl-compiler-plugin
 }}}
   * use it with [http://maven.apache.org/ Maven] :
 {{{
-    <repositories>
+...
+  <repositories>
     ...
     <repository>
       <id>nativelibs4java</id>
@@ -60,6 +61,7 @@ sbaz install scalacl-compiler-plugin
         </plugin>
     </plugins>
   </build>
+...
 }}}
 
 The plugin is enabled by default. To disable it, set the environment variable DISABLE_SCALACL_PLUGIN to 1 :
