@@ -67,7 +67,7 @@ The plugin is enabled by default. To disable it, set the environment variable DI
 DISABLE_SCALACL_PLUGIN=1 scalac ...
 }}}
 
-= TODO =
+= Status / TODO =
 
 Pending bugs :
   * [http://code.google.com/p/nativelibs4java/issues/detail?id=32 Inline arrays crash loop optimizer]
