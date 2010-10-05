@@ -18,11 +18,11 @@ Supports :
   * asynchronous clone
   * respect of the order of read/write operations (attempting to read a buffer for which many write operations are still queued will block until these operations are completed)
 
-Represented as an array of component arrays (tuples components are flattened). The array :
+A `CLArray[T]` is represented as an array of component buffers (tuples components are flattened). For instance the following array :
 {{{
 CLArray[(Int, Float, (Double, Long, (Byte, Short)))]
 }}}
-is represented as the following array of flattened component arrays :
+is represented as the following array of flattened component buffers :
 {{{
 Array[AnyRef](CLBuffer[Int], CLBuffer[Float], CLBuffer[Double], CLBuffer[Long], CLBuffer[Byte], CLBuffer[Short])
 }}}
@@ -35,8 +35,7 @@ Supports
   * Same types as `CLArray[T]`
   * asynchronous map
   * asynchronous filter
-  * toArray using an intermediate prefix sum array, which still has to be greatly improved
-
+  * size and toArray are computed using an intermediate prefix sum array (which still has to be greatly improved)
 
 = `CLArrayView[T]` = 
 
@@ -47,3 +46,17 @@ When forced, it attempts to creates a single OpenCL kernel that is un on the tar
 = `CLFilteredArrayView[T]` = 
 
 Same as `CLArrayView[T]`, but for `CLFilteredArray[T]` instances
+
+= `CLFunction[A, B]` =
+
+Takes an A, returns a B (A and B can be tuples or `AnyVal`s).
+
+One can create a `CLFunction` explicitely, but the best is to write a Scala function and let the [ScalaCLPlugin] translate it to a `CLFunction`.
+
+Translation by the compiler plugin creates a unique identifier with which each function is cached globally.
+
+Then each `CLFunction` can be instantiated (and cached) for a particular `ScalaCLContext` and specific input and output types.
+
+Indeed it is possible to apply the same function on a `CLArray[T]` and on a `CLFilteredArray[T]`, even though this obviously requires different kernels (the filtered array contains a presence buffer that needs to be checked).
+
+Function composition is also cached efficiently, using a cached composition graph (each function keeps track of the composed function that can be built from it using another function). This helps making `CLView`s efficient.
