@@ -16,7 +16,16 @@ It also optimizes simple int-range foreach loops and `Array[T].foreach`, `Array[
 
 = Using the plugin =
 
-You can use the ScalaCLPlugin with any of the following options :
+You can use the ScalaCLPlugin with *any of the following options* :
+  * use it with [http://code.google.com/p/simple-build-tool/ sbt] :
+{{{
+import sbt._
+class ScalaCLTest(info: ProjectInfo) extends DefaultProject(info) with AutoCompilerPlugins
+{
+  val nativelibs4javaRepo = "NativeLibs4Java Repository" at "http://nativelibs4java.sourceforge.net/maven/"
+  val scalacl = compilerPlugin("com.nativelibs4java" % "scalacl-compiler-plugin" % "1.0-SNAPSHOT")
+}
+}}}
   * install it using [http://www.scala-lang.org/node/93 sbaz] :
 {{{
 wget http://nativelibs4java.sourceforge.net/sbaz/scalacl/scalacl-compiler-plugin-1.0-SNAPSHOT.advert
@@ -51,15 +60,6 @@ sbaz install scalacl-compiler-plugin
         </plugin>
     </plugins>
   </build>
-}}}
-  * use it with [http://code.google.com/p/simple-build-tool/ sbt] :
-{{{
-import sbt._
-class ScalaCLTest(info: ProjectInfo) extends DefaultProject(info) with AutoCompilerPlugins
-{
-  val nativelibs4javaRepo = "NativeLibs4Java Repository" at "http://nativelibs4java.sourceforge.net/maven/"
-  val scalacl = compilerPlugin("com.nativelibs4java" % "scalacl-compiler-plugin" % "1.0-SNAPSHOT")
-}
 }}}
 
 The plugin is enabled by default. To disable it, set the environment variable DISABLE_SCALACL_PLUGIN to 1 :
