@@ -1,5 +1,6 @@
 #summary Details on the ScalaCL Compiler Plugin (transforms Scala functions into OpenCL Kernels and optimizes general code)
 #labels Featured
+<wiki:toc max_depth="3" />
 
 = What is it ? =
 
