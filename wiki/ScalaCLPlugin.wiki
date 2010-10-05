@@ -18,6 +18,8 @@ It also optimizes simple int-range foreach loops and `Array[T].foreach`, `Array[
 You can use the ScalaCLPlugin with any of the following options :
   * install it using [http://www.scala-lang.org/node/93 sbaz] :
 {{{
+wget http://nativelibs4java.sourceforge.net/sbaz/scalacl/scalacl-compiler-plugin-1.0-SNAPSHOT.advert
+sbaz share scalacl-compiler-plugin-1.0-SNAPSHOT.advert
 sbaz install scalacl-compiler-plugin
 }}}
   * use it with [http://maven.apache.org/ Maven] :
