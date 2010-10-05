@@ -72,7 +72,8 @@ DISABLE_SCALACL_PLUGIN=1 scalac ...
 = Status / TODO =
 
 Pending bugs :
-  * [http://code.google.com/p/nativelibs4java/issues/detail?id=32 Inline arrays crash loop optimizer]
+  * ~~[http://code.google.com/p/nativelibs4java/issues/detail?id=32 Inline arrays crash loop optimizer]~~
+
 General optimizations
   * _OK_ ~~`Array.foreach`~~
   * _OK_ ~~`Array.map`~~
