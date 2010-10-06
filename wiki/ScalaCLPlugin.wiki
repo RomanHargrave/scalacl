@@ -72,11 +72,10 @@ class ScalaCLTest(info: ProjectInfo) extends DefaultProject(info) with AutoCompi
   </build>
 ...
 }}}
-  * install it using [http://www.scala-lang.org/node/93 sbaz] ([http://stackoverflow.com/questions/3867788/how-can-i-share-a-package-on-the-main-scala-bazaar-scala-dev-with-sbaz does not appear to work as well as it should, please answer this question if you're familiar with sbaz sharing]) :
+  * install it using [http://www.scala-lang.org/node/93 sbaz] :
 {{{
-wget http://nativelibs4java.sourceforge.net/sbaz/scalacl/scalacl-compiler-plugin-1.0-20101006.advert
-sbaz share scalacl-compiler-plugin-1.0-20101006.advert
-sbaz install scalacl-compiler-plugin/1.0-20101006
+sbaz update
+sbaz install scalacl-compiler-plugin
 }}}
 
 The plugin is enabled by default. To disable it, set the environment variable DISABLE_SCALACL_PLUGIN to 1 :
