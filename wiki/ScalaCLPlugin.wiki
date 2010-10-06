@@ -105,7 +105,7 @@ General optimizations
   * `col.filter(f).filter(g)`
 
 Optimizations suggested by thirdparties:
-  * [http://twitter.com/#!/retronym/status/26527256634 runtime cases for WrappedArray] (by [http://twitter.com/#!/retronym @retronym]
+  * [http://twitter.com/#!/retronym/status/26527256634 runtime cases for WrappedArray] (by [http://twitter.com/#!/retronym @retronym])
 
 OpenCL optimizations (not up-to-date, current priority is on general optimizations)
   * CLCol.map, CLCol.filter :
