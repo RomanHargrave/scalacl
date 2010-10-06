@@ -88,7 +88,7 @@ DISABLE_SCALACL_PLUGIN=1 scalac ...
 Pending bugs :
   * _OK_ ~~[http://code.google.com/p/nativelibs4java/issues/detail?id=32 Inline arrays crash loop optimizer]~~
 
-General optimizations
+General optimizations planned :
   * _OK_ ~~`Array.foreach`~~
   * _OK_ ~~`Array.map`~~
   * _OK_ ~~`for (i <- x to/until y [by z]) body`~~
@@ -107,7 +107,7 @@ General optimizations
 Optimizations suggested by thirdparties:
   * [http://twitter.com/#!/retronym/status/26527256634 runtime cases for WrappedArray] (by [http://twitter.com/#!/retronym @retronym])
 
-OpenCL optimizations (not up-to-date, current priority is on general optimizations)
+OpenCL optimizations (not up-to-date, current priority is on general optimizations) :
   * CLCol.map, CLCol.filter :
     * _OK_ ~~lambda function to OpenCL kernel~~
     * reduceLeft, foldLeft, scanLeft (+ Right), sum...
