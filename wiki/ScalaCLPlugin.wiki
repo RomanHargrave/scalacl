@@ -6,7 +6,9 @@
 
 The ScalaCL Compiler Plugin transforms Scala functions in `CLCol.map`, `CLCol.foreach` and `CLCol.filter` into OpenCL kernels (effectively running these functions on the GPU via OpenCL).
 
-It also optimizes simple int-range foreach loops and `Array[T].foreach`, `Array[T].map` loops by transforming them into equivalent while loops (which are much faster). Examples of supported generalist rewrites can be found in the automatic tests :
+It also optimizes simple int-range foreach loops and `Array[T].foreach`, `.map`, `.reduceLeft`, `.foldLeft`, `.scanLeft` calls (and -Right variants) by transforming them into equivalent while loops, which are much faster). 
+
+Examples of supported generalist rewrites can be found in the automatic tests :
 [http://code.google.com/p/nativelibs4java/source/browse/branches/OpenCL-BridJ/libraries/OpenCL/ScalaCLPlugin/src/test/scala/scalacl/]
 
 = Where is the source code ? =
