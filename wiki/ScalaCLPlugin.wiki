@@ -63,7 +63,7 @@ class ScalaCLTest(info: ProjectInfo) extends DefaultProject(info) with AutoCompi
   </build>
 ...
 }}}
-  * install it using [http://www.scala-lang.org/node/93 sbaz] :
+  * install it using [http://www.scala-lang.org/node/93 sbaz] ([http://stackoverflow.com/questions/3867788/how-can-i-share-a-package-on-the-main-scala-bazaar-scala-dev-with-sbaz does not appear to work, please answer this question if you're familiar with sbaz sharing]) :
 {{{
 wget http://nativelibs4java.sourceforge.net/sbaz/scalacl/scalacl-compiler-plugin-1.0-20101006.advert
 sbaz share scalacl-compiler-plugin-1.0-20101006.advert
