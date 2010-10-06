@@ -26,12 +26,6 @@ class ScalaCLTest(info: ProjectInfo) extends DefaultProject(info) with AutoCompi
   val scalacl = compilerPlugin("com.nativelibs4java" % "scalacl-compiler-plugin" % "1.0-SNAPSHOT")
 }
 }}}
-  * install it using [http://www.scala-lang.org/node/93 sbaz] :
-{{{
-wget http://nativelibs4java.sourceforge.net/sbaz/scalacl/scalacl-compiler-plugin-1.0-20101005.advert
-sbaz share scalacl-compiler-plugin-1.0-20101005.advert
-sbaz install scalacl-compiler-plugin/1.0-20101005
-}}}
   * use it with [http://maven.apache.org/ Maven] :
 {{{
 ...
@@ -62,6 +56,12 @@ sbaz install scalacl-compiler-plugin/1.0-20101005
     </plugins>
   </build>
 ...
+}}}
+  * install it using [http://www.scala-lang.org/node/93 sbaz] :
+{{{
+wget http://nativelibs4java.sourceforge.net/sbaz/scalacl/scalacl-compiler-plugin-1.0-20101006.advert
+sbaz share scalacl-compiler-plugin-1.0-20101006.advert
+sbaz install scalacl-compiler-plugin/1.0-20101006
 }}}
 
 The plugin is enabled by default. To disable it, set the environment variable DISABLE_SCALACL_PLUGIN to 1 :
