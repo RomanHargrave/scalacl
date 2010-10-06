@@ -81,9 +81,9 @@ General optimizations
   * `for (i <- x to/until y [by z]; if test) body`
   * `for (i <- range [by z][; if test]) body` (will be slower than `for (i <- x to y)` because we need to test Range.isInclusive)
   * `Array.tabulate`
-  * `Array.reduceLeft` / reduceRight (OK for `AnyVal`, `AnyRef` pending)
-  * `Array.foldLeft` / foldRight (OK for `AnyVal`, `AnyRef` pending)
-  * `Array.scanLeft` / scanRight
+  * _OK_ ~~`Array.reduceLeft` / reduceRight~~
+  * _OK_ ~~`Array.foldLeft` / foldRight~~
+  * _OK_ ~~`Array.scanLeft` / scanRight~~
   * `List.foreach` and all associated methods (while loops appear to be faster !!!)
   * `col.map(f).map(g)` : `col.map(g(f(_)))`
   * `col.filter(f).filter(g)`
