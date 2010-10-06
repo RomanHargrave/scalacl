@@ -20,6 +20,13 @@ You can also read this thread of the scala-user mailing-list where I announced t
   * [http://code.google.com/p/nativelibs4java/source/browse/branches/OpenCL-BridJ/libraries/OpenCL/ScalaCL2/ ScalaCL Collections]
   * [http://code.google.com/p/nativelibs4java/source/browse/branches/OpenCL-BridJ/libraries/OpenCL/ScalaCLPlugin/ ScalaCL Compiler Plugin]
 
+To start hacking on the compiler plugin :
+{{{
+svn co http://nativelibs4java.googlecode.com/svn/branches/OpenCL-BridJ/libraries/OpenCL/ScalaCLPlugin
+cd ScalaCLPlugin
+sbt package
+}}}
+
 = Using the plugin =
 
 You can use the ScalaCLPlugin with *any of the following options* :
