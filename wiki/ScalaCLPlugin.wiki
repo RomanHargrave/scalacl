@@ -87,6 +87,7 @@ General optimizations
   * `for (i <- x to/until y [by z]; if test) body`
   * `for (i <- range [by z][; if test]) body` (will be slower than `for (i <- x to y)` because we need to test Range.isInclusive)
   * `Array.tabulate`
+  * `Seq(x, y, z...).foreach -> Array(x, y, z...).foreach` (before the `Array.foreach` transform). Same for `List`
   * _OK_ ~~`Array.reduceLeft` / reduceRight~~
   * _OK_ ~~`Array.foldLeft` / foldRight~~
   * _OK_ ~~`Array.scanLeft` / scanRight~~
