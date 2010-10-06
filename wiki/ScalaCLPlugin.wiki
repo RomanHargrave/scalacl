@@ -17,6 +17,8 @@ You can also read this thread of the scala-user mailing-list where I announced t
 
 = Where is the source code ? =
 
+[http://code.google.com/p/nativelibs4java/source/browse/branches/OpenCL-BridJ/libraries/OpenCL/ScalaCLPlugin/LICENSE ScalaCL is licensed under a 3-clause BSD-style license], so it can be integrated in pretty much all living software (including proprietary and (L)GPL).
+
   * [http://code.google.com/p/nativelibs4java/source/browse/branches/OpenCL-BridJ/libraries/OpenCL/ScalaCL2/ ScalaCL Collections]
   * [http://code.google.com/p/nativelibs4java/source/browse/branches/OpenCL-BridJ/libraries/OpenCL/ScalaCLPlugin/ ScalaCL Compiler Plugin]
 
