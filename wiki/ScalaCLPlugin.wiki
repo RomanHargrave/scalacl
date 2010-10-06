@@ -88,7 +88,7 @@ General optimizations
   * `col.map(f).map(g)` : `col.map(g(f(_)))`
   * `col.filter(f).filter(g)`
 
-OpenCL optimizations
+OpenCL optimizations (not up-to-date, current priority is on general optimizations)
   * CLCol.map, CLCol.filter :
     * _OK_ ~~lambda function to OpenCL kernel~~
     * reduceLeft, foldLeft, scanLeft (+ Right), sum...
