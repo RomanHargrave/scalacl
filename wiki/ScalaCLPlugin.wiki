@@ -12,7 +12,8 @@ Examples of supported generalist rewrites can be found in the automatic tests :
 [http://code.google.com/p/nativelibs4java/source/browse/branches/OpenCL-BridJ/libraries/OpenCL/ScalaCLPlugin/src/test/scala/scalacl/]
 
 You can also read this thread of the scala-user mailing-list where I announced the plugin :
-[http://scala-programming-language.1934581.n4.nabble.com/ScalaCL-Compiler-Plugin-to-optimize-loops-on-arrays-and-int-ranges-out-for-testing-and-feedback-td2953642.html]
+
+[http://scala-programming-language.1934581.n4.nabble.com/ScalaCL-Compiler-Plugin-to-optimize-loops-on-arrays-and-int-ranges-out-for-testing-and-feedback-td2953642.html ScalaCL Compiler Plugin to optimize loops on arrays and int ranges (out for testing and feedback)]
 
 = Where is the source code ? =
 
