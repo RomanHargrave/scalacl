@@ -101,8 +101,10 @@ General optimizations planned :
   * _OK_ ~~`Array.scanLeft` / scanRight~~
   * _OK_ ~~handle method references (as opposed to inline lambdas)~~
   * `List.foreach` and all associated methods (while loops appear to be faster !!!)
-  * `col.map(f).map(g)` : `col.map(g(f(_)))`
-  * `col.filter(f).filter(g)`
+  * map-fuse : `col.map(f).map(g)` becomes `col.map(g(f(_)))` (avoids one iteration + creation of data structure)
+  * filter-fuse `col.filter(f).filter(g)` (avoids one iteration)
+  * `Array.filter` (what kind of output buffer should we use ?)
+  * array filter/map-fuse `array.filter(f).map(g)` and `array.map(f).filter(g)` must be done in one iteration (same as for List)
 
 Optimizations suggested by thirdparties:
   * [http://twitter.com/#!/retronym/status/26527256634 runtime cases for WrappedArray] (by [http://twitter.com/#!/retronym @retronym])
