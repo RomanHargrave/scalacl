@@ -32,6 +32,16 @@ sbt package
 = Using the plugin =
 
 You can use the ScalaCLPlugin with *any of the following options* :
+  * install it using [http://www.scala-lang.org/node/93 sbaz] (this is the easiest way to test ScalaCL's compiler plugin if you're not using Maven or Sbt) :
+{{{
+sbaz update
+sbaz install scalacl-compiler-plugin
+}}}
+  Then just use `scalac` as you're used to (the plugin will be enabled by default, see below for how to disable it.
+  Should you wish to uninstall the plugin, type :
+{{{
+sbaz remove scalacl-compiler-plugin
+}}}
   * use it with [http://code.google.com/p/simple-build-tool/ sbt] :
 {{{
 import sbt._
@@ -71,11 +81,6 @@ class ScalaCLTest(info: ProjectInfo) extends DefaultProject(info) with AutoCompi
     </plugins>
   </build>
 ...
-}}}
-  * install it using [http://www.scala-lang.org/node/93 sbaz] :
-{{{
-sbaz update
-sbaz install scalacl-compiler-plugin
 }}}
 
 The plugin is enabled by default. To disable it, set the environment variable DISABLE_SCALACL_PLUGIN to 1 :
