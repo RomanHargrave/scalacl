@@ -87,10 +87,12 @@ The plugin is enabled by default. To disable it, set the environment variable DI
 {{{
 DISABLE_SCALACL_PLUGIN=1 scalac ...
 }}}
-To skip one file or skip the optimization(s) done at a specific line, use the SCALACL_SKIP environment variable :
+
+To disable optimizations for a whole file or at a specific line in a file, use the SCALACL_SKIP environment variable :
 {{{
 SCALACL_SKIP=file1,file2.scala,../path/to/file3.scala,file4:someLine,file5:someLine...
 }}}
+(this can be used to troubleshoot the ScalaCL Compiler Plugin : you can narrow compiler crashes down to the faulty line(s))
 
 = Status / TODO =
 
