@@ -128,3 +128,8 @@ OpenCL optimizations (not up-to-date, current priority is on general optimizatio
   * escape analysis, reuse of compatible outputs
   * autovectorization
   * auto-ScalaCL-ization
+
+Misc TODO 
+  * create more serious benchmarks :
+    * [http://www.ibm.com/developerworks/library/j-jtp12214/]
+    * [http://blog.juma.me.uk/2009/10/26/new-jvm-options-and-scala-iteration-performance/]
