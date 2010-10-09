@@ -111,7 +111,7 @@ SCALACL_SKIP=file1,file2.scala,../path/to/file3.scala,file4:someLine,file5:someL
 
 You can [http://twitter.com/#!/ochafik follow news about the ScalaCL plugin on Twitter (@ochafik)].
 
-Pending bugs :
+Pending bugs (please file new ones [http://code.google.com/p/nativelibs4java/issues/list here]) :
   * _OK_ ~~[http://code.google.com/p/nativelibs4java/issues/detail?id=32 Inline arrays crash loop optimizer]~~
   * Fails to optimize loops that yield tuples : `val a = new Array[Int](10); for (i <- a) yield (i, i)` (reported by [http://twitter.com/#!/ijuma @ijuma])
   Important: _this does not crash the compiler_, it just does not optimizes such cases
