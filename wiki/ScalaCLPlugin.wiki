@@ -26,7 +26,7 @@ To start hacking on the compiler plugin :
 {{{
 svn co http://nativelibs4java.googlecode.com/svn/branches/OpenCL-BridJ/libraries/OpenCL/ScalaCLPlugin
 cd ScalaCLPlugin
-sbt package
+mvn package
 }}}
 
 = Using the compiler plugin =
