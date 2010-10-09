@@ -130,6 +130,14 @@ SCALACL_SKIP=file1,file2.scala,../path/to/file3.scala,file4:someLine,file5:someL
 }}}
 (this can be used to troubleshoot the ScalaCL Compiler Plugin : you can narrow compiler crashes down to the faulty line(s))
 
+= Benchmarking =
+
+If you want to compare the performance of Scala programs with and without the ScalaCL Compiler plugin, you can :
+  * compile twice the same program : once with the `DISABLE_SCALACL_PLUGIN=1` environment variable set, and once without.
+  * put twice the same code in two separate classes and files (`TestWithout.scala` and `TestWith.scala`), then set the `SCALACL_SKIP=TestWithout` environment variable when compiling : the `TestWithout.scala` file won't benefit from any optimization from the compiler plugin.
+
+Also, please think of always using the `-optimise` switch of Scala. You'll notice that it does not reduce the advantage of using the ScalaCL compiler plugin, on the contrary : in many cases the plugin makes it easier for the compiler to optimize the program.
+
 = Status / TODO =
 
 You can [http://twitter.com/#!/ochafik follow news about the ScalaCL plugin on Twitter (@ochafik)].
