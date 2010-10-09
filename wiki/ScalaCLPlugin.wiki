@@ -32,7 +32,7 @@ sbt package
 = Using the plugin =
 
 You can use the ScalaCLPlugin with *any of the following options* :
-  * install it using [http://www.scala-lang.org/node/93 sbaz] (this is the easiest way to test ScalaCL's compiler plugin if you're not using Maven or Sbt) :
+  * install it using [http://www.scala-lang.org/node/93 sbaz] (this is the easiest way to test ScalaCL's compiler plugin if you're using `scalac` in command line) :
 {{{
 sbaz update
 sbaz install scalacl-compiler-plugin
