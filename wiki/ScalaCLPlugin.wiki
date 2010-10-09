@@ -109,6 +109,8 @@ SCALACL_SKIP=file1,file2.scala,../path/to/file3.scala,file4:someLine,file5:someL
 
 = Status / TODO =
 
+You can [http://twitter.com/#!/ochafik follow news about the ScalaCL plugin on Twitter (@ochafik)].
+
 Pending bugs :
   * _OK_ ~~[http://code.google.com/p/nativelibs4java/issues/detail?id=32 Inline arrays crash loop optimizer]~~
   * Fails to optimize loops that yield tuples : `val a = new Array[Int](10); for (i <- a) yield (i, i)` (reported by [http://twitter.com/#!/ijuma @ijuma])
