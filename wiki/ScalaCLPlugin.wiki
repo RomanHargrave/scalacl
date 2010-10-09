@@ -82,6 +82,17 @@ class ScalaCLTest(info: ProjectInfo) extends DefaultProject(info) with AutoCompi
   </build>
 ...
 }}}
+  * use it with the [http://www.scala-ide.org/ Eclipse Scala Plugin] :
+    * Download the [http://nativelibs4java.sourceforge.net/maven/com/nativelibs4java/scalacl-compiler-plugin/1.0-SNAPSHOT/scalacl-compiler-plugin-1.0-SNAPSHOT.jar latest version of the ScalaCL Compiler Plugin]
+    * Open the section "Scala Compiler Properties" of Eclipse project's properties
+    * Check "Use Project Settings" to enable the configuration items below
+    * Fill the `Xplugin` field with the full path to the JAR you've downloaded, for instance :
+{{{
+/Users/ochafik/ScalaCLPlugin/target/scalacl-compiler-plugin-1.0-SNAPSHOT.jar
+}}}
+    * Fill the `Xplugin-require` field with `scalacl` (just in case)
+    * Clean your project, so it is rebuilt with the plugin enabled
+  In case of issue, it is advised you compile using Maven or scalac+sbaz, because it seems the output from the compiler and from the compiler plugin is not visible from Eclipse.
 
 The plugin is enabled by default. To disable it, set the environment variable DISABLE_SCALACL_PLUGIN to 1 :
 {{{
