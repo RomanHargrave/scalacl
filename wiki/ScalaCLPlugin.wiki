@@ -53,7 +53,7 @@ sbaz update
 sbaz upgrade
 }}}
 
-== With sbt (simple-build-tool)
+== With sbt (simple-build-tool) ==
 
 To use the ScalaCL Compiler plugin with [http://code.google.com/p/simple-build-tool/ sbt], please make your project file look like this :
 {{{
