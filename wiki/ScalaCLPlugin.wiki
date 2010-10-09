@@ -94,6 +94,8 @@ class ScalaCLTest(info: ProjectInfo) extends DefaultProject(info) with AutoCompi
     * Clean your project, so it is rebuilt with the plugin enabled
   In case of issue, it is advised you compile using Maven or scalac+sbaz, because it seems the output from the compiler and from the compiler plugin is not visible from Eclipse.
 
+== Disabling the plugin ==
+
 The plugin is enabled by default. To disable it, set the environment variable DISABLE_SCALACL_PLUGIN to 1 :
 {{{
 DISABLE_SCALACL_PLUGIN=1 scalac ...
