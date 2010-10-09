@@ -112,7 +112,8 @@ General optimizations planned :
   * _OK_ ~~`Array.foldLeft` / foldRight~~
   * _OK_ ~~`Array.scanLeft` / scanRight~~
   * _OK_ ~~handle method references (as opposed to inline lambdas)~~
-  * `List.foreach` and all associated methods (while loops appear to be faster !!!)
+  * _OK_ ~~`List.foreach`~~
+  * _OK_ ~~`List.(scan|fold|reduce)Left`~~
   * map-fuse : `col.map(f).map(g)` becomes `col.map(x => { val fx = f(x); g(fx) })` (avoids one iteration + creation of data structure)
   * filter-fuse `col.filter(f).filter(g)` (avoids one iteration)
   * `Array.filter` (what kind of output buffer should we use ?)
