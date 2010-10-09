@@ -33,7 +33,7 @@ sbt package
 
 You can use the ScalaCLPlugin with *any of the following options* :
 
-== scalac (with sbaz) ==
+== With scalac (using sbaz) ==
 
 If you're using `scalac` in command line, the easiest way to test ScalaCL's compiler plugin is to use the following [http://www.scala-lang.org/node/93 sbaz] commands :
 {{{
@@ -53,7 +53,7 @@ sbaz update
 sbaz upgrade
 }}}
 
-== sbt (simple-build-tool)
+== With sbt (simple-build-tool)
 
 To use the ScalaCL Compiler plugin with [http://code.google.com/p/simple-build-tool/ sbt], please make your project file look like this :
 {{{
@@ -69,7 +69,7 @@ Then run this to grab the package (re-run each time you want to update to the la
 sbt update
 }}}
 
-== Maven ==
+== With Maven ==
 
 The ScalaCL plugin can be used with [http://maven.apache.org/ Maven], simply edit your `pom.xml` as follows :
 {{{
@@ -103,9 +103,9 @@ The ScalaCL plugin can be used with [http://maven.apache.org/ Maven], simply edi
 ...
 }}}
 
-== Eclipse Scala IDE ==
+== With Eclipse ==
 
-Here's how to configure your Eclipse project with the [http://www.scala-ide.org/ Eclipse Scala Plugin] so it uses the ScalaCL Compiler Plugin :
+Here's how to configure an [http://www.scala-ide.org/ Eclipse Scala] project so it uses the ScalaCL Compiler Plugin :
   * Download the [http://nativelibs4java.sourceforge.net/maven/com/nativelibs4java/scalacl-compiler-plugin/1.0-SNAPSHOT/scalacl-compiler-plugin-1.0-SNAPSHOT.jar latest version of the ScalaCL Compiler Plugin]
   * Open the section "Scala Compiler Properties" of Eclipse project's properties
   * Check "Use Project Settings" to enable the configuration items below
