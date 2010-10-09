@@ -40,9 +40,9 @@ If you're using `scalac` in command line, the easiest way to test ScalaCL's comp
 sbaz update
 sbaz install scalacl-compiler-plugin
 }}}
-Then just use `scalac` as you're used to (the plugin will be enabled by default, see below for how to disable it.
+Then just use `scalac` as you're used to (the plugin will be enabled by default, see below for how to disable it).
 
-Should you wish to uninstall the plugin, type :
+Should you wish to uninstall the plugin, run :
 {{{
 sbaz remove scalacl-compiler-plugin
 }}}
