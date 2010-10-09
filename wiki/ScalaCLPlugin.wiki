@@ -35,7 +35,7 @@ You can use the ScalaCLPlugin with *any of the following options* :
 
 == With scalac (using sbaz) ==
 
-If you're using `scalac` in command line, the easiest way to test ScalaCL's compiler plugin is to use the following [http://www.scala-lang.org/node/93 sbaz] commands :
+If you're using [http://www.scala-lang.org/docu/files/tools/scalac.html `scalac` in command line], the easiest way to test ScalaCL's compiler plugin is to use the following [http://www.scala-lang.org/node/93 sbaz] commands :
 {{{
 sbaz update
 sbaz install scalacl-compiler-plugin
