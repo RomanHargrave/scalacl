@@ -113,7 +113,7 @@ You can [http://twitter.com/#!/ochafik follow news about the ScalaCL plugin on T
 
 Pending bugs :
   * _OK_ ~~[http://code.google.com/p/nativelibs4java/issues/detail?id=32 Inline arrays crash loop optimizer]~~
-  * Fails to optimize loops that yield tuples : `val a = new Array[Int](10); for (i <- a) yield (i, i)` (reported by [http://twitter.com/#!/ijuma @ijuma])
+  * Fails to optimize loops that yield tuples : `val a = new Array[Int](10); for (i <- a) yield (i, i)` (reported by [http://twitter.com/#!/ijuma @ijuma]) (_this does not crash the compiler_, it just does not optimizes such cases)
 
 General optimizations planned :
   * _OK_ ~~`Array.foreach`~~
