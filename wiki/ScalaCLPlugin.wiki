@@ -108,12 +108,12 @@ General optimizations planned :
   * _OK_ ~~`Array.tabulate(n)`~~
   * `Array.tabulate(n1, n2)`, `Array.tabulate(n1, n2, n3)`...
   * `Seq(x, y, z...).foreach -> Array(x, y, z...).foreach` (before the `Array.foreach` transform). Same for `List`
-  * _OK_ ~~`Array.reduceLeft` / reduceRight~~
-  * _OK_ ~~`Array.foldLeft` / foldRight~~
-  * _OK_ ~~`Array.scanLeft` / scanRight~~
+  * _OK_ ~~`Array.reduceLeft` / `reduceRight`~~
+  * _OK_ ~~`Array.foldLeft` / `foldRight`~~
+  * _OK_ ~~`Array.scanLeft` / `scanRight`~~
   * _OK_ ~~handle method references (as opposed to inline lambdas)~~
   * _OK_ ~~`List.foreach`~~
-  * _OK_ ~~`List.(scan|fold|reduce)Left`~~
+  * _OK_ ~~`List.(scan|fold|reduce)Left`~~ (won't write the -Right variant)
   * map-fuse : `col.map(f).map(g)` becomes `col.map(x => { val fx = f(x); g(fx) })` (avoids one iteration + creation of data structure)
   * filter-fuse `col.filter(f).filter(g)` (avoids one iteration)
   * `Array.filter` (what kind of output buffer should we use ?)
