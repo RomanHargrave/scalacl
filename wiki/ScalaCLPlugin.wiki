@@ -91,7 +91,7 @@ class ScalaCLTest(info: ProjectInfo) extends DefaultProject(info) with AutoCompi
 /Users/ochafik/ScalaCLPlugin/target/scalacl-compiler-plugin-1.0-SNAPSHOT.jar
 }}}
     * Fill the `Xplugin-require` field with `scalacl` (just in case)
-    * Clean your project, so it is rebuilt with the plugin enabled
+    * Clean your project, so it is rebuilt with the plugin enabled (menu `Project / Clean...`)
   In case of issue, it is advised you compile using Maven or scalac+sbaz, because it seems the output from the compiler and from the compiler plugin is not visible from Eclipse.
 
 == Disabling the plugin ==
