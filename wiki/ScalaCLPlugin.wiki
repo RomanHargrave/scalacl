@@ -32,17 +32,30 @@ sbt package
 = Using the plugin =
 
 You can use the ScalaCLPlugin with *any of the following options* :
-  * install it using [http://www.scala-lang.org/node/93 sbaz] (this is the easiest way to test ScalaCL's compiler plugin if you're using `scalac` in command line) :
+
+== scalac (with sbaz) ==
+
+If you're using `scalac` in command line, the easiest way to test ScalaCL's compiler plugin is to use the following [http://www.scala-lang.org/node/93 sbaz] commands :
 {{{
 sbaz update
 sbaz install scalacl-compiler-plugin
 }}}
-  Then just use `scalac` as you're used to (the plugin will be enabled by default, see below for how to disable it.
-  Should you wish to uninstall the plugin, type :
+Then just use `scalac` as you're used to (the plugin will be enabled by default, see below for how to disable it.
+
+Should you wish to uninstall the plugin, type :
 {{{
 sbaz remove scalacl-compiler-plugin
 }}}
-  * use it with [http://code.google.com/p/simple-build-tool/ sbt] :
+
+To update the plugin :
+{{{
+sbaz update
+sbaz upgrade
+}}}
+
+== sbt (simple-build-tool)
+
+To use the ScalaCL Compiler plugin with [http://code.google.com/p/simple-build-tool/ sbt], please make your project file look like this :
 {{{
 import sbt._
 class ScalaCLTest(info: ProjectInfo) extends DefaultProject(info) with AutoCompilerPlugins
@@ -51,7 +64,14 @@ class ScalaCLTest(info: ProjectInfo) extends DefaultProject(info) with AutoCompi
   val scalacl = compilerPlugin("com.nativelibs4java" % "scalacl-compiler-plugin" % "1.0-SNAPSHOT")
 }
 }}}
-  * use it with [http://maven.apache.org/ Maven] :
+Then run this to grab the package (re-run each time you want to update to the latest version of ScalaCL) :
+{{{
+sbt update
+}}}
+
+== Maven ==
+
+The ScalaCL plugin can be used with [http://maven.apache.org/ Maven], simply edit your `pom.xml` as follows :
 {{{
 ...
   <repositories>
@@ -82,17 +102,20 @@ class ScalaCLTest(info: ProjectInfo) extends DefaultProject(info) with AutoCompi
   </build>
 ...
 }}}
-  * use it with the [http://www.scala-ide.org/ Eclipse Scala Plugin] :
-    * Download the [http://nativelibs4java.sourceforge.net/maven/com/nativelibs4java/scalacl-compiler-plugin/1.0-SNAPSHOT/scalacl-compiler-plugin-1.0-SNAPSHOT.jar latest version of the ScalaCL Compiler Plugin]
-    * Open the section "Scala Compiler Properties" of Eclipse project's properties
-    * Check "Use Project Settings" to enable the configuration items below
-    * Fill the `Xplugin` field with the full path to the JAR you've downloaded, for instance :
+
+== Eclipse Scala IDE ==
+
+Here's how to configure your Eclipse project with the [http://www.scala-ide.org/ Eclipse Scala Plugin] so it uses the ScalaCL Compiler Plugin :
+  * Download the [http://nativelibs4java.sourceforge.net/maven/com/nativelibs4java/scalacl-compiler-plugin/1.0-SNAPSHOT/scalacl-compiler-plugin-1.0-SNAPSHOT.jar latest version of the ScalaCL Compiler Plugin]
+  * Open the section "Scala Compiler Properties" of Eclipse project's properties
+  * Check "Use Project Settings" to enable the configuration items below
+  * Fill the `Xplugin` field with the full path to the JAR you've downloaded, for instance :
 {{{
 /Users/ochafik/ScalaCLPlugin/target/scalacl-compiler-plugin-1.0-SNAPSHOT.jar
 }}}
-    * Fill the `Xplugin-require` field with `scalacl` (just in case)
-    * Clean your project, so it is rebuilt with the plugin enabled (menu `Project / Clean...`)
-  In case of issue, it is advised you compile using Maven or scalac+sbaz, because it seems the output from the compiler and from the compiler plugin is not visible from Eclipse.
+  * Fill the `Xplugin-require` field with `scalacl` (just in case)
+  * Clean your project, so it is rebuilt with the plugin enabled (menu `Project / Clean...`)
+In case of issue, it is advised you compile using Maven or scalac+sbaz, because it seems the output from the compiler and from the compiler plugin is not visible from Eclipse.
 
 == Disabling the plugin ==
 
