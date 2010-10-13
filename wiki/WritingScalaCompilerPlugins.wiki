@@ -21,7 +21,7 @@ For each transformation wanted, write two code snippets :
 
 Then run scalac on each of these two samples twice with the following options :
   * `scalac -Xprint:typer Code.scala` will give you a human-friendly look at how your code looks like after the `typer` phase. It's still Scala, but some transformations already took place (for loops, int ranges...)
-  * `scalac -Xprint:typer -Yshow-trees Code.scala` will print the same code with composed extractors : it will be your basic material for pattern matching
-  * `scalac -Xbrowse:typer Code.scala` will let you explore the AST in a Swing GUI
+  * `scalac -Xprint:typer -Yshow-trees Code.scala` will print the same code with composed extractors (modulo some missing parenthesis) : it will be your basic material for pattern matching (equivalent code snippet = `nodeToString(tree)`)
+  * `scalac -Xbrowse:typer Code.scala` will let you explore the AST in a Swing GUI (equivalent code snippet = `treeBrowsers.create.browse(tree)`)
 
 TODO more
