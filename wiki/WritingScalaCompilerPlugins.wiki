@@ -1,0 +1,26 @@
+#summary Random notes about the ScalaCL Compiler Plugin Experience
+
+= Introduction =
+
+== Tools ==
+
+  * Netbeans 6.9.1 + latest Scala Plugin = stable and feature-full IDE (go to definition, in-place renaming, auto-completion that really works all the time), and it works great with Maven projects.
+
+== Documentation == 
+
+  * The [http://www.sts.tu-harburg.de/people/mi.garcia/ScalaCompilerCorner/ Scala Compiler Corner] (and its [http://lamp.epfl.ch/~magarcia/ScalaCompilerCornerReloaded/ reloaded] version)
+  * Documentation of [http://misto.ch/ Mirko Stocker]'s [http://scala-refactoring.org/ Scala Refactoring Project]
+
+TODO more links
+
+== Workflow ==
+
+For each transformation wanted, write two code snippets :
+  * the code before the transform
+  * equivalent code after the transform
+
+Then run scalac on each of these two samples twice with the following options :
+  * `-Xprint:typer` will give you a human-friendly look at how your code looks like after the `typer` phase. It's still Scala, but some transformations already took place (for loops, int ranges...)
+  * `-Xprint:typer -Yshow-trees` will print the same code with composed extractors : it will be your basic material for pattern matching
+
+TODO more
