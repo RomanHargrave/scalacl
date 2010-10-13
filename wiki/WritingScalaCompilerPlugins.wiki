@@ -4,7 +4,7 @@
 
 == Tools ==
 
-  * Netbeans 6.9.1 + latest Scala Plugin = stable and feature-full IDE (go to definition, in-place renaming, auto-completion that really works all the time), and it works great with Maven projects.
+  * Netbeans 6.9.1 + latest Scala Plugin = stable and feature-full IDE (go to definition, in-place renaming, auto-completion that really works all the time, pretty decent debugger that actually breaks where you want), and it works great with Maven projects.
 
 == Documentation == 
 
