@@ -9,7 +9,7 @@
 == Documentation == 
 
   * The [http://www.sts.tu-harburg.de/people/mi.garcia/ScalaCompilerCorner/ Scala Compiler Corner] (and its [http://lamp.epfl.ch/~magarcia/ScalaCompilerCornerReloaded/ reloaded] version)
-  * Documentation of [http://misto.ch/ Mirko Stocker]'s [http://scala-refactoring.org/ Scala Refactoring Project]
+  * Documentation of [http://misto.ch/ Mirko Stocker]'s [http://scala-refactoring.org/ Scala Refactoring Project]. *READ THIS OR YOU'LL BE COMPLETELY LOST !*
 
 TODO more links
 
