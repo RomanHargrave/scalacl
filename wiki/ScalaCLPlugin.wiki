@@ -57,7 +57,7 @@ sbaz upgrade
 
 == With sbt (simple-build-tool) ==
 
-To use the ScalaCL Compiler plugin with [http://code.google.com/p/simple-build-tool/ sbt], please make your project file look like this :
+To use the ScalaCL Compiler plugin with [http://code.google.com/p/simple-build-tool/ sbt], please make your project file look like this (`project/build/ScalaCLTest.scala`) :
 {{{
 import sbt._
 class ScalaCLTest(info: ProjectInfo) extends DefaultProject(info) with AutoCompilerPlugins
