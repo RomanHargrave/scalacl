@@ -162,7 +162,7 @@ You can [http://twitter.com/#!/ochafik follow news about the ScalaCL plugin on T
 
 Pending bugs (please file new ones [http://code.google.com/p/nativelibs4java/issues/list here]) :
   * [http://code.google.com/p/nativelibs4java/issues/detail?id=34 'no-symbol does not have owner' when optimizations take place in a trait]
-  * _OK_ ~~Incorrect int range loops rewrite for negative 'by' values (reported by Rex)~~
+  * _OK_ ~~Incorrect int range loops rewrite for negative 'by' values (reported by Rex Kerr)~~
   * _OK_ ~~[http://code.google.com/p/nativelibs4java/issues/detail?id=32 Inline arrays crash loop optimizer]~~
   * _OK_ ~~Compiler crashes in lambda lift phase with nested loops : `a.map(xx => { a.map(x => { def f = x ; f }) })`~~
   * _OK_ ~~[http://code.google.com/p/nativelibs4java/issues/detail?id=33 Fails to optimize loops that yield tuples] (`val a = new Array[Int](10); for (i <- a) yield (i, i)`)~~
