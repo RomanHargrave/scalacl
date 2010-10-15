@@ -18,6 +18,9 @@ It also optimizes simple generalistic Scala loop-like calls by transforming them
 || foldRight || x ||  ||  ||
 || scanLeft || x || x ||  ||
 || scanRight || x ||  ||  ||
+|| filter ||  ||  ||
+|| takeWhile ||  ||  ||
+|| dropWhile ||  ||  ||
 
 For a full list of optimizations, see [http://code.google.com/p/nativelibs4java/source/browse/branches/OpenCL-BridJ/libraries/OpenCL/ScalaCLPlugin/descfile ScalaCL Plugin's sbaz description].
 
@@ -196,6 +199,7 @@ General optimizations planned :
   * _OK_ ~~handle method references (as opposed to inline lambdas)~~
   * _OK_ ~~`List.foreach`~~
   * _OK_ ~~`List.(scan|fold|reduce)Left`~~ (won't write the -Right variants)
+  * `Array[T]/List[T].filter, .takeWhile and dropWhile`
   * map-fuse : `col.map(f).map(g)` becomes `col.map(x => { val fx = f(x); g(fx) })` (avoids one iteration + creation of data structure)
   * filter-fuse `col.filter(f).filter(g)` (avoids one iteration)
   * `Array.filter` (what kind of output buffer should we use ?)
