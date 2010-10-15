@@ -8,7 +8,7 @@ The ScalaCL Compiler Plugin transforms Scala functions in `CLCol.map`, `CLCol.fo
 
 It also optimizes simple generalistic Scala loop-like calls by transforming them into equivalent while loops, which are much faster :
 
-|| *Method* || *`Array[T]`* || *`List[T]`* || *inline range 'x to y [by z]`* ||
+|| *Method* || *`Array[T]`* || *`List[T]`* || *inline range : `x to y [by z]`* ||
 || foreach || x || x || x ||
 || map || x || x ||  ||
 || sum || x || x ||  ||
