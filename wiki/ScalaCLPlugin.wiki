@@ -18,9 +18,9 @@ It also optimizes simple generalistic Scala loop-like calls by transforming them
 || foldRight || x ||  ||  ||
 || scanLeft || x || x ||  ||
 || scanRight || x ||  ||  ||
-|| filter ||  ||  ||
-|| takeWhile ||  ||  ||
-|| dropWhile ||  ||  ||
+|| filter ||  ||  ||  ||
+|| takeWhile ||  ||  ||  ||
+|| dropWhile ||  ||  ||  ||
 
 For a full list of optimizations, see [http://code.google.com/p/nativelibs4java/source/browse/branches/OpenCL-BridJ/libraries/OpenCL/ScalaCLPlugin/descfile ScalaCL Plugin's sbaz description].
 
