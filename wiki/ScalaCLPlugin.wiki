@@ -4,11 +4,24 @@
 
 = What is it ? =
 
-The ScalaCL Compiler Plugin transforms Scala functions in `CLCol.map`, `CLCol.foreach` and `CLCol.filter` into OpenCL kernels (effectively running these functions on the GPU via OpenCL). The programmer must explicitely use ScalaCL collections to use this feature, which is not yet stable.
+The ScalaCL Compiler Plugin makes your code run faster by transforming it at compile-time.
 
-The plugin also *optimizes simple generalistic Scala loop-like calls* by transforming them into equivalent while loops, which are much faster.
+It features general optimizations (not tied to OpenCL whatsoever) and OpenCL-specific optimizations.
 
-In other terms : *ScalaCL's Compiler Plugin makes your generalistic Scala code faster for free*.
+For a full list of optimizations, see [http://code.google.com/p/nativelibs4java/source/browse/branches/OpenCL-BridJ/libraries/OpenCL/ScalaCLPlugin/descfile ScalaCL Plugin's sbaz description].
+
+Examples of supported generalist rewrites can be found in the automatic tests :
+[http://code.google.com/p/nativelibs4java/source/browse/branches/OpenCL-BridJ/libraries/OpenCL/ScalaCLPlugin/src/test/scala/scalacl/]
+
+You can also read this thread of the scala-user mailing-list where I announced the plugin :
+
+[http://scala-programming-language.1934581.n4.nabble.com/ScalaCL-Compiler-Plugin-to-optimize-loops-on-arrays-and-int-ranges-out-for-testing-and-feedback-td2953642.html ScalaCL Compiler Plugin to optimize loops on arrays and int ranges (out for testing and feedback)]
+
+== General optimizations ==
+
+The ScalaCL Compiler Plugin optimizes simple generalistic Scala loop-like calls by transforming them into equivalent while loops, which are much faster.
+
+In other terms : *it makes your generalistic Scala code faster for free*.
 
 There are the methods currently optimized by the plugin :
 
@@ -26,14 +39,11 @@ There are the methods currently optimized by the plugin :
 || takeWhile ||  ||  ||  ||
 || dropWhile ||  ||  ||  ||
 
-For a full list of optimizations, see [http://code.google.com/p/nativelibs4java/source/browse/branches/OpenCL-BridJ/libraries/OpenCL/ScalaCLPlugin/descfile ScalaCL Plugin's sbaz description].
+== OpenCL-specific optimizations ==
 
-Examples of supported generalist rewrites can be found in the automatic tests :
-[http://code.google.com/p/nativelibs4java/source/browse/branches/OpenCL-BridJ/libraries/OpenCL/ScalaCLPlugin/src/test/scala/scalacl/]
+The plugin transforms inline Scala functions in `CLCol.map`, `CLCol.foreach` and `CLCol.filter` into OpenCL kernels, effectively running these functions on the GPU via OpenCL. 
 
-You can also read this thread of the scala-user mailing-list where I announced the plugin :
-
-[http://scala-programming-language.1934581.n4.nabble.com/ScalaCL-Compiler-Plugin-to-optimize-loops-on-arrays-and-int-ranges-out-for-testing-and-feedback-td2953642.html ScalaCL Compiler Plugin to optimize loops on arrays and int ranges (out for testing and feedback)]
+The programmer must explicitely use ScalaCL collections to use this feature, which is *not yet stable*.
 
 = Where is the source code ? =
 
