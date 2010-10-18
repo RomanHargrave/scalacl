@@ -28,7 +28,7 @@ You don't need [ScalaCLCollections ScalaCL Collections] to benefit from these op
 Here are the methods currently optimized by the plugin :
 
 || *Method* || *`Array[T]`* || *`List[T]`* || *inline range : `x to y [by z]` (with filters) * ||
-|| foreach || x || x || x <br/>(e.g. `for (i <- 0 until n; j <- 0 until i; if ((i + j) % 2) == 0) doSomething(i, j)`) ||
+|| foreach || x || x || x <br/>(e.g. `for (i <- 0 until n; j <- 0 to i by 3; if ((i + j) % 2) == 0) doSomething(i, j)`) ||
 || [http://www.scala-lang.org/api/current/scala/Array$.html tabulate] || x ||  ||  ||
 || map || x || x ||  ||
 || sum || x || x ||  ||
