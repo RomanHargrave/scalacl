@@ -25,7 +25,7 @@ In other terms : *it makes your generalistic Scala code faster for free*.
 
 You don't need ScalaCL Collections to benefit from these optimizations and the plugin does not add any dependency to your optimized code (it's just free performance gain, for real :-)).
 
-There are the methods currently optimized by the plugin :
+Here are the methods currently optimized by the plugin :
 
 || *Method* || *`Array[T]`* || *`List[T]`* || *inline range : `x to y [by z]` (with filters) * ||
 || foreach || x || x || x ||
