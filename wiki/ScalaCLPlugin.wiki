@@ -38,6 +38,10 @@ Here are the methods currently optimized by the plugin :
 || foldRight || x ||  ||  ||
 || scanLeft || x || x ||  ||
 || scanRight || x ||  ||  ||
+|| forall ||  ||  ||  ||
+|| exists ||  ||  ||  ||
+|| find ||  ||  ||  ||
+|| flatMap ||  ||  ||  ||
 || filter ||  ||  ||  ||
 || takeWhile ||  ||  ||  ||
 || dropWhile ||  ||  ||  ||
