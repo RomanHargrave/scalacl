@@ -235,7 +235,7 @@ Misc TODO
 
 = Compiling Scala with ScalaCL =
 
-ScalaCL is now capable of optimizing Scala + Scalac. This is untested, but the build proceeds without any crash :-)
+ScalaCL is now capable of optimizing Scala + Scalac (versions 2.8.x) :
 {{{
 svn co http://lampsvn.epfl.ch/svn-repos/scala/scala/branches/2.8.x scala-2.8.x
 cd scala-2.8.x
