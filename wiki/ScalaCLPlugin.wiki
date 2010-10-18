@@ -23,7 +23,7 @@ The ScalaCL Compiler Plugin optimizes simple generalistic Scala loop-like calls 
 
 In other terms : *it makes your generalistic Scala code faster for free*.
 
-You don't need ScalaCL Collections to benefit from these optimizations and the plugin does not add any dependency to your optimized code (it's just free performance gain, for real :-)).
+You don't need [ScalaCLCollections ScalaCL Collections] to benefit from these optimizations and the plugin does not add any dependency to your optimized code (it's just free performance gain, for real :-)).
 
 Here are the methods currently optimized by the plugin :
 
@@ -45,7 +45,7 @@ Here are the methods currently optimized by the plugin :
 
 The plugin transforms inline Scala functions in `CLCol.map`, `CLCol.foreach` and `CLCol.filter` into OpenCL kernels, effectively running these functions on the GPU via OpenCL. 
 
-The programmer must explicitely use ScalaCL collections to use this feature, which is *not yet stable*.
+The programmer must explicitely use [ScalaCLCollections ScalaCL Collections] to use this feature, which is *not yet stable*.
 
 = Using the compiler plugin =
 
@@ -263,8 +263,8 @@ DISABLE_SCALACL_PLUGIN=1 ant clean build
 
 [http://code.google.com/p/nativelibs4java/source/browse/branches/OpenCL-BridJ/libraries/OpenCL/ScalaCLPlugin/LICENSE ScalaCL is licensed under a 3-clause BSD-style license], so it can be integrated in pretty much all living software (including proprietary and (L)GPL).
 
-  * [http://code.google.com/p/nativelibs4java/source/browse/branches/OpenCL-BridJ/libraries/OpenCL/ScalaCL2/ ScalaCL Collections]
   * [http://code.google.com/p/nativelibs4java/source/browse/branches/OpenCL-BridJ/libraries/OpenCL/ScalaCLPlugin/ ScalaCL Compiler Plugin]
+  * [http://code.google.com/p/nativelibs4java/source/browse/branches/OpenCL-BridJ/libraries/OpenCL/ScalaCL2/ ScalaCL Collections]
 
 To start hacking on the compiler plugin :
 {{{
