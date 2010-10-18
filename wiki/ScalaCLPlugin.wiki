@@ -232,3 +232,16 @@ Misc TODO
   * create more serious benchmarks :
     * [http://www.ibm.com/developerworks/library/j-jtp12214/]
     * [http://blog.juma.me.uk/2009/10/26/new-jvm-options-and-scala-iteration-performance/]
+
+= Compiling Scala with ScalaCL =
+
+ScalaCL is now capable of optimizing Scala + Scalac. This is untested, but the build proceeds without any crash :-)
+{{{
+svn co http://lampsvn.epfl.ch/svn-repos/scala/scala/branches/2.8.x scala-2.8.x
+cd scala-2.8.x
+mkdir -p misc/scala-devel/plugins/
+cd misc/scala-devel/plugins/
+wget http://nativelibs4java.sourceforge.net/maven/com/nativelibs4java/scalacl-compiler-plugin/1.0-SNAPSHOT/scalacl-compiler-plugin-1.0-SNAPSHOT.jar
+cd ../../..
+ant clean build
+}}}
