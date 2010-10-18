@@ -29,7 +29,7 @@ Here are the methods currently optimized by the plugin :
 
 || *Method* || *`Array[T]`* || *`List[T]`* || *inline range : `x to y [by z]` (with filters) * ||
 || foreach || x || x || x ||
-|| tabulate || x ||  ||  ||
+|| [http://www.scala-lang.org/api/current/scala/Array$.html tabulate] || x ||  ||  ||
 || map || x || x ||  ||
 || sum || x || x ||  ||
 || reduceLeft || x || x ||  ||
