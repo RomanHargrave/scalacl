@@ -8,7 +8,7 @@ The ScalaCL Compiler Plugin makes your code run faster by transforming it at com
 
 It features general optimizations (not tied to [http://www.khronos.org/opencl/ OpenCL] whatsoever) and [http://www.khronos.org/opencl/ OpenCL]-specific optimizations.
 
-For a full list of optimizations, see [http://code.google.com/p/nativelibs4java/source/browse/branches/OpenCL-BridJ/libraries/OpenCL/ScalaCLPlugin/descfile ScalaCL Plugin's sbaz description].
+For a full list of optimizations, see [http://code.google.com/p/nativelibs4java/source/browse/branches/OpenCL-BridJ/libraries/OpenCL/ScalaCLPlugin/ABOUT ScalaCL Plugin's sbaz description].
 
 Examples of supported generalist rewrites can be found in the automatic tests :
 [http://code.google.com/p/nativelibs4java/source/browse/branches/OpenCL-BridJ/libraries/OpenCL/ScalaCLPlugin/src/test/scala/scalacl/]
