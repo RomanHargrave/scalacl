@@ -66,7 +66,12 @@ sbaz remove scalacl-compiler-plugin
 To update the plugin :
 {{{
 sbaz update
-sbaz upgrade
+sbaz remove scalacl-compiler-plugin
+sbaz install scalacl-compiler-plugin
+}}}
+Or if you don't care upgrading all your sbaz-managed packages :
+{{{
+sbaz update && sbaz upgrade
 }}}
 
 == With sbt (simple-build-tool) ==
@@ -118,6 +123,7 @@ The ScalaCL plugin can be used with [http://maven.apache.org/ Maven], simply edi
   </build>
 ...
 }}}
+Maven will automatically update the plugin to the latest available snapshot version each time you run it without the `-o` switch.
 
 == With Eclipse ==
 
