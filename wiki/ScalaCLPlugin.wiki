@@ -211,7 +211,6 @@ General optimizations planned :
   * `Array[T]/List[T].filter, .takeWhile and dropWhile`
   * map-fuse : `col.map(f).map(g)` becomes `col.map(x => { val fx = f(x); g(fx) })` (avoids one iteration + creation of data structure)
   * filter-fuse `col.filter(f).filter(g)` (avoids one iteration)
-  * `Array.filter` (what kind of output buffer should we use ?)
   * array filter/map-fuse `array.filter(f).map(g)` and `array.map(f).filter(g)` must be done in one iteration (same as for List)
   Combining the different fuses, one would only execute a single loop for the following statement :
 {{{
