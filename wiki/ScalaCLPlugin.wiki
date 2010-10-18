@@ -163,10 +163,10 @@ If you want to compare the performance of Scala programs with and without the Sc
 
 Also, please think of always using the `-optimise` switch of [http://www.scala-lang.org/docu/files/tools/scalac.html scalac]. You'll notice that it does not reduce the advantage of using the ScalaCL compiler plugin, on the contrary : in many cases the plugin makes it easier for the compiler to optimize the program.
 
-Here's an example of code that gets a x2 boost with ScalaCL's Compiler Plugin :
+Here's an example of code that gets a x2 to x10 boost with ScalaCL's Compiler Plugin :
 {{{
 // Naive dense matrix multiplication
-val n = 1000
+val n = 1000 // boost is ~ x2 with 1000, ~ x10 with 1000
 val a = Array.tabulate(n, n)((i, j) => (i + j) * 1.0)
 val b = Array.tabulate(n, n)((i, j) => (i + j) * 1.0)
 val o = Array.ofDim[Double](n, n)
