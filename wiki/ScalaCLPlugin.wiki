@@ -4,9 +4,9 @@
 
 = What is it ? =
 
-The ScalaCL Compiler Plugin transforms Scala functions in `CLCol.map`, `CLCol.foreach` and `CLCol.filter` into OpenCL kernels (effectively running these functions on the GPU via OpenCL).
+The ScalaCL Compiler Plugin transforms Scala functions in `CLCol.map`, `CLCol.foreach` and `CLCol.filter` into OpenCL kernels (effectively running these functions on the GPU via OpenCL). The programmer must explicitely use ScalaCL collections to use this feature, which is not yet stable.
 
-It also optimizes simple generalistic Scala loop-like calls by transforming them into equivalent while loops, which are much faster.
+The plugin also *optimizes simple generalistic Scala loop-like calls* by transforming them into equivalent while loops, which are much faster.
 
 In other terms : *ScalaCL's Compiler Plugin makes your generalistic Scala code faster for free*.
 
