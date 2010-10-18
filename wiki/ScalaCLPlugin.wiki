@@ -245,3 +245,7 @@ wget http://nativelibs4java.sourceforge.net/maven/com/nativelibs4java/scalacl-co
 cd ../../..
 ant clean build
 }}}
+And to recompile without any optimization :
+{{{
+DISABLE_SCALACL_PLUGIN=1 ant clean build
+}}}
