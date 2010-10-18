@@ -179,6 +179,7 @@ for (i <- 0 until n; j <- 0 until n) {
      o(i)(j) = tot
 }
 }}}
+See [http://code.google.com/p/nativelibs4java/source/browse/branches/OpenCL-BridJ/libraries/OpenCL/ScalaCLTest/ some examples of programs] that benefit from being optimized by the ScalaCL Compiler Plugin.
 
 = Status / TODO =
 
