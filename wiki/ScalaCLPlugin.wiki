@@ -166,7 +166,7 @@ Also, please think of always using the `-optimise` switch of [http://www.scala-l
 Here's an example of code that gets a x2 to x10 boost with ScalaCL's Compiler Plugin :
 {{{
 // Naive dense matrix multiplication
-val n = 1000 // boost is ~ x2 with 1000, ~ x10 with 1000
+val n = 1000 // boost is ~ x2 with 1000, ~ x10 with 10000
 val a = Array.tabulate(n, n)((i, j) => (i + j) * 1.0)
 val b = Array.tabulate(n, n)((i, j) => (i + j) * 1.0)
 val o = Array.ofDim[Double](n, n)
