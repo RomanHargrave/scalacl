@@ -25,7 +25,7 @@ In other terms : *it makes your generalistic Scala code faster for free*.
 
 You don't need [ScalaCLCollections ScalaCL Collections] to benefit from these optimizations and the plugin does not add any dependency to your optimized code (it's just free performance gain, for real :-)).
 
-Here are the methods currently optimized by the plugin :
+Here are the methods currently optimized by the plugin (`x` corresponds to the latest stable version, currently `0.1`, while `*` corresponds to the latest development snapshot):
 
 || *Method* || *`Array[T]`* || *`List[T]`* || *inline range : `x to y [by z]` (with filters) * ||
 || `foreach` || x || x || x <br/>(e.g. `for (i <- 0 until n; j <- 0 to i by 3; if ((i + j) % 2) == 0) doSomething(i, j)`) ||
@@ -38,11 +38,11 @@ Here are the methods currently optimized by the plugin :
 || `foldRight` (equiv. to `:/`) || x ||  ||  ||
 || `scanLeft` || x || x ||  ||
 || `scanRight` || x ||  ||  ||
-|| `forall` ||  ||  ||  ||
-|| `exists` ||  ||  ||  ||
+|| `forall` || `*` || `*` ||  ||
+|| `exists` || `*` || `*` ||  ||
 || `find` ||  ||  ||  ||
 || `flatMap` ||  ||  ||  ||
-|| `filter`, `filterNot` ||  ||  ||  ||
+|| `filter`, `filterNot` || `*` || `*` ||  ||
 || `takeWhile` ||  ||  ||  ||
 || `dropWhile` ||  ||  ||  ||
 
