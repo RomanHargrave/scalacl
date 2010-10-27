@@ -11,6 +11,7 @@
   * The [http://www.sts.tu-harburg.de/people/mi.garcia/ScalaCompilerCorner/ Scala Compiler Corner] (and its [http://lamp.epfl.ch/~magarcia/ScalaCompilerCornerReloaded/ reloaded] version)
   * [https://docs.google.com/viewer?url=http://scala-refactoring.org/wp-content/uploads/scala-refactoring.pdf Documentation] of [http://misto.ch/ Mirko Stocker]'s [http://scala-refactoring.org/ Scala Refactoring Project]. *READ THIS OR YOU'LL BE COMPLETELY LOST !*
   * [http://scala-programming-language.1934581.n4.nabble.com/Compiler-plugin-to-turn-Scala-into-Closure-annotated-Javascript-td2952844.html TypeSymbol vs. TermSymbol]
+  * [http://www.scala-lang.org/node/598 three videos about compiler internals]
 
 TODO more links
 
