@@ -32,6 +32,9 @@ Here are the methods currently optimized by the plugin (`x` corresponds to the l
 || [http://www.scala-lang.org/api/current/scala/Array$.html tabulate] || x ||  ||  ||  ||
 || `map` || x || x ||  ||  ||
 || `sum` || x || x ||  ||  ||
+|| `min` || x || x ||  ||  ||
+|| `max` || x || x ||  ||  ||
+|| `mkString` ||  ||  ||  ||  ||
 || `reduceLeft` || x || x ||  ||  ||
 || `reduceRight` || x ||  ||  ||  ||
 || `foldLeft` (equiv. to `/:`) || x || x ||  ||  ||
