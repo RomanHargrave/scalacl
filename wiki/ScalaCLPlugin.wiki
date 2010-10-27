@@ -45,7 +45,8 @@ Here are the methods currently optimized by the plugin (`x` corresponds to the l
 || `exists` || `*` || `*` ||  ||  ||
 || `find` ||  ||  ||  ||  ||
 || `flatMap` ||  ||  ||  ||  ||
-|| `filter`, `filterNot` || `*` || `*` ||  ||  ||
+|| `filter` || `*` || `*` ||  ||  ||
+|| `filterNot` || `*` || `*` ||  ||  ||
 || `takeWhile` ||  ||  ||  ||  ||
 || `dropWhile` ||  ||  ||  ||  ||
 
