@@ -27,24 +27,24 @@ You don't need [ScalaCLCollections ScalaCL Collections] to benefit from these op
 
 Here are the methods currently optimized by the plugin (`x` corresponds to the latest stable version, currently `0.1`, while `*` corresponds to the latest development snapshot):
 
-|| *Method* || *`Array[T]`* || *`List[T]`* || *inline range : `x to y [by z]` (with filters) * ||
-|| `foreach` || x || x || x <br/>(e.g. `for (i <- 0 until n; j <- 0 to i by 3; if ((i + j) % 2) == 0) doSomething(i, j)`) ||
+|| *Method* || *`Array[T]`* || *`List[T]`* || *`Option[T]`* || *inline range : `x to y [by z]` (with filters) * ||
+|| `foreach` || x || x ||  || x <br/>(e.g. `for (i <- 0 until n; j <- 0 to i by 3; if ((i + j) % 2) == 0) doSomething(i, j)`) ||
 || [http://www.scala-lang.org/api/current/scala/Array$.html tabulate] || x ||  ||  ||
-|| `map` || x || x ||  ||
-|| `sum` || x || x ||  ||
-|| `reduceLeft` || x || x ||  ||
-|| `reduceRight` || x ||  ||  ||
-|| `foldLeft` (equiv. to `/:`) || x || x ||  ||
-|| `foldRight` (equiv. to `:/`) || x ||  ||  ||
-|| `scanLeft` || x || x ||  ||
-|| `scanRight` || x ||  ||  ||
-|| `forall` || `*` || `*` ||  ||
-|| `exists` || `*` || `*` ||  ||
-|| `find` ||  ||  ||  ||
-|| `flatMap` ||  ||  ||  ||
-|| `filter`, `filterNot` || `*` || `*` ||  ||
-|| `takeWhile` ||  ||  ||  ||
-|| `dropWhile` ||  ||  ||  ||
+|| `map` || x || x ||  ||  ||
+|| `sum` || x || x ||  ||  ||
+|| `reduceLeft` || x || x ||  ||  ||
+|| `reduceRight` || x |  |||  ||  ||
+|| `foldLeft` (equiv. to `/:`) || x || x ||  ||  ||
+|| `foldRight` (equiv. to `:/`) || x ||  ||  ||  ||
+|| `scanLeft` || x || x ||  ||  ||
+|| `scanRight` || x ||  ||  ||  ||
+|| `forall` || `*` || `*` ||  ||  ||
+|| `exists` || `*` || `*` ||  ||  ||
+|| `find` ||  ||  ||  ||  ||
+|| `flatMap` ||  ||  ||  ||  ||
+|| `filter`, `filterNot` || `*` || `*` ||  ||  ||
+|| `takeWhile` ||  ||  ||  ||  ||
+|| `dropWhile` ||  ||  ||  ||  ||
 
 == OpenCL-specific optimizations ==
 
