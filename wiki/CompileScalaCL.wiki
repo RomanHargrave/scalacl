@@ -1,7 +1,7 @@
 #summary How to compile ScalaCL
 #labels Featured
 
-ScalaCL v1 is [http://code.google.com/p/javacl/wiki/Build compiled as part of NativeLibs4Java's SVN trunk].
+[ScalaCLv1 ScalaCL v1] is [http://code.google.com/p/javacl/wiki/Build compiled as part of NativeLibs4Java's SVN trunk].
 
 ScalaCL v2 (in development) relies on the BridJ port of JavaCL (+ on the latest BridJ version), which resides in a branch but needs the trunk BridJ version.
 
