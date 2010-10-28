@@ -283,3 +283,4 @@ svn co http://nativelibs4java.googlecode.com/svn/branches/OpenCL-BridJ/libraries
 cd ScalaCLPlugin
 mvn package
 }}}
+Also see [CompileScalaCL this page] for how to compile [ScalaCLCollections ScalaCL Collections] as well.
