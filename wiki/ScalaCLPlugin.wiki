@@ -31,6 +31,7 @@ Here are the methods currently optimized by the plugin (`x` corresponds to the l
 || `foreach` || x || x ||  || x <br/>(e.g. `for (i <- 0 until n; j <- 0 to i by 3; if ((i + j) % 2) == 0) doSomething(i, j)`) ||
 || [http://www.scala-lang.org/api/current/scala/Array$.html tabulate] || x ||  ||  ||  ||
 || `map` || x || `*` ||  ||  ||
+|| `reverseMap` ||  ||   ||  ||  ||
 || `sum` || x || x ||  ||  ||
 || `min` || x || x ||  ||  ||
 || `max` || x || x ||  ||  ||
@@ -44,6 +45,9 @@ Here are the methods currently optimized by the plugin (`x` corresponds to the l
 || `forall` || `*` || `*` ||  ||  ||
 || `exists` || `*` || `*` ||  ||  ||
 || `count` ||  ||   ||  ||  ||
+|| `prefixLength` ||  ||   ||  ||  ||
+|| `partition` ||  ||   ||  ||  ||
+|| `span` ||  ||   ||  ||  ||
 || `find` ||  ||  ||  ||  ||
 || `flatMap` ||  ||  ||  ||  ||
 || `filter` || `*` || `*` ||  ||  ||
