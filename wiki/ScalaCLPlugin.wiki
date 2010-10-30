@@ -50,8 +50,8 @@ Here are the methods currently optimized by the plugin (`x` corresponds to the l
 || `flatMap` ||  ||  ||  ||  ||
 || `filter` || `*` || `*` ||  || `*` ||
 || `filterNot` || `*` || `*` ||  || `*` ||
-|| `takeWhile` ||  ||  ||  ||  ||
-|| `dropWhile` ||  ||  ||  ||  ||
+|| `takeWhile` || `*` || `*` ||  || `*` ||
+|| `dropWhile` || `*` || `*` ||  || `*` ||
 
 == OpenCL-specific optimizations ==
 
