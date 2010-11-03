@@ -28,7 +28,7 @@ Here are the methods currently optimized by the plugin (`x` corresponds to the l
 || *Method* || *`Array[T]`* || *`List[T]`* || *`Option[T]`* || *inline range <br/>`x to y [by z]` (with filters) * ||
 || `foreach` || x || x ||  || x ||
 || [http://www.scala-lang.org/api/current/scala/Array$.html tabulate] || x ||  ||  ||  ||
-|| `map` || x || `*` ||  || `*` ||
+|| `map` || x || `*` ||  || ... ||
 || `reverseMap` ||  ||   ||  ||  ||
 || `sum` || x || x ||  || `*` ||
 || `min` || x || x ||  || `*` ||
