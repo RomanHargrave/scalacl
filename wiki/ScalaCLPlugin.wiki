@@ -42,7 +42,7 @@ Here are the methods currently optimized by the plugin (`x` corresponds to the l
 || `scanRight` || x ||  ||  ||  ||
 || `forall` || `*` || `*` ||  || `*` ||
 || `exists` || `*` || `*` ||  || `*` ||
-|| `count` ||  ||   ||  ||  ||
+|| `count` || `*` || `*`  ||  || `*` ||
 || `prefixLength` ||  ||   ||  ||  ||
 || `partition` ||  ||   ||  ||  ||
 || `span` ||  ||   ||  ||  ||
