@@ -31,10 +31,10 @@ Here are the methods currently optimized by the plugin (`x` corresponds to the l
 || `map` || x || `*` ||  || `*` ||
 || `reverseMap` ||  ||   ||  ||  ||
 || `sum` || x || x ||  || `*` ||
-|| `min` || x || x ||  ||   ||
-|| `max` || x || x ||  ||  ||
+|| `min` || x || ... ||  ||   ||
+|| `max` || x || ... ||  ||  ||
 || `mkString` ||  ||  ||  ||  ||
-|| `reduceLeft` || x || x ||  ||  ||
+|| `reduceLeft` || x || ... ||  ||  ||
 || `reduceRight` || x ||  ||  ||  ||
 || `foldLeft` (equiv. to `/:`) || x || x ||  || `*` ||
 || `foldRight` (equiv. to `:/`) || x ||  ||  ||  ||
