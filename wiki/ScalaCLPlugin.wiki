@@ -38,7 +38,7 @@ Here are the methods currently optimized by the plugin (`x` corresponds to the l
 || `reduceRight` || x ||  ||  ||  ||
 || `foldLeft` (equiv. to `/:`) || x || x ||  || `*` ||
 || `foldRight` (equiv. to `:/`) || x ||  ||  ||  ||
-|| `scanLeft` || x || `*` ||  || `*` ||
+|| `scanLeft` || x || ... ||  || `*` ||
 || `scanRight` || x ||  ||  ||  ||
 || `forall` || `*` || `*` ||  || `*` ||
 || `exists` || `*` || `*` ||  || `*` ||
