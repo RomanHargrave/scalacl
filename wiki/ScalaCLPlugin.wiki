@@ -50,6 +50,9 @@ Here are the methods currently optimized by the plugin (`x` corresponds to the l
 || `flatMap` ||  ||  ||  ||  ||
 || `filter` || `*` || `*` ||  || `*` ||
 || `filterNot` || `*` || `*` ||  || `*` ||
+|| `prefixLength` ||  ||  ||  ||  ||
+|| `indexWhere` ||  ||  ||  ||  ||
+|| `lastIndexWhere` ||  ||  ||  ||  ||
 || `takeWhile` || `*` || `*` ||  || ... ||
 || `dropWhile` || `*` || `*` ||  || ... ||
 
