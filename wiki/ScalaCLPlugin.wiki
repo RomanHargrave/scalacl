@@ -195,9 +195,11 @@ for (i <- 0 until n; j <- 0 until n) {
 }}}
 See [http://code.google.com/p/nativelibs4java/source/browse/branches/OpenCL-BridJ/libraries/OpenCL/ScalaCLTest/ some examples of programs] that benefit from being optimized by the ScalaCL Compiler Plugin.
 
-= Status / TODO =
+= Project = 
 
 You can [http://twitter.com/#!/ochafik follow news about the ScalaCL plugin on Twitter (@ochafik)].
+
+== TODO ==
 
 Pending bugs (please file new ones [http://code.google.com/p/nativelibs4java/issues/list here]) :
   * _OK_ ~~[http://code.google.com/p/nativelibs4java/issues/detail?id=34 'no-symbol does not have owner' when optimizations take place in a trait] (reported by [http://twitter.com/ijuma @ijuma])~~
@@ -254,7 +256,7 @@ Misc TODO
     * [http://www.ibm.com/developerworks/library/j-jtp12214/]
     * [http://blog.juma.me.uk/2009/10/26/new-jvm-options-and-scala-iteration-performance/]
 
-= Compiling Scala with ScalaCL =
+== Compiling Scala with ScalaCL ==
 
 ScalaCL is now capable of optimizing Scala + Scalac (versions 2.8.x). Please note however that this does not seem to speed up Scala(c) at all, as little optimizations are done (about 200 in the whole Scala source tree). Next versions (including the latest development version) perform far more optimizations, but please be patient until they're stable enough :-)
 {{{
@@ -277,7 +279,7 @@ And to recompile without any optimization :
 DISABLE_SCALACL_PLUGIN=1 ant clean build
 }}}
 
-= Where is the source code ? =
+== Where is the source code ? ==
 
 [http://code.google.com/p/nativelibs4java/source/browse/branches/OpenCL-BridJ/libraries/OpenCL/ScalaCLPlugin/LICENSE ScalaCL is licensed under a 3-clause BSD-style license], so it can be integrated in pretty much all living software (including proprietary and (L)GPL).
 
@@ -291,3 +293,15 @@ cd ScalaCLPlugin
 mvn package
 }}}
 Also see [CompileScalaCL this page] for how to compile [ScalaCLCollections ScalaCL Collections] as well.
+
+== Automated Tests ==
+
+Most tests are run with :
+{{{
+mvn test
+}}}
+
+However, the PerformanceTest is much slower and is disabled by default (it does a microbenchmark for nearly all the optimized cases, with varying collection sizes, cold vs. warm tests, optimized vs. non-optimized comparison...) :
+{{{
+SCALACL_TEST_PERF=1 mvn test -Dtest=PerformanceTest
+}}}
