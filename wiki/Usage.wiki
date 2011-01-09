@@ -3,21 +3,27 @@
 
 You can use the ScalaCLPlugin with *any of the following options* :
 
-== With scalac (using sbaz) ==
+= With scalac (using sbaz) =
+
+== Install =
 
 If you're using [http://www.scala-lang.org/docu/files/tools/scalac.html scalac] in command line, the easiest way to test ScalaCL's compiler plugin is to use the following [http://www.scala-lang.org/node/93 sbaz] commands :
 {{{
 sbaz update
 sbaz install scalacl
 }}}
-Then just use `scalac` as you're used to (the plugin will be enabled by default, see below for how to disable it).
+Then just use `scalac` as you're used to (the plugin will be enabled by default, see below for how to disable it). You don't need to specify the classpath of the [ScalaCLCollections], they should be readily available and automatically imported in `$SCALA_HOME/lib`.
 
-Should you wish to uninstall the plugin, run :
+== Uninstall ==
+
+Should you wish to uninstall ScalaCL collections and compiler plugin, run :
 {{{
 sbaz remove scalacl
 }}}
 
-To update the plugin :
+== Update ==
+
+To update ScalaCL collections and compiler plugin :
 {{{
 sbaz update
 sbaz remove scalacl
@@ -29,7 +35,7 @@ Or if you don't care upgrading all your sbaz-managed packages :
 sbaz update && sbaz upgrade
 }}}
 
-== With sbt (simple-build-tool) ==
+= With sbt (simple-build-tool) =
 
 To use ScalaCL's collections and/or compiler plugin with [http://code.google.com/p/simple-build-tool/ sbt], please make your project file look like this (`project/build/ScalaCLTest.scala`) :
 {{{
@@ -48,7 +54,7 @@ Then run this to grab the package (re-run each time you want to update to the la
 sbt update
 }}}
 
-== With Maven ==
+= With Maven =
 
 The ScalaCL plugin can be used with [http://maven.apache.org/ Maven], simply edit your `pom.xml` as follows :
 {{{
@@ -94,7 +100,9 @@ The ScalaCL plugin can be used with [http://maven.apache.org/ Maven], simply edi
 }}}
 If you choose the development version, Maven will automatically update the plugin to the latest available snapshot version each time you run it without the `-o` switch.
 
-== With Eclipse ==
+= With Eclipse =
+
+== Configure the ScalaCL Compiler Plugin == 
 
 Here's how to configure an [http://www.scala-ide.org/ Eclipse Scala] project so it uses the ScalaCL Compiler Plugin :
   * Download the [http://nativelibs4java.sourceforge.net/maven/com/nativelibs4java/scalacl-compiler-plugin/0.2.Beta1/scalacl-compiler-plugin-0.2.Beta1.jar latest stable version of the ScalaCL Compiler Plugin] (or the [http://nativelibs4java.sourceforge.net/maven/com/nativelibs4java/scalacl-compiler-plugin/0.2-SNAPSHOT/scalacl-compiler-plugin-0.2-SNAPSHOT.jar latest development version])
@@ -108,12 +116,16 @@ Here's how to configure an [http://www.scala-ide.org/ Eclipse Scala] project so 
   * Clean your project, so it is rebuilt with the plugin enabled (menu `Project / Clean...`)
 In case of issue, it is advised you compile using Maven or scalac+sbaz, because it seems the output from the compiler and from the compiler plugin is not visible from Eclipse.
 
-== Disable the ScalaCL Compiler Plugin ==
+= Disable the ScalaCL Compiler Plugin =
+
+== Global disable ==
 
 The plugin is enabled by default. To disable it, set the environment variable DISABLE_SCALACL_PLUGIN to 1 :
 {{{
 DISABLE_SCALACL_PLUGIN=1 scalac ...
 }}}
+
+== Selective disable (skip some files) ==
 
 To disable optimizations for a whole file or at a specific line in a file, use the SCALACL_SKIP environment variable :
 {{{
