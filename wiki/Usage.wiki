@@ -71,7 +71,7 @@ The ScalaCL plugin can be used with [http://maven.apache.org/ Maven], simply edi
   </repositories>
 
   <dependencies>
-    <!-- Not needed if you don't care about OpenCL collections and just need general optimizations : -->
+    <!-- Not needed if you do not care about OpenCL collections and just need general optimizations : -->
     <dependency>
       <groupId>com.nativelibs4java</groupId>
       <artifactId>scalacl</artifactId>
