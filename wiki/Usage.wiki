@@ -43,10 +43,12 @@ import sbt._
 class ScalaCLTest(info: ProjectInfo) extends DefaultProject(info) with AutoCompilerPlugins
 {
   val nativelibs4javaRepo = "NativeLibs4Java Repository" at "http://nativelibs4java.sourceforge.net/maven/"
-  // Stable compiler version : 
-  //val scalacl = compilerPlugin("com.nativelibs4java" % "scalacl-compiler-plugin" % "0.1")
   // Current preferred beta version :
   val scalacl = compilerPlugin("com.nativelibs4java" % "scalacl" % "0.2.Beta1")
+  // Current development version : 
+  //val scalacl = compilerPlugin("com.nativelibs4java" % "scalacl-compiler-plugin" % "0.2-SNAPSHOT")
+  // Stable compiler version : 
+  //val scalacl = compilerPlugin("com.nativelibs4java" % "scalacl-compiler-plugin" % "0.1")
 }
 }}}
 Then run this to grab the package (re-run each time you want to update to the latest version of ScalaCL) :
