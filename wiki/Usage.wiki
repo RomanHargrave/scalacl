@@ -3,7 +3,7 @@
 
 You can use the ScalaCLPlugin with *any of the following options* :
 
-= With scalac (using sbaz) =
+= With scalac (using sbaz) : preferred method =
 
 == Install =
 
