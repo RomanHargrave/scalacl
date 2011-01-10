@@ -1,4 +1,6 @@
 #summary How to get started with ScalaCL in 3 minutes
+#sidebar TOCWiki
+<wiki:toc max_depth="3" />
 
 = Prequisites =
 
