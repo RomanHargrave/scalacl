@@ -2,15 +2,15 @@
 #sidebar TOCWiki
 <wiki:toc max_depth="3" />
 
-= What is ScalaCL =
+= What is ScalaCL ? =
 
 Two things :
-  * a Scala compiler plugin that optimizes general loops on arrays, lists and (inline) int ranges. For instance, the following code will run faster with [ScalaCLPlugin] :
+  * a [ScalaCLPlugin Scala compiler plugin] that optimizes general loops on arrays, lists and (inline) int ranges. For instance, the following code will run faster with [ScalaCLPlugin] :
 {{{
 for (i <- 0 to 10000)
   println(i)
 }}}
-  * a library of OpenCL-backed collections that can run some of their operations directly on the GPU (mostly filter and map) :
+  * a [ScalaCLCollections library of OpenCL-backed collections] that can run some of their operations directly on the GPU (mostly filter and map) :
 {{{
 import scalacl._
 import scala.math._
@@ -18,7 +18,10 @@ implicit val context = new ScalaCLContext
 val r = (0 to 1000000).cl // this is a CLRange
 val a = r.toCLArray // this is a CLArray[Int]
 val m = a.map(v => cos(v).toFloat) // run asynchronously on the GPU via OpenCL
+println(m)
 }}}
+
+Please read [Usage] to know how to install/use ScalaCL in your projects.
 
 = Why are ScalaCL Collections asynchronous ? What does it mean ? =
 
