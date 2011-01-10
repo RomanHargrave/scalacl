@@ -5,8 +5,10 @@
     * [ScalaOnGPUs_PSUG4 First presentation of ScalaCL @ Paris Scala User Group]
   * Project
     * [TODO Status and TODO]	
-    * [Usage Usage (scalac, sbt, Maven, Eclipse...)]
     * [CompileScalaCL Compiling ScalaCL]
     * [WritingScalaCompilerPlugins Notes on writing Scala Compiler Plugins]
     * [ScalaCLv1 ScalaCLv1 : early defunc prototype]
+  * Hands-on
+    * [GettingStarted Getting Started in 3 minutes !]
+    * [Usage Usage (scalac, sbt, Maven, Eclipse...)]
     
