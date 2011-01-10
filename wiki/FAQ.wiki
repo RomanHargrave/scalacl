@@ -30,3 +30,25 @@ To the end user, [ScalaCLCollections] appear just as any other synchronous Scala
 However, when you run `CLArray(1, 2, 3).map(_ + 1).map(_ * 2)`, the two map operations are not run synchronously. This means they might not have even been started yet !
 
 The returned collection knows about which asynchronous operations are pending, and it will wait for them to complete if, say, you want to run `.toArray` on it.
+
+= How do I know for sure that things worked well ? =
+
+If you want to know what's happening (e.g. if there's an actual rewrite taking place during compilation or if the OpenCL collections actually schedule OpenCL kernels for execution), you can set the `SCALACL_VERBOSE` environment variable to `1` :
+  * On Unix, Linux, MacOS X (bash) :
+{{{
+export SCALACL_VERBOSE=1
+}}}
+  * On Windows :
+{{{
+set SCALACL_VERBOSE=1
+}}}
+
+Also, you can ask `scalac` to show you the source after the [ScalaCLPlugin] transforms :
+  * For general Scala collections transforms :
+{{{
+scalac Test.scala -Xprint:scalacl-loopstransform
+}}}
+  * For OpenCL collections transforms :
+{{{
+scalac Test.scala -Xprint:scalacl-functionstransform
+}}}
