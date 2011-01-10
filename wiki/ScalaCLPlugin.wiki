@@ -58,7 +58,7 @@ Here are the methods currently optimized by the plugin (`x` corresponds to the l
 
 == OpenCL-specific optimizations ==
 
-The plugin transforms inline Scala functions in `CLCol.map`, `CLCol.foreach` and `CLCol.filter` into [http://www.khronos.org/opencl/ OpenCL] kernels, effectively running these functions on the GPU via [http://www.khronos.org/opencl/ OpenCL]. 
+The plugin transforms inline Scala functions in `CLCollection.map` and `CLCollection.filter` into [http://www.khronos.org/opencl/ OpenCL] kernels, effectively running these functions on the GPU via [http://www.khronos.org/opencl/ OpenCL]. 
 
 The programmer must explicitely use [ScalaCLCollections ScalaCL Collections] to use this feature, which is *not yet stable*.
 
