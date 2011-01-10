@@ -138,10 +138,14 @@ array.map(f1).filter(f2).map(f3).map(f4).filter(f5).foreach(f6)
 Optimizations suggested by thirdparties:
   * [http://twitter.com/#!/retronym/status/26527256634 runtime cases for WrappedArray] (by [http://twitter.com/#!/retronym @retronym])
 
-[ScalaCLCollections ScalaCL Collections] optimizations (not up-to-date, current priority is on general optimizations) :
-  * `CLCol.map`, `CLCol.filter` :
+[ScalaCLCollections ScalaCL Collections] optimizations  :
+  * _OK_ ~~`CLCollection`, `CLArray`, `CLFilteredArray`, `CLRange`, `Seq.cl` integrated to Scala collections~~
+  * `CLCollection.map`, `CLCollection.filter` :
     * _OK_ ~~lambda function to OpenCL kernel~~
-    * reduceLeft, foldLeft, scanLeft (+ Right), sum...
+  * _OK_ ~~`CLCollection.zip`, `CLCollection.zipWithIndex`~~
+  * _OK_ ~~`CLRange.toCLArray`, `CLFilteredArray.toCLArray`~~
+  * Clone with copy-on-write for more efficient `zip` operations
+  * reduceLeft, foldLeft, scanLeft (+ Right), sum...
   * CLArrayView, CLFilteredArrayView
   * escape analysis, reuse of compatible outputs
   * autovectorization
