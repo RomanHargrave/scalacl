@@ -1,4 +1,5 @@
 #summary First version of ScalaCL: a limited parallel expressions DSL
+#sidebar TOCWiki
 
 <font color='red'>*Important:* ScalaCLv1 is no longer maintained, all development efforts are  put on ScalaCLv2</font>
 
