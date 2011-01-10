@@ -1,4 +1,5 @@
 #summary Random notes about the ScalaCL Compiler Plugin Experience
+#sidebar TOCWiki
 
 = Introduction =
 
