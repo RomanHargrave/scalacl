@@ -23,7 +23,11 @@ Also see [ScalaCLCollections].
   * _OK_ ~~`CLCollection.zip`, `CLCollection.zipWithIndex`~~
   * _OK_ ~~`CLRange.toCLArray`, `CLFilteredArray.toCLArray`~~
   * Clone with copy-on-write for more efficient `zip` operations
-  * reduceLeft, foldLeft, scanLeft (+ Right), sum...
+  * Much faster scan (for CLFilteredArray.toCLArray) and reduction code, using Apple's provided OpenCL samples
+  * Finer support of double math functions (right now, we're forcing float computations)
+  * Implement `reduceSymmetrical` using optimized code
+  * Detect symmetrical functions to replace `reduceLeft` by `reduceSymmetrical`
+  * Implement scanLeft using new scan code
   * CLArrayView, CLFilteredArrayView
   * escape analysis, reuse of compatible outputs
   * autovectorization
