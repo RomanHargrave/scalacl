@@ -1,4 +1,5 @@
 #summary Details about collections provided by ScalaCL
+#sidebar TOCWiki
 <wiki:toc max_depth="3" />
 
 *Work in progress*
