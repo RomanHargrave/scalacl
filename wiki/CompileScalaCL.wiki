@@ -1,5 +1,6 @@
 #summary How to compile ScalaCL
 #labels Featured
+#sidebar TOCWiki
 
 [ScalaCLv1 ScalaCL v1] is [http://code.google.com/p/javacl/wiki/Build compiled as part of NativeLibs4Java's SVN trunk].
 
