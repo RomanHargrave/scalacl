@@ -39,7 +39,7 @@ scalac Test.scala
 scala Test
 }}}
 
-= Bonus : regular Scala collections =
+= Bonus : optimize loops on regular Scala collections =
 
 If you don't want to use OpenCL-backed collections but are interested in making you regular Scala code faster, you can have ScalaCL rewrite your array, list and (inline) range loops into much faster while loops.
 
@@ -50,9 +50,6 @@ sbaz install scalacl
 }}}
   # Create the following `Test.scala` file :
 {{{
-import scalacl._
-import scala.math._
-
 object Test {
   def main(args: Array[String]): Unit = {
     val a = (100 until 100000).toArray
