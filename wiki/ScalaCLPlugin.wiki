@@ -8,12 +8,11 @@ The ScalaCL Compiler Plugin makes your code run faster by transforming it at com
 
 It features general optimizations (not tied to [http://www.khronos.org/opencl/ OpenCL] whatsoever) and [http://www.khronos.org/opencl/ OpenCL]-specific optimizations.
 
-Examples of supported generalist rewrites can be found in the automatic tests :
-[http://code.google.com/p/nativelibs4java/source/browse/branches/OpenCL-BridJ/libraries/OpenCL/ScalaCLPlugin/src/test/scala/scalacl/]
+== OpenCL-specific optimizations ==
 
-You can also read this thread of the scala-user mailing-list where I announced the plugin :
+The plugin transforms inline Scala functions in `CLCollection.map` and `CLCollection.filter` into [http://www.khronos.org/opencl/ OpenCL] kernels, effectively running these functions on the GPU via [http://www.khronos.org/opencl/ OpenCL] (more precisely, it converts these functions into _augmented functions_ that are proxies to the original functions and contain an OpenCL conversion of the functions' Scala code).
 
-[http://scala-programming-language.1934581.n4.nabble.com/ScalaCL-Compiler-Plugin-to-optimize-loops-on-arrays-and-int-ranges-out-for-testing-and-feedback-td2953642.html ScalaCL Compiler Plugin to optimize loops on arrays and int ranges (out for testing and feedback)]
+The programmer must explicitely use [ScalaCLCollections ScalaCL Collections] to use this feature, which is *not yet stable* (see [Usage] page for how to install and/or use the collections).
 
 == General optimizations ==
 
@@ -56,11 +55,12 @@ Here are the methods currently optimized by the plugin (`x` corresponds to the l
 || `takeWhile` || `*` || `*` ||  || ... ||
 || `dropWhile` || `*` || `*` ||  || ... ||
 
-== OpenCL-specific optimizations ==
+Examples of supported generalist rewrites can be found in the automatic tests :
+[http://code.google.com/p/nativelibs4java/source/browse/branches/OpenCL-BridJ/libraries/OpenCL/ScalaCLPlugin/src/test/scala/scalacl/]
 
-The plugin transforms inline Scala functions in `CLCollection.map` and `CLCollection.filter` into [http://www.khronos.org/opencl/ OpenCL] kernels, effectively running these functions on the GPU via [http://www.khronos.org/opencl/ OpenCL]. 
+You can also read this thread of the scala-user mailing-list where I announced the plugin :
 
-The programmer must explicitely use [ScalaCLCollections ScalaCL Collections] to use this feature, which is *not yet stable*.
+[http://scala-programming-language.1934581.n4.nabble.com/ScalaCL-Compiler-Plugin-to-optimize-loops-on-arrays-and-int-ranges-out-for-testing-and-feedback-td2953642.html ScalaCL Compiler Plugin to optimize loops on arrays and int ranges (out for testing and feedback)]
 
 = Using the compiler plugin =
 
