@@ -13,7 +13,7 @@ It features general optimizations (not tied to [http://www.khronos.org/opencl/ O
 
 The plugin transforms inline Scala functions in `CLCollection.map` and `CLCollection.filter` into [http://www.khronos.org/opencl/ OpenCL] kernels, effectively running these functions on the GPU via [http://www.khronos.org/opencl/ OpenCL] (more precisely, it converts these functions into _augmented functions_ that are proxies to the original functions and contain an OpenCL conversion of the functions' Scala code).
 
-The programmer must explicitely use [ScalaCLCollections ScalaCL Collections] to use this feature, which is *not yet stable* (see [Usage] page for how to install and/or use the collections).
+The programmer must explicitely use [ScalaCLCollections ScalaCL Collections] to use this feature, which is *not yet stable* (see the [Usage] and [GettingStarted] pages for how to install and/or use the collections).
 
 == General optimizations ==
 
