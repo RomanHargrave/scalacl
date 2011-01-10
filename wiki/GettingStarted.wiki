@@ -1,0 +1,77 @@
+#summary How to get started with ScalaCL in 3 minutes
+
+= Prequisites =
+
+  # Ensure you have a working [http://www.khronos.org/opencl/ OpenCL] implementation :
+    * [http://www.apple.com/macosx/technology/#opencl MacOS X 10.6 Snow Leopard] comes with OpenCL pre-installed (won't work on earlier MacOS X versions)
+    * [http://www.amd.com/US/PRODUCTS/TECHNOLOGIES/STREAM-TECHNOLOGY/Pages/stream-technology.aspx ATI Stream] for ATI cards and/or any [http://en.wikipedia.org/wiki/SSE2 SSE2]-enabled CPUs on all flavours of Linux and Windows (even works on [http://en.wikipedia.org/wiki/Intel_Atom Atom] CPUs !)
+    * [http://www.nvidia.com/object/cuda_opencl_new.html NVIDIA drivers] for NVIDIA cards
+    * [http://software.intel.com/en-us/articles/intel-opencl-sdk/ Intel OpenCL SDK] for Intel CPUs on Windows 7 32 bits (beta version !)
+  # Make sure you've installed [http://www.scala-lang.org/ Scala 2.8.x]
+
+= The real stuff : OpenCL collections = 
+
+  # Install ScalaCL with [http://www.scala-lang.org/node/93 sbaz], which is part of the Scala distribution (see [Usage] for other install methods) :
+{{{
+sbaz update
+sbaz install scalacl
+}}}
+  # Create the following `Test.scala` file :
+{{{
+import scalacl._
+import scala.math._
+
+object Test {
+  def main(args: Array[String]): Unit = {
+    implicit val context = new ScalaCLContext
+    val rng = (100 until 100000).cl // transform the Range into a CLIntRange
+    // ops done asynchronously on the GPU (except synchronous sum) :
+    val sum = rng.map(_ * 2).zipWithIndex.map(p => p._1 * p._2).sum
+    println("sum = " + sum)
+  }
+}
+}}}
+  # Compile and run :
+{{{
+scalac Test.scala
+scala Test
+}}}
+
+= Bonus : regular Scala collections =
+
+If you don't want to use OpenCL-backed collections but are interested in making you regular Scala code faster, you can have ScalaCL rewrite your array, list and (inline) range loops into much faster while loops.
+
+  # Install ScalaCL with [http://www.scala-lang.org/node/93 sbaz], which is part of the Scala distribution (see [Usage] for other install methods) :
+{{{
+sbaz update
+sbaz install scalacl
+}}}
+  # Create the following `Test.scala` file :
+{{{
+import scalacl._
+import scala.math._
+
+object Test {
+  def main(args: Array[String]): Unit = {
+    val a = (100 until 100000).toArray
+    val sum = a.map(_ * 2).zipWithIndex.map(p => p._1 * p._2).sum
+    println("sum = " + sum)
+  }
+}
+}}}
+  # Compile and run :
+{{{
+scalac Test.scala
+scala Test
+}}}
+
+If you want to know what's happening (e.g. if there's an actual rewrite taking place), you can set the `SCALACL_VERBOSE` environment variable to `1` :
+  * On Unix, Linux, MacOS X :
+{{{
+SCALACL_VERBOSE=1 scalac Test.scala
+}}}
+  * On Windows :
+{{{
+set SCALACL_VERBOSE=1
+scalac Test.scala
+}}}
