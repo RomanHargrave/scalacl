@@ -1,5 +1,6 @@
 #summary Summary (in french) of "Scala on GPUs" workshop at Paris Scala User Group meeting of sept 21st, 2010
 #labels PSUG,Meeting
+#sidebar TOCWiki
 
 Suite à notre petit atelier *Scala on GPUs* au [http://groups.google.com/group/paris-scala-user-group Paris Scala User Group] du 21 septembre 2010 chez Xebia, voici une restitution (peut-être un peu trop académique) des sujets abordés.
 
