@@ -1,0 +1,8 @@
+  * [TODO Status and TODO]	
+  * [ScalaCLPlugin ScalaCL Plugin]
+  * [Usage Usage (scalac, sbt, Maven, Eclipse...)]
+  * [CompileScalaCL Compiling ScalaCL]
+  * [WritingScalaCompilerPlugins Notes on writing Scala Compiler Plugins]
+  * [ScalaCLCollections ScalaCL Collections]	 
+  * [ScalaCLv1 ScalaCLv1 : early defunc prototype
+  * [ScalaOnGPUs_PSUG4 First presentation of ScalaCL @ Paris Scala User Group]
