@@ -1,4 +1,5 @@
 #summary How to use ScalaCL in your projects
+#sidebar TOCWiki
 <wiki:toc max_depth="3" />
 
 You can use the ScalaCLPlugin with *any of the following options* :
