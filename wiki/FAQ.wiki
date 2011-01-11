@@ -28,6 +28,14 @@ Please read [Usage] to know how to install/use ScalaCL in your projects.
 
 For Scala to OpenCL code conversion, please see [CLConvertibleLanguageSubset this list of supported constructs].
 
+= Does the ScalaCL Compiler Plugin add a dependency to any OpenCL library / hardware to my Scala code ? =
+
+*No.*
+
+If you're just using the [ScalaCLPlugin compiler plugin] on regular Scala code to optimize your loops on arrays, ranges and lists, then the plugin won't snoop in any dependency into your code : it will just rewrite functional style "loop-ish" operations into fast while loops.
+
+If, however, you're explicitely using the [ScalaCLCollection OpenCL collections] provided by ScalaCL, then you'll need an OpenCL implementation at runtime.
+
 = Why are ScalaCL Collections asynchronous ? What does it mean ? =
 
 To the end user, [ScalaCLCollections] appear just as any other synchronous Scala collection. 
