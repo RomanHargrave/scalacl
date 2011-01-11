@@ -20,6 +20,7 @@ val r2 = a.map(v => if (v < 0) v * 20 else v - 4)
 
 = Constructs planned to be supported =
 
+The translation engine is being rewritten to allow a much broader set of constructs :
 {{{
 val a: CLArray[Int] = 
   (1000 to 100000).toCLArray
@@ -27,4 +28,17 @@ val a: CLArray[Int] =
 // Case-matching of tuples :
 val r: CLIndexedSeq[(Int, Int)] = 
   a.zip(a.map(_ * 2)).zipWithIndex.map { case ((a, b), i) => (a + b + i, a) }
+
+// Rich statements with blocks, filtered loops (at least on inline ranges) :
+val extVal = 10
+val r2 = arr.map(v => {
+  var sum = { 
+     val d = v - extVal 
+     d * d
+  }
+  for (i <- 0 until extVal; if (i % 2) != 0) {
+     sum += cos(v) * i
+  }
+  sum
+})
 }}}
