@@ -29,7 +29,7 @@ val r: CLIndexedSeq[(Float, Int)] =
 val r2 = a.map(v => if (v < 0) v * 20 else v - 4)
 }}}
 
-= Constructs planned to be supported =
+= Constructs planned to be supported in next ScalaCL release (0.2) =
 
 The translation engine is being rewritten to allow a much broader set of constructs :
 {{{
@@ -55,3 +55,7 @@ val r2 = arr.map(v => {
   sum
 })
 }}}
+
+= Constructs maybe supported later =
+
+...
