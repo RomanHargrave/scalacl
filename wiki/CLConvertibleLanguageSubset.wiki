@@ -6,7 +6,7 @@ Scala offers nice and varied syntactic constructs. Not all of them translate eas
 
 = Constructs currently supported =
 
-Right now you can use `scala.math` functions, use and create tuples and use simple if valued statements (without blocks) :
+Right now you can use `scala.math` functions, use tuples, create tuples in final values, declare vars and use simple if valued statements (without blocks) :
 {{{
 import scala.math._
 
@@ -14,8 +14,14 @@ val a: CLArray[Int] =
   (1000 to 100000).toCLArray
 
 // Tuples :
-val r: CLIndexedSeq[(Int, Int)] = 
-  a.zip(a.map(_ * 2)).zipWithIndex.map(t => (exp(t._1._1) + t._1._2 + t._2, t._1._1))
+val r: CLIndexedSeq[(Float, Int)] = 
+  a.zip(a.map(_ * 2f)).zipWithIndex.map(t => {
+    // t is a ((Int, Float), Int)
+    val a = t._1._1
+    val b = t._1._2
+    val c = t._2
+    (exp(a).toFloat + b + i, a)
+  })
 
 // Simple if expressions
 val r2 = a.map(v => if (v < 0) v * 20 else v - 4)
@@ -31,8 +37,8 @@ val a: CLArray[Int] =
   (1000 to 100000).toCLArray
 
 // Case-matching of tuples :
-val r: CLIndexedSeq[(Int, Int)] = 
-  a.zip(a.map(_ * 2)).zipWithIndex.map { case ((a, b), i) => (exp(a) + b + i, a) }
+val r: CLIndexedSeq[(Float, Int)] = 
+  a.zip(a.map(_ * 2f)).zipWithIndex.map { case ((a, b), i) => (exp(a).toFloat + b + i, a) }
 
 // Rich statements with blocks, filtered loops (at least on inline ranges) :
 val extVal = 10
