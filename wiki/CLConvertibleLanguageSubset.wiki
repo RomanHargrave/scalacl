@@ -6,13 +6,16 @@ Scala offers nice and varied syntactic constructs. Not all of them translate eas
 
 = Constructs currently supported =
 
+Right now you can use `scala.math` functions, use and create tuples and use simple if valued statements (without blocks) :
 {{{
+import scala.math._
+
 val a: CLArray[Int] = 
   (1000 to 100000).toCLArray
 
 // Tuples :
 val r: CLIndexedSeq[(Int, Int)] = 
-  a.zip(a.map(_ * 2)).zipWithIndex.map(t => t._1._1 + t._1._2 + t._2)
+  a.zip(a.map(_ * 2)).zipWithIndex.map(t => (exp(t._1._1) + t._1._2 + t._2, t._1._1))
 
 // Simple if expressions
 val r2 = a.map(v => if (v < 0) v * 20 else v - 4)
@@ -22,12 +25,14 @@ val r2 = a.map(v => if (v < 0) v * 20 else v - 4)
 
 The translation engine is being rewritten to allow a much broader set of constructs :
 {{{
+import scala.math._
+
 val a: CLArray[Int] = 
   (1000 to 100000).toCLArray
 
 // Case-matching of tuples :
 val r: CLIndexedSeq[(Int, Int)] = 
-  a.zip(a.map(_ * 2)).zipWithIndex.map { case ((a, b), i) => (a + b + i, a) }
+  a.zip(a.map(_ * 2)).zipWithIndex.map { case ((a, b), i) => (exp(a) + b + i, a) }
 
 // Rich statements with blocks, filtered loops (at least on inline ranges) :
 val extVal = 10
