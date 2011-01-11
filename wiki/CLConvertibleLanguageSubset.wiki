@@ -57,18 +57,21 @@ val r: CLIndexedSeq[(Float, Int)] =
 
 // Rich statements with blocks, filtered loops (at least on inline ranges) :
 val extVal = 10
-val r2 = arr.map(v => {
-  def someFun(x: Int) = 
-    exp(x / 1000).toInt
-  var pair @ (sum, foo) = { 
-     val d = v - extVal 
-     (d * d, 1 / d)
-  }
-  for (i <- 0 until extVal; if (i % 2) != 0) {
-     sum += cos(v) * i + someFun(pair._2 - foo)
-  }
-  sum
-})
+val r2: CLIndexedSeq[(Int, Int)] = 
+  arr.map(v => {
+
+    def someFun(x: Int) = // becomes a top-level function inside the OpenCL kernel
+      exp(x / 1000).toInt
+
+    var pair @ (sum, foo) = { // tuples will be flattened in the OpenCL kernel
+       val d = v - extVal 
+       (d * d, 1 / d)
+    }
+    for (i <- 0 until extVal; if (i % 2) != 0) {
+       sum += cos(v) * i + someFun(pair._2 - foo)
+    }
+    (sum, foo)
+  })
 }}}
 
 = Constructs maybe supported later =
@@ -79,7 +82,7 @@ val r2 = arr.map(v => {
   CLArray(1, 2, 3).map(v => (v, swallowedFromOutside(v))) // function is "swallowed" inside converted OpenCL function
   
   CLArray(1, 2, 3).map(v => {
-    def inside(x: Int) = x + 1 // function is made an independent top-level function inside the OpenCL kernel
+    def inside(x: Int) = x + 1 
     (v, inside(v))
   })
 }}}
