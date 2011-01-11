@@ -2,13 +2,11 @@
 #sidebar TOCWiki
 <wiki:toc max_depth="3" />
 
-= Introduction =
-
 Scala offers nice and varied syntactic constructs. Not all of them translate easily to C / OpenCL, so we had to pick the easiest + most useful.
 
 For now, we're focusing on tuples (access, creation and case-matching), for/while loops (or anything that can be converted to a while loop by [ScalaCLPlugin ScalaCL's compiler plugin]) and external val capture.
 
-= Important node =
+= Important note : (not) everything is supported =
 
 Strictly speaking, all possible valid Scala constructs should _work_ with ScalaCL : your code will run and will produce correct results, but the code might be slow as hell : when a function is not OpenCL-enabled (which is done by the [ScalaCLPlugin compiler plugin]), ScalaCL runs it in the Scala/Java land. The problem is that the data of [ScalaCLCollections ScalaCL collections] is stored in the OpenCL land (e.g. on the GPU), so it has to be copied over to Java and probably back to OpenCL.
 
