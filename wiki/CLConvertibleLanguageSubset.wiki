@@ -6,6 +6,8 @@ Scala offers nice and varied syntactic constructs. Not all of them translate eas
 
 = Constructs currently supported =
 
+The following constructs are supported in the latest development version of ScalaCL, `0.2-SNAPSHOT` (see [Usage] for how to use it).
+
 Right now you can use `scala.math` functions, use tuples, create tuples in final values, declare vars and use simple if valued statements (without blocks) :
 {{{
 import scala.math._
