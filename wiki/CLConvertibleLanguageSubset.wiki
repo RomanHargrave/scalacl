@@ -17,7 +17,10 @@ import scala.math._
 val a: CLArray[Int] = 
   (1000 to 100000).toCLArray
 
-// Tuples :
+// Filter :
+val f = a.filter(v => (v % 2) != 0)
+
+// Map to / from tuples, zip(WithIndex) :
 val r: CLIndexedSeq[(Float, Int)] = 
   a.zip(a.map(_ * 2f)).zipWithIndex.map(t => {
     // t is a ((Int, Float), Int)
