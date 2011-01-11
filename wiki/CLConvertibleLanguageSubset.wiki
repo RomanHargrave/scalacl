@@ -1,0 +1,26 @@
+#summary Details on which Scala constructs can be converted to OpenCL kernels
+
+= Introduction =
+
+Scala offers nice and varied syntactic constructs. Not all of them translate easily to C / OpenCL, so we had to pick the easiest + most useful.
+
+= Syntaxes currently supported =
+
+{{{
+val a: CLArray[Int] = 
+  (1000 to 100000).toCLArray
+
+val r: CLIndexedSeq[(Int, Int)] = 
+  a.zip(a.map(_ * 2)).zipWithIndex.map(t => t._1._1 + t._1._2 + t._2)
+
+}}}
+
+= Syntaxes planned to be supported =
+
+{{{
+val a: CLArray[Int] = 
+  (1000 to 100000).toCLArray
+
+val r: CLIndexedSeq[(Int, Int)] = 
+  a.zip(a.map(_ * 2)).zipWithIndex.map { case ((a, b), i) => (a + b + i, a) }
+}}}
