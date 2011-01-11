@@ -64,7 +64,7 @@ val r2: CLIndexedSeq[(Int, Int)] =
       exp(x / 1000).toInt
 
     var pair @ (sum, foo) = { // tuples will be flattened in the OpenCL kernel
-       val d = v - extVal 
+       val d = v - extVal         // unless they match an OpenCL tuple type like int2
        (d * d, 1 / d)
     }
     for (i <- 0 until extVal; if (i % 2) != 0) {
