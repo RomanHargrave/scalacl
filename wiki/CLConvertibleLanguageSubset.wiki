@@ -10,13 +10,17 @@ Scala offers nice and varied syntactic constructs. Not all of them translate eas
 val a: CLArray[Int] = 
   (1000 to 100000).toCLArray
 
+// Tuples :
 val r: CLIndexedSeq[(Int, Int)] = 
   a.zip(a.map(_ * 2)).zipWithIndex.map(t => t._1._1 + t._1._2 + t._2)
 
+// Simple if expressions
+val r2 = a.map(v => if (v < 0) v * 20 else v - 4)
 }}}
 
 = Syntaxes planned to be supported =
 
+Case-matching of tuples :
 {{{
 val a: CLArray[Int] = 
   (1000 to 100000).toCLArray
