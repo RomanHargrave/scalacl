@@ -58,6 +58,14 @@ scalac Test.scala -Xprint:scalacl-loopstransform
 scalac Test.scala -Xprint:scalacl-functionstransform
 }}}
 
+= I don't get it : JavaCL is LGPL-licensed and ScalaCL is BSD-licensed ? =
+
+The current main distribution of [http://code.google.com/p/javacl/ JavaCL] relies on JNA for its low-level bindings, and JNA is licensed under the LGPL license. The JNA version of JavaCL is hence released under the LGPL license for simplicity.
+
+However, ScalaCL uses an alternate port of JavaCL that uses [http://code.google.com/p/bridj/ BridJ] as its underlying low-level binding technology instead of JNA, and BridJ is licensed under a BSD license, so this JavaCL port is itself under BSD and so is ScalaCL (please note that this is not a legal implication but a choice : being the author of BridJ, JNAerator, JavaCL and ScalaCL lets me a lot of licensing options :-)).
+
+In one word : *don't worry, ScalaCL is BSD-licensed*.
+
 = Where can I get some help with ScalaCL ? =
 
   * On the [http://groups.google.com/group/nativelibs4java NativeLibs4Java user group].
