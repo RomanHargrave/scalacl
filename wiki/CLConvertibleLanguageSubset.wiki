@@ -1,4 +1,6 @@
 #summary Details on which Scala constructs can be converted to OpenCL kernels
+#sidebar TOCWiki
+<wiki:toc max_depth="3" />
 
 = Introduction =
 
