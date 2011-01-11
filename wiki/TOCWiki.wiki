@@ -1,5 +1,6 @@
   * [FAQ]
   * Documentation
+    * [Usage Install / Use]
     * [CLConvertibleLanguageSubset Supported Scala constructs]
     * [ScalaCLCollections ScalaCL Collections]	 
     * [ScalaCLPlugin ScalaCL Plugin]
