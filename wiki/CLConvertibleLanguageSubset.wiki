@@ -4,7 +4,7 @@
 
 Scala offers nice and varied syntactic constructs. Not all of them translate easily to C / OpenCL, so we had to pick the easiest + most useful.
 
-= Syntaxes currently supported =
+= Constructs currently supported =
 
 {{{
 val a: CLArray[Int] = 
@@ -18,13 +18,13 @@ val r: CLIndexedSeq[(Int, Int)] =
 val r2 = a.map(v => if (v < 0) v * 20 else v - 4)
 }}}
 
-= Syntaxes planned to be supported =
+= Constructs planned to be supported =
 
-Case-matching of tuples :
 {{{
 val a: CLArray[Int] = 
   (1000 to 100000).toCLArray
 
+// Case-matching of tuples :
 val r: CLIndexedSeq[(Int, Int)] = 
   a.zip(a.map(_ * 2)).zipWithIndex.map { case ((a, b), i) => (a + b + i, a) }
 }}}
