@@ -53,3 +53,9 @@ scalac Test.scala -Xprint:scalacl-loopstransform
 {{{
 scalac Test.scala -Xprint:scalacl-functionstransform
 }}}
+
+= Where can I get some help with ScalaCL ? =
+
+  * On the [http://groups.google.com/group/nativelibs4java NativeLibs4Java user group] (http://code.google.com/p/nativelibs4java/ NativeLibs4Java] is the umbrella project of [http://code.google.com/p/javacl/ JavaCL], ScalaCL, http://code.google.com/p/bridj/ BridJ] and http://code.google.com/p/jnaerator/ JNAerator])
+  * On the [http://twitter.com/ochafik author's twitter : @ochafik]
+  * 
