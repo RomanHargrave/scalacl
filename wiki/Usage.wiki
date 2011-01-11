@@ -45,7 +45,7 @@ class ScalaCLTest(info: ProjectInfo) extends DefaultProject(info) with AutoCompi
 {
   val nativelibs4javaRepo = "NativeLibs4Java Repository" at "http://nativelibs4java.sourceforge.net/maven/"
   // Current preferred beta version :
-  val scalacl = compilerPlugin("com.nativelibs4java" % "scalacl" % "0.2.Beta1")
+  val scalacl = compilerPlugin("com.nativelibs4java" % "scalacl" % "0.2.Beta2")
   // Current development version : 
   //val scalacl = compilerPlugin("com.nativelibs4java" % "scalacl-compiler-plugin" % "0.2-SNAPSHOT")
   // Stable compiler version : 
@@ -76,7 +76,7 @@ The ScalaCL plugin can be used with [http://maven.apache.org/ Maven], simply edi
     <dependency>
       <groupId>com.nativelibs4java</groupId>
       <artifactId>scalacl</artifactId>
-      <version>0.2.Beta1</version>
+      <version>0.2.Beta2</version>
     </dependency>
   </dependencies>
 
@@ -91,7 +91,7 @@ The ScalaCL plugin can be used with [http://maven.apache.org/ Maven], simply edi
               <compilerPlugin>
                 <groupId>com.nativelibs4java</groupId>
                 <artifactId>scalacl-compiler-plugin</artifactId>
-                <version>0.2.Beta1</version>
+                <version>0.2.Beta2</version>
                 <!-- or "0.2-SNAPSHOT" to get the latest development version -->
               </compilerPlugin>
             </compilerPlugins>
@@ -108,7 +108,7 @@ If you choose the development version, Maven will automatically update the plugi
 == Configure the ScalaCL Compiler Plugin == 
 
 Here's how to configure an [http://www.scala-ide.org/ Eclipse Scala] project so it uses the ScalaCL Compiler Plugin :
-  * Download the [http://nativelibs4java.sourceforge.net/maven/com/nativelibs4java/scalacl-compiler-plugin/0.2.Beta1/scalacl-compiler-plugin-0.2.Beta1.jar latest stable version of the ScalaCL Compiler Plugin] (or the [http://nativelibs4java.sourceforge.net/maven/com/nativelibs4java/scalacl-compiler-plugin/0.2-SNAPSHOT/scalacl-compiler-plugin-0.2-SNAPSHOT.jar latest development version])
+  * Download the [http://nativelibs4java.sourceforge.net/maven/com/nativelibs4java/scalacl-compiler-plugin/0.2.Beta2/scalacl-compiler-plugin-0.2.Beta2.jar latest stable version of the ScalaCL Compiler Plugin] (or the [http://nativelibs4java.sourceforge.net/maven/com/nativelibs4java/scalacl-compiler-plugin/0.2-SNAPSHOT/scalacl-compiler-plugin-0.2-SNAPSHOT.jar latest development version])
   * Open the section "Scala Compiler Properties" of Eclipse project's properties
   * Check "Use Project Settings" to enable the configuration items below
   * Fill the `Xplugin` field with the full path to the JAR you've downloaded, for instance :
