@@ -1,5 +1,6 @@
   * [FAQ]
   * Documentation
+    * [CLConvertibleLanguageSubset Supported Scala constructs]
     * [ScalaCLCollections ScalaCL Collections]	 
     * [ScalaCLPlugin ScalaCL Plugin]
     * [ScalaOnGPUs_PSUG4 First presentation of ScalaCL @ Paris Scala User Group]
