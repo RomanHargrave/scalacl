@@ -1,4 +1,5 @@
 #summary How to get started with ScalaCL in 3 minutes
+#labels Featured
 #sidebar TOCWiki
 <wiki:toc max_depth="3" />
 
