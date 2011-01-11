@@ -64,7 +64,7 @@ Short answer : *don't worry, ScalaCL is BSD-licensed*.
 
 The current main distribution of [http://code.google.com/p/javacl/ JavaCL] relies on [https://jna.dev.java.net/ JNA] for its low-level bindings, and JNA is licensed under the LGPL license. The JNA version of JavaCL is hence released under the LGPL license for simplicity.
 
-However, ScalaCL uses an alternate port of JavaCL that uses [http://code.google.com/p/bridj/ BridJ] as its underlying low-level binding technology instead of JNA, and BridJ is licensed under a BSD license, so I chose to release this JavaCL port and ScalaCL under BSD as well (being the author of BridJ, JNAerator, JavaCL and ScalaCL and relying on open-licensed projects such as [http://www.dyncall.org dyncall] gives me a lot of licensing options :-)).
+However, ScalaCL uses an alternate port of JavaCL that uses [http://code.google.com/p/bridj/ BridJ] as its underlying low-level binding technology instead of JNA, and BridJ is licensed under a BSD license, so I chose to release this JavaCL port and ScalaCL under BSD as well (being the author of BridJ, JNAerator, JavaCL and ScalaCL and relying on open-licensed projects such as [http://www.dyncall.org dyncall] leaves me some licensing flexibility :-)).
 
 Please see the [http://code.google.com/p/bridj/wiki/CreditsAndLicense Credits and License] page for more details.
 
