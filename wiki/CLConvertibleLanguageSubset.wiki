@@ -58,12 +58,12 @@ val r: CLIndexedSeq[(Float, Int)] =
 // Rich statements with blocks, filtered loops (at least on inline ranges) :
 val extVal = 10
 val r2 = arr.map(v => {
-  var sum = { 
+  var pair @ (sum, foo) = { 
      val d = v - extVal 
-     d * d
+     (d * d, 1 / d)
   }
   for (i <- 0 until extVal; if (i % 2) != 0) {
-     sum += cos(v) * i
+     sum += cos(v) * i + pair._2 - foo
   }
   sum
 })
