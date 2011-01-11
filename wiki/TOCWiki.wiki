@@ -1,6 +1,7 @@
   * [FAQ]
   * Documentation
     * [Usage Install / Use]
+    * [GettingStarted Getting Started in 3 minutes !]
     * [CLConvertibleLanguageSubset Supported Scala constructs]
     * [ScalaCLCollections ScalaCL Collections]	 
     * [ScalaCLPlugin ScalaCL Plugin]
@@ -10,7 +11,5 @@
     * [CompileScalaCL Compiling ScalaCL]
     * [WritingScalaCompilerPlugins Notes on writing Scala Compiler Plugins]
     * [ScalaCLv1 ScalaCLv1 : early defunc prototype]
-  * Hands-on
-    * [GettingStarted Getting Started in 3 minutes !]
-    * [Usage Usage (scalac, sbt, Maven, Eclipse...)]
+
     
