@@ -4,6 +4,8 @@
 
 Scala offers nice and varied syntactic constructs. Not all of them translate easily to C / OpenCL, so we had to pick the easiest + most useful.
 
+For now, we're focusing on tuples (access, creation and case-matching), for/while loops (or anything that can be converted to a while loop by [ScalaCLPlugin ScalaCL's compiler plugin]) and external val capture.
+
 = Constructs currently supported =
 
 The following constructs are supported in the latest development version of ScalaCL, `0.2-SNAPSHOT` (see [Usage] for how to use it).
@@ -58,4 +60,14 @@ val r2 = arr.map(v => {
 
 = Constructs maybe supported later =
 
+{{{
+{
+  def swallowedFromOutside(x: Int) = x + 1
+  CLArray(1, 2, 3).map(v => (v, swallowedFromOutside(v))) // function is "swallowed" inside converted OpenCL function
+  
+  CLArray(1, 2, 3).map(v => {
+    def inside(x: Int) = x + 1 // function is made an independent top-level function inside the OpenCL kernel
+    (v, inside(v))
+  })
+}}}
 ...
