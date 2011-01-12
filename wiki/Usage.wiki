@@ -36,6 +36,23 @@ Or if you don't care upgrading all your sbaz-managed packages :
 sbaz update && sbaz upgrade
 }}}
 
+== Development versions ==
+
+In addition to release and beta versions, some snapshots are regularly shared on sbaz. To list the available versions :
+{{{
+sbaz update
+sbaz available -a
+}}}
+Look for the line that looks like :
+{{{
+scalacl (0.2.Beta2, 0.2.Beta1, 0.2-SNAPSHOT_20110112_1048, ...)
+}}}
+You can then install a particular version with :
+{{{
+sbaz remove scalacl
+sbaz install scalacl/0.2-SNAPSHOT_20110112_1048
+}}}
+
 = With sbt (simple-build-tool) =
 
 To use ScalaCL's collections and/or compiler plugin with [http://code.google.com/p/simple-build-tool/ sbt], please make your project file look like this (`project/build/ScalaCLTest.scala`) :
