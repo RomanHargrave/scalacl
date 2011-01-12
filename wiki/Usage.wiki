@@ -64,8 +64,8 @@ class ScalaCLTest(info: ProjectInfo) extends DefaultProject(info) with AutoCompi
   // Current preferred beta version :
   val scalacl = compilerPlugin("com.nativelibs4java" % "scalacl" % "0.2.Beta2")
   // Current development version : 
-  //val scalacl = compilerPlugin("com.nativelibs4java" % "scalacl-compiler-plugin" % "0.2-SNAPSHOT")
-  // Stable compiler version : 
+  //val scalacl = compilerPlugin("com.nativelibs4java" % "scalacl" % "0.2-SNAPSHOT")
+  // Previous 'stable' release (has some serious known bugs) : 
   //val scalacl = compilerPlugin("com.nativelibs4java" % "scalacl-compiler-plugin" % "0.1")
 }
 }}}
