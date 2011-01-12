@@ -8,7 +8,7 @@
   # Make sure you've installed [http://www.scala-lang.org/ Scala 2.8.x]
   # If you wish to use the [ScalaCLCollections OpenCL-backed collections], ensure you have a working [http://www.khronos.org/opencl/ OpenCL] implementation :
     * [http://www.apple.com/macosx/technology/#opencl MacOS X 10.6 Snow Leopard] comes with OpenCL pre-installed (won't work on earlier MacOS X versions)
-  <font color='red'>*Warning :* ScalaCL is currently only tested on MacOS X, feedback on the other platforms would be much appreciated</font>
+<font color='red'>*Warning :* ScalaCL is currently only tested on MacOS X, feedback on the other platforms would be much appreciated</font>
     * [http://www.amd.com/US/PRODUCTS/TECHNOLOGIES/STREAM-TECHNOLOGY/Pages/stream-technology.aspx ATI Stream] for ATI cards and/or any [http://en.wikipedia.org/wiki/SSE2 SSE2]-enabled CPUs on all flavours of Linux and Windows (even works on [http://en.wikipedia.org/wiki/Intel_Atom Atom] CPUs !)
     * [http://www.nvidia.com/object/cuda_opencl_new.html NVIDIA drivers] for NVIDIA cards
     * [http://software.intel.com/en-us/articles/intel-opencl-sdk/ Intel OpenCL SDK] for Intel CPUs on Windows 7 32 bits (beta version !)
