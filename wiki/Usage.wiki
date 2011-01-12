@@ -36,7 +36,7 @@ Or if you don't care upgrading all your sbaz-managed packages :
 sbaz update && sbaz upgrade
 }}}
 
-== Development versions ==
+== Snapshots (development versions) ==
 
 In addition to release and beta versions, some snapshots are regularly shared on sbaz. To list the available versions :
 {{{
