@@ -12,7 +12,7 @@
     * [http://www.nvidia.com/object/cuda_opencl_new.html NVIDIA drivers] for NVIDIA cards
     * [http://software.intel.com/en-us/articles/intel-opencl-sdk/ Intel OpenCL SDK] for Intel CPUs on Windows 7 32 bits (beta version !)
 
-<font color='red'>*Warning :* ScalaCL is currently only tested on MacOS X, feedback on the other platforms would be much appreciated</font>
+<font color='red'>*Warning :* ScalaCL is currently only tested on MacOS X, [http://groups.google.com/group/nativelibs4java feedback] on the other platforms would be much appreciated</font>
 
 = The real stuff : OpenCL collections = 
 
