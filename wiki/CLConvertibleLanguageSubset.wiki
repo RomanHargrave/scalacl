@@ -20,6 +20,7 @@ The following constructs are supported in the latest development version of Scal
 
 Right now you can use `scala.math` functions (the ones that have [http://www.khronos.org/registry/cl/sdk/1.0/docs/man/xhtml/mathFunctions.html direct OpenCL counterparts]), use tuples, create tuples in final values, declare vars and use simple if valued statements (without blocks) :
 {{{
+import scalacl._
 import scala.math._
 
 val a: CLArray[Int] = 
@@ -48,6 +49,7 @@ Doesn't work for you ? Please [Issues report it] !
 
 The translation engine is being rewritten to allow a much broader set of constructs :
 {{{
+import scalacl._
 import scala.math._
 
 val a: CLArray[Int] = 
