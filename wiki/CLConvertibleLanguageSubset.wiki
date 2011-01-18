@@ -25,14 +25,16 @@ import scala.math._
 
 implicit val context = new ScalaCLContext
 
-val a: CLArray[Int] = 
+val a = // CLArray[Int]
   (1000 to 100000).toCLArray
 
 // Filter :
-val f = a.filter(v => (v % 2) != 0)
+val f = 
+  a.filter(v => (v % 2) != 0)
+println(f)
 
 // Map to / from tuples, zip(WithIndex) :
-val r: CLIndexedSeq[(Float, Int)] = 
+val r = // CLIndexedSeq[(Float, Int)]
   a.zip(a.map(_ * 2f)).zipWithIndex.map(t => {
     // t is a ((Int, Float), Int)
     val a = t._1._1
@@ -40,9 +42,12 @@ val r: CLIndexedSeq[(Float, Int)] =
     val i = t._2
     (exp(a).toFloat + b + i, a)
   })
+println(r)
 
 // Simple if expressions
-val r2 = a.map(v => if (v < 0) v * 20 else v - 4)
+val r2 = 
+  a.map(v => if (v < 0) v * 20 else v - 4)
+println(r2)
 }}}
 
 Doesn't work for you ? Please [Issues report it] !
