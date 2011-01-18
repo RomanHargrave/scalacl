@@ -23,6 +23,8 @@ Right now you can use `scala.math` functions (the ones that have [http://www.khr
 import scalacl._
 import scala.math._
 
+implicit val context = new ScalaCLContext
+
 val a: CLArray[Int] = 
   (1000 to 100000).toCLArray
 
@@ -51,6 +53,8 @@ The translation engine is being rewritten to allow a much broader set of constru
 {{{
 import scalacl._
 import scala.math._
+
+implicit val context = new ScalaCLContext
 
 val a: CLArray[Int] = 
   (1000 to 100000).toCLArray
