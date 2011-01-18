@@ -37,7 +37,9 @@ println(f)
 val r = // CLIndexedSeq[(Float, Int)]
   a.zip(a.map(_ * 2f)).zipWithIndex.map(t => {
     // t is a ((Int, Float), Int)
-    val ((a, b), i) = t
+    val a = t._1._1
+    val b = t._1._2
+    val i = t._2
     (exp(a).toFloat + b + i, a)
   })
 println(r)
