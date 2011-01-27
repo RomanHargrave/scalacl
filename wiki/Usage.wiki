@@ -2,7 +2,7 @@
 #sidebar TOCWiki
 <wiki:toc max_depth="3" />
 
-<font color="red">Important (Jan 27th 2010) : due to <a href="https://sourceforge.net/apps/wordpress/sourceforge/2011/01/27/service-downtime/">Sourceforge having faced an attack</a>, I'm unable to deploy the latest version to my Maven repository. 
+<font color="red">*Important (Jan 27th 2010)* : due to <a href="https://sourceforge.net/apps/wordpress/sourceforge/2011/01/27/service-downtime/">Sourceforge having faced an attack</a>, I'm unable to deploy the latest version to my Maven repository. 
 Version 0.2.Beta7 is currently only available on sbaz.</font>
 
 You can use the ScalaCLPlugin with *any of the following options* :
