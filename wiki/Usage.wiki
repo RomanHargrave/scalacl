@@ -3,9 +3,9 @@
 #sidebar TOCWiki
 <wiki:toc max_depth="3" />
 
-<font color="red">*Important (Jan 27th 2010)* : due to <a href="https://sourceforge.net/apps/wordpress/sourceforge/2011/01/27/service-downtime/">Sourceforge having faced an attack</a>, I'm unable to deploy the latest versions (0.2-SNAPSHOT, 0.2.Beta7) to my Maven repository. 
+<font color="red">*Important (Jan 27th 2010)* : due to <a href="https://sourceforge.net/apps/wordpress/sourceforge/2011/01/27/service-downtime/">Sourceforge having faced an attack</a>, I'm unable to deploy the latest versions (0.2-SNAPSHOT, 0.2.Beta8) to my Maven repository. 
 
-Version 0.2.Beta7 is hence currently only available on sbaz.</font>
+Version 0.2.Beta8 is hence currently only available on sbaz.</font>
 
 You can use the ScalaCLPlugin with *any of the following options* :
 
@@ -50,7 +50,7 @@ sbaz available -a
 }}}
 Look for the line that looks like :
 {{{
-scalacl (0.2.Beta7, 0.2.Beta2, 0.2-SNAPSHOT_20110112_1048, ...)
+scalacl (0.2.Beta8, 0.2.Beta2, 0.2-SNAPSHOT_20110112_1048, ...)
 }}}
 You can then install a particular version with :
 {{{
