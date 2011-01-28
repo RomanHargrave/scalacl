@@ -21,7 +21,7 @@
 sbaz update
 sbaz install scalacl
 }}}
-  # Create the following `Test.scala` file ([CLConvertibleLanguageSubset see supported syntax]):
+  # Create the following `Test.scala` file ([CLConvertibleLanguageSubset see supported syntax]), or type the code in the Scala console (without the object and def definitions) :
 {{{
 import scalacl._
 import scala.math._
@@ -36,15 +36,17 @@ object Test {
   }
 }
 }}}
-  # Compile and run :
+  # Compile and run (unless you're using the Scala console) :
 {{{
 scalac Test.scala
 scala Test
 }}}
 
+Wanna know more ? See the [CLConvertibleLanguageSubset supported constructs] and read the [FAQ].
+
 = Bonus : optimize loops on regular Scala collections =
 
-If you don't want to use OpenCL-backed collections but are interested in making you regular Scala code faster, you can have ScalaCL rewrite your array, list and (inline) range loops into much faster while loops.
+If you don't want to use OpenCL-backed collections but are interested in making you regular Scala code faster, you can [ScalaCLPlugin have ScalaCL rewrite your array, list and (inline) range loops into much faster while loops].
 
   # Install ScalaCL with [http://www.scala-lang.org/node/93 sbaz], which is part of the Scala distribution (see [Usage] for other install methods) :
 {{{
