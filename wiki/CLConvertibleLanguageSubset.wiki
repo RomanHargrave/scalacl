@@ -18,33 +18,50 @@ You can also disable the execution of OpenCL kernels by setting the environment 
 
 The following constructs are supported in the latest development version of ScalaCL, typically available on sbaz (see [Usage] for how to install / use it).
 
-Right now you can use `scala.math` functions (the ones that have [http://www.khronos.org/registry/cl/sdk/1.0/docs/man/xhtml/mathFunctions.html direct OpenCL counterparts]), use tuples, create tuples in final values, declare vars and use simple if valued statements (without blocks) :
+All of the following examples can be tested in the Scala console (after installing ScalaCL via sbt, see [Usage]), with the following preliminary definitions :
 {{{
 import scalacl._
 import scala.math._
-
 implicit val context = new ScalaCLContext
+val array = (100 until 1000000).toCLArray
+}}}
 
-val a = // CLArray[Int]
-  (1000 to 100000).toCLArray
-
-// Filter :
-val f = 
-  a.filter(v => (v % 2) != 0)
-println(f)
-
+Here's a highlight of what should be supported in the current version
+  * Accelerated map, filter, zip, zipWithIndex, toArray on CLArray, CLFilteredArray, CLRange collections
+{{{ 
+array.zipWithIndex.filter { case (v, i) => (v % 2) != 0 } map(_._1) 
+}}}
+  * External math functions : right now you can use `scala.math` functions (the ones that have [http://www.khronos.org/registry/cl/sdk/1.0/docs/man/xhtml/mathFunctions.html direct OpenCL counterparts]), such as exp, cos, atan2...
+  * Internal functions :
+{{{ 
+array.map(v => {
+  def sq(x: Int) = x * x
+  (v, sq(x))
+})
+}}}
+  * Tuples are supported in many ways : matching / deconstruction, creation, component access, block return values...
+{{{
 // Map to / from tuples, zip(WithIndex) :
-val r = // CLIndexedSeq[(Float, Int)]
-  a.zip(a.map(_ * 2f)).zipWithIndex.map(t => {
-    val ((a, b), i) = t
-    (exp(a).toFloat + b + i, a)
-  })
-println(r)
+array.zip(array.map(_ * 2f)).zipWithIndex.map(t => {
+  val ((a, b), i) = t
+  (exp(a).toFloat + b + i, a)
+})
 
-// Simple if expressions
-val r2 = 
-  a.map(v => if (v < 0) v * 20 else v - 4)
-println(r2)
+// Same :
+array.zip(array.map(_ * 2f)).zipWithIndex map { 
+  case ((a, b), i) => 
+    (exp(a).toFloat + b + i, a) 
+}
+}}}
+  * Simple statements (if, inline range for...) :
+{{{
+array.map(v => {
+  var total = 0
+  for (i <- 0 until 5) {
+    total += if (cos(v * i) < 0) i * v else i - v
+  }
+  total
+})
 }}}
 
 Doesn't work for you ? Please [Issues report it] !
