@@ -29,7 +29,7 @@ val array = (100 until 1000000).toCLArray
 Here's a highlight of what should be supported in the current version
   * Accelerated map, filter, zip, zipWithIndex, toArray on CLArray, CLFilteredArray, CLRange collections
 {{{ 
-array.zipWithIndex.filter { case (v, i) => (v % 2) != 0 } map(_._1) 
+array.zipWithIndex.filter({ case (v, i) => (v % 2) != 0 }).map(_._1).toArray
 }}}
   * External math functions : right now you can use `scala.math` functions (the ones that have [http://www.khronos.org/registry/cl/sdk/1.0/docs/man/xhtml/mathFunctions.html direct OpenCL counterparts]), such as exp, cos, atan2...
   * Internal functions :
@@ -70,18 +70,6 @@ Doesn't work for you ? Please [Issues report it] !
 
 The translation engine is being rewritten to allow a much broader set of constructs :
 {{{
-import scalacl._
-import scala.math._
-
-implicit val context = new ScalaCLContext
-
-val a: CLArray[Int] = 
-  (1000 to 100000).toCLArray
-
-// Case-matching of tuples :
-val r: CLIndexedSeq[(Float, Int)] = 
-  a.zip(a.map(_ * 2f)).zipWithIndex.map { case ((a, b), i) => (exp(a).toFloat + b + i, a) }
-
 // Rich statements with blocks, filtered loops (at least on inline ranges) :
 val extVal = 10
 val r2: CLIndexedSeq[(Int, Int)] = 
@@ -101,7 +89,7 @@ val r2: CLIndexedSeq[(Int, Int)] =
   })
 }}}
 
-= Constructs maybe supported later =
+= Constructs planned to be supported later =
 
 {{{
 {
