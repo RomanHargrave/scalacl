@@ -23,7 +23,7 @@ All of the following examples can be tested in the Scala console (after installi
 import scalacl._
 import scala.math._
 implicit val context = new ScalaCLContext
-val array = (100 until 1000000).toCLArray
+val array = (100 until 300).toCLArray
 }}}
 
 Here's a highlight of what should be supported in the current version
@@ -36,7 +36,7 @@ array.zipWithIndex.filter({ case (v, i) => (v % 2) != 0 }).map(_._1).toArray
 {{{ 
 array.map(v => {
   def sq(x: Int) = x * x
-  (v, sq(x))
+  (v, sq(v))
 })
 }}}
   * Tuples are supported in many ways : matching / deconstruction, creation, component access, block return values...
