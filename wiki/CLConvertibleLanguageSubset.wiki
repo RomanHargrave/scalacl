@@ -24,7 +24,7 @@ import scalacl._
 import scala.math._
 implicit val context = Context.best 
   // prefer CPUs ? Context.best(CPU)
-val array = (100 until 300).toCLArray
+val array = (100 until 300).cl
 }}}
 
 Here's a highlight of what should be supported in the current version
