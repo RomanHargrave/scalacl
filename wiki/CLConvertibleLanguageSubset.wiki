@@ -22,7 +22,8 @@ All of the following examples can be tested in the Scala console (after installi
 {{{
 import scalacl._
 import scala.math._
-implicit val context = new ScalaCLContext
+implicit val context = Context.best 
+  // prefer CPUs ? Context.best(CPU)
 val array = (100 until 300).toCLArray
 }}}
 
