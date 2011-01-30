@@ -21,6 +21,7 @@ val a = r.toCLArray // this is a CLArray[Int]
 val m = a.map(v => cos(v).toFloat) // run asynchronously on the GPU via OpenCL
 println(m)
 }}}
+  The ScalaCL collections make use of the compiler plugin to translate Scala functions into OpenCL code.
 
 Please read [Usage] to know how to install/use ScalaCL in your projects.
 
