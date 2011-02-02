@@ -1,4 +1,4 @@
-  * *[FAQ] (please read me)* 
+  * *[FAQ]* 
   * [http://code.google.com/p/bridj/wiki/CreditsAndLicense Credits and License]
   * Documentation
     * [Usage Install / Use]
