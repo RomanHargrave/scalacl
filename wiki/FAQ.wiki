@@ -11,7 +11,7 @@ Two things :
 for (i <- 0 to 10000)
   println(i)
 }}}
-  The loop optimizations don't rely on any library or hardware : it's rewriting of pure Scala into faster pure Scala.
+  The loop *optimizations don't rely on any library or hardware* : it's rewriting of pure Scala into faster pure Scala.
   * a [ScalaCLCollections library of OpenCL-backed collections] that can run some of their operations directly on the GPU (mostly filter and map) :
 {{{
 import scalacl._
