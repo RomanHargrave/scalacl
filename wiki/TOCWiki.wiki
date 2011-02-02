@@ -1,5 +1,5 @@
   * *[FAQ]* 
-  * [http://code.google.com/p/bridj/wiki/CreditsAndLicense Credits and License]
+  * [http://code.google.com/p/bridj/wiki/CreditsAndLicense Credits and License] (on the BridJ project)
   * Documentation
     * [Usage Install / Use]
     * [GettingStarted Getting Started in 3 minutes !]
