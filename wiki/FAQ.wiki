@@ -26,7 +26,7 @@ println(m)
 
 Please read [Usage] to know how to install/use ScalaCL in your projects.
 
-= Most Scala expressions fail to be converted by the plugin... Which are supported ? =
+= A Scala expression fails to be converted by the plugin... Which are supported ? =
 
 For Scala to OpenCL code conversion, please see [CLConvertibleLanguageSubset this list of supported constructs].
 
