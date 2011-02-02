@@ -1,4 +1,4 @@
-  * *[FAQ]* 
+  * [FAQ]
   * Documentation
     * [Usage Install / Use]
     * [GettingStarted Getting Started in 3 minutes !]
