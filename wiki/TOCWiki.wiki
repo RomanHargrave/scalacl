@@ -1,5 +1,4 @@
   * *[FAQ]* 
-  * [http://code.google.com/p/bridj/wiki/CreditsAndLicense Credits and License] (outer link)
   * Documentation
     * [Usage Install / Use]
     * [GettingStarted Getting Started in 3 minutes !]
@@ -12,5 +11,4 @@
     * [CompileScalaCL Compiling ScalaCL]
     * [WritingScalaCompilerPlugins Notes on writing Scala Compiler Plugins]
     * [ScalaCLv1 ScalaCLv1 : early defunc prototype]
-
-    
+  * [http://code.google.com/p/bridj/wiki/CreditsAndLicense Credits and License] (outer link)
