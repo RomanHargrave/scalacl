@@ -72,11 +72,11 @@ val r2 =
     def someFun(x: Int) = // becomes a top-level function inside the OpenCL kernel
       exp(x / 1000).toInt
 
-    var pair @ (sum, foo) = { // tuples will be flattened in the OpenCL kernel
+    var pair @ (init, foo) = { // tuples will be flattened in the OpenCL kernel
        val d = v - 10     // unless they match an OpenCL tuple type like int2
        (d * d, 1 / d)
     }
-    var sum = 0.0
+    var sum = init
     for (i <- 0 until 10; if (i % 2) != 0) {
        sum += cos(v) * i + someFun(pair._2 - foo)
     }
