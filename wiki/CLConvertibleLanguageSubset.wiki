@@ -64,6 +64,12 @@ array.map(v => {
   total
 })
 }}}
+
+Doesn't work for you ? Please [Issues report it] !
+
+= Constructs planned to be supported in next ScalaCL release (0.2) =
+
+The translation engine is being rewritten to allow a much broader set of constructs :
   * Rich statements with blocks, filtered loops (at least on inline ranges) :
 {{{
 val r2 = 
@@ -83,12 +89,6 @@ val r2 =
     (sum, foo)
   })
 }}}
-
-Doesn't work for you ? Please [Issues report it] !
-
-= Constructs planned to be supported in next ScalaCL release (0.2) =
-
-The translation engine is being rewritten to allow a much broader set of constructs :
   * Captured constants (here, `extVal`) :
 {{{
 val extVal = 10
