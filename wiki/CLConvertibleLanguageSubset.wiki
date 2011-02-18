@@ -54,12 +54,6 @@ array.zip(array.map(_ * 2f)).zipWithIndex map {
     (exp(a / 1000.0f).toFloat + b + i, a) 
 }
 }}}
-
-Doesn't work for you ? Please [Issues report it] !
-
-= Constructs planned to be supported in next ScalaCL release (0.2) =
-
-The translation engine is being rewritten to allow a much broader set of constructs :
   * Simple statements (if, inline range for...) :
 {{{
 array.map(v => {
@@ -70,6 +64,12 @@ array.map(v => {
   total
 })
 }}}
+
+Doesn't work for you ? Please [Issues report it] !
+
+= Constructs planned to be supported in next ScalaCL release (0.2) =
+
+The translation engine is being rewritten to allow a much broader set of constructs :
   * Rich statements with blocks, filtered loops (at least on inline ranges) :
 {{{
 val extVal = 10
