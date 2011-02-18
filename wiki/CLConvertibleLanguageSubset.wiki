@@ -76,6 +76,7 @@ val r2 =
        val d = v - 10     // unless they match an OpenCL tuple type like int2
        (d * d, 1 / d)
     }
+    var sum = 0.0
     for (i <- 0 until 10; if (i % 2) != 0) {
        sum += cos(v) * i + someFun(pair._2 - foo)
     }
