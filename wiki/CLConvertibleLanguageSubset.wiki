@@ -12,7 +12,7 @@ Strictly speaking, all possible valid Scala constructs should _work_ with [Scala
 
 To make sure you're actually executing your `map` and `filter` operations in OpenCL-mode, you can set the `SCALACL_VERBOSE` environment variable to `1` (see [FAQ]).
 
-You can also disable the execution of OpenCL kernels by setting the environment variable `SCALACL_USE_SCALA_FUNCTION` to `1`, which will force all functions to be executed in Scala/Java land.
+You can also disable the execution of OpenCL kernels by setting the environment variable `SCALACL_USE_SCALA_FUNCTION` to `1`, which will force all functions to be executed in Scala/Java land (this will be slower, but you'll be able to set breakpoints in your favourite debugger !).
 
 = Constructs currently supported =
 
