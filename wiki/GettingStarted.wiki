@@ -5,7 +5,7 @@
 
 = Prequisites =
 
-  # Make sure you've installed [http://www.scala-lang.org/ Scala 2.8.x]
+  # Make sure you've installed [http://www.scala-lang.org/ Scala 2.9.x]
   # If you wish to use the [ScalaCLCollections OpenCL-backed collections], ensure you have a working [http://www.khronos.org/opencl/ OpenCL] implementation :
     * [http://www.apple.com/macosx/technology/#opencl MacOS X 10.6 Snow Leopard] comes with OpenCL pre-installed (won't work on earlier MacOS X versions)
     * [http://www.amd.com/US/PRODUCTS/TECHNOLOGIES/STREAM-TECHNOLOGY/Pages/stream-technology.aspx ATI Stream] for ATI cards and/or any [http://en.wikipedia.org/wiki/SSE2 SSE2]-enabled CPUs on all flavours of Linux and Windows (even works on [http://en.wikipedia.org/wiki/Intel_Atom Atom] CPUs !)
