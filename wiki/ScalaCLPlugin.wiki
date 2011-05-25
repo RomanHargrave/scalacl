@@ -25,7 +25,7 @@ You don't need [ScalaCLCollections ScalaCL Collections] to benefit from these op
 
 Here are the methods currently optimized by the plugin (`x` corresponds to the latest stable version, currently `0.1`, while `*` corresponds to the latest development snapshot ; `...` means the case is being investigated and it's not clear if/how things can be optimized):
 
-|| *Method* || *`Array[T]`* || *`List[T]`* || *`Option[T]`* || *inline range <br/>`x to y [by z]` (with filters) * ||
+|| *Method* || *`Array[T]`* || *`List[T]`* || *`Option[T]`* || *inline range <br/>`x to/until y [by z]` (with filters) * ||
 || `foreach` || x ||  ||  || x ||
 || [http://www.scala-lang.org/api/current/scala/Array$.html tabulate] || x ||  ||  ||  ||
 || `map` || x ||  ||  || `*` ||
