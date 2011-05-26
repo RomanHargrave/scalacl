@@ -23,38 +23,38 @@ In other terms : *it makes your generalistic Scala code faster for free*.
 
 You don't need [ScalaCLCollections ScalaCL Collections] to benefit from these optimizations and the plugin does not add any dependency to your optimized code (it's just free performance gain, for real :-)).
 
-Here are the methods currently optimized by the plugin (`x` corresponds to the latest stable version, currently `0.1`, while `*` corresponds to the latest development snapshot ; `...` means the case is being investigated and it's not clear if/how things can be optimized):
+Here are the methods currently optimized by the plugin :
 
 || *Method* || *`Array[T]`* || *`List[T]`* || *`Option[T]`* || *inline range <br/>`x to/until y [by z]` (with filters) * ||
 || `foreach` || x ||  ||  || x ||
 || [http://www.scala-lang.org/api/current/scala/Array$.html tabulate] || x ||  ||  ||  ||
-|| `map` || x ||  ||  || `*` ||
+|| `map` || x ||  ||  || x ||
 || `reverseMap` ||  ||   ||  ||  ||
-|| `sum` || x ||  ||  || `*` ||
+|| `sum` || x ||  ||  || x ||
 || `min` || x ||  ||  ||   ||
 || `max` || x ||  ||  ||  ||
 || `mkString` ||  ||  ||  ||  ||
 || `reduceLeft` || x ||  ||  ||  ||
 || `reduceRight` || x ||  ||  ||  ||
-|| `foldLeft` (equiv. to `/:`) || x ||  ||  || `*` ||
+|| `foldLeft` (equiv. to `/:`) || x ||  ||  || x ||
 || `foldRight` (equiv. to `:/`) || x ||  ||  ||  ||
-|| `scanLeft` || x ||  ||  || `*` ||
+|| `scanLeft` || x ||  ||  || x ||
 || `scanRight` || x ||  ||  ||  ||
-|| `forall` || `*` ||  ||  || `*` ||
-|| `exists` || `*` ||  ||  || `*` ||
-|| `count` || `*` ||   ||  || `*` ||
+|| `forall` || x ||  ||  || x ||
+|| `exists` || x ||  ||  || x ||
+|| `count` || x ||   ||  || x ||
 || `prefixLength` ||  ||   ||  ||  ||
 || `partition` ||  ||   ||  ||  ||
 || `span` ||  ||   ||  ||  ||
 || `find` ||  ||  ||  ||  ||
 || `flatMap` ||  ||  ||  ||  ||
-|| `filter` || `*` ||  ||  || `*` ||
-|| `filterNot` || `*` ||  ||  || `*` ||
+|| `filter` || x ||  ||  || x ||
+|| `filterNot` || x ||  ||  || x ||
 || `prefixLength` ||  ||  ||  ||  ||
 || `indexWhere` ||  ||  ||  ||  ||
 || `lastIndexWhere` ||  ||  ||  ||  ||
-|| `takeWhile` || `*` ||  ||  || ... ||
-|| `dropWhile` || `*` ||  ||  || ... ||
+|| `takeWhile` || x ||  ||  || ... ||
+|| `dropWhile` || x ||  ||  || ... ||
 
 Examples of supported generalist rewrites can be found in the automatic tests :
 [http://code.google.com/p/nativelibs4java/source/browse/branches/OpenCL-BridJ/libraries/OpenCL/ScalaCLPlugin/src/test/scala/scalacl/]
