@@ -26,35 +26,35 @@ You don't need [ScalaCLCollections ScalaCL Collections] to benefit from these op
 Here are the methods currently optimized by the plugin :
 
 || *Method* || *`Array[T]`* || *`List[T]`* || *`Option[T]`* || *inline range <br/>`x to/until y [by z]` (with filters) * ||
-|| `foreach` || x ||  ||  || x ||
-|| [http://www.scala-lang.org/api/current/scala/Array$.html tabulate] || x ||  ||  ||  ||
-|| `map` || x ||  ||  || x ||
+|| `foreach` || `*` ||  ||  || `*` ||
+|| [http://www.scala-lang.org/api/current/scala/Array$.html tabulate] || `*` ||  ||  ||  ||
+|| `map` || `*` ||  ||  || `*` ||
 || `reverseMap` ||  ||   ||  ||  ||
-|| `sum` || x ||  ||  || x ||
-|| `min` || x ||  ||  ||   ||
-|| `max` || x ||  ||  ||  ||
+|| `sum` || `*` ||  ||  || `*` ||
+|| `min` || `*` ||  ||  ||   ||
+|| `max` || `*` ||  ||  ||  ||
 || `mkString` ||  ||  ||  ||  ||
-|| `reduceLeft` || x ||  ||  ||  ||
-|| `reduceRight` || x ||  ||  ||  ||
-|| `foldLeft` (equiv. to `/:`) || x ||  ||  || x ||
-|| `foldRight` (equiv. to `:/`) || x ||  ||  ||  ||
-|| `scanLeft` || x ||  ||  || x ||
-|| `scanRight` || x ||  ||  ||  ||
-|| `forall` || x ||  ||  || x ||
-|| `exists` || x ||  ||  || x ||
-|| `count` || x ||   ||  || x ||
+|| `reduceLeft` || `*` ||  ||  ||  ||
+|| `reduceRight` || `*` ||  ||  ||  ||
+|| `foldLeft` (equiv. to `/:`) || `*` ||  ||  || `*` ||
+|| `foldRight` (equiv. to `:/`) || `*` ||  ||  ||  ||
+|| `scanLeft` || `*` ||  ||  || `*` ||
+|| `scanRight` || `*` ||  ||  ||  ||
+|| `forall` || `*` ||  ||  || `*` ||
+|| `exists` || `*` ||  ||  || `*` ||
+|| `count` || `*` ||   ||  || `*` ||
 || `prefixLength` ||  ||   ||  ||  ||
 || `partition` ||  ||   ||  ||  ||
 || `span` ||  ||   ||  ||  ||
 || `find` ||  ||  ||  ||  ||
 || `flatMap` ||  ||  ||  ||  ||
-|| `filter` || x ||  ||  || x ||
-|| `filterNot` || x ||  ||  || x ||
+|| `filter` || `*` ||  ||  || `*` ||
+|| `filterNot` || `*` ||  ||  || `*` ||
 || `prefixLength` ||  ||  ||  ||  ||
 || `indexWhere` ||  ||  ||  ||  ||
 || `lastIndexWhere` ||  ||  ||  ||  ||
-|| `takeWhile` || x ||  ||  || ... ||
-|| `dropWhile` || x ||  ||  || ... ||
+|| `takeWhile` || `*` ||  ||  || ... ||
+|| `dropWhile` || `*` ||  ||  || ... ||
 
 Examples of supported generalist rewrites can be found in the automatic tests :
 [http://code.google.com/p/nativelibs4java/source/browse/branches/OpenCL-BridJ/libraries/OpenCL/ScalaCLPlugin/src/test/scala/scalacl/]
