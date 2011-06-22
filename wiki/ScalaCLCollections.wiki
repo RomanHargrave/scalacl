@@ -11,8 +11,6 @@ Reading and writing to / from collections hence uses the [http://nativelibs4java
 
 = `CLArray[T]` =
 
-See [http://code.google.com/p/nativelibs4java/source/browse/branches/OpenCL-BridJ/libraries/OpenCL/ScalaCL2/src/main/scala/scalacl/CLArray.scala]
-
 Supports :
   * T of AnyVal types and of tuples of AnyVals or tuples (unlimited nesting of tuples up to arity 8, with AnyVal leaves)
   * read/write from/to a BridJ [http://nativelibs4java.sourceforge.net/bridj/api/stable/org/bridj/Pointer.html Pointer]
@@ -28,6 +26,8 @@ is represented as the following array of flattened component buffers :
 {{{
 Array[AnyRef](CLBuffer[Int], CLBuffer[Float], CLBuffer[Double], CLBuffer[Long], CLBuffer[Byte], CLBuffer[Short])
 }}}
+
+(see [http://code.google.com/p/nativelibs4java/source/browse/branches/OpenCL-BridJ/libraries/OpenCL/ScalaCL2/src/main/scala/scalacl/CLArray.scala sources] for more info)
 
 = `CLFilteredArray[T]` =
 
