@@ -16,9 +16,8 @@ See [http://code.google.com/p/nativelibs4java/source/browse/branches/OpenCL-Brid
 Supports :
   * T of AnyVal types and of tuples of AnyVals or tuples (unlimited nesting of tuples up to arity 8, with AnyVal leaves)
   * read/write from/to a BridJ [http://nativelibs4java.sourceforge.net/sites/nl4j-runtime-parent/bridj/apidocs/org/bridj/Pointer.html Pointer]
-  * asynchronous map
-  * asynchronous filter
-  * asynchronous clone
+  * asynchronous OpenCL implementation for map, filter and clone operations
+  * OpenCL implementation for min, max, product, sum operations
   * respect of the order of read/write operations (attempting to read a buffer for which many write operations are still queued will block until these operations are completed)
 
 A `CLArray[T]` is represented as an array of component buffers (tuples components are flattened). For instance the following array :
