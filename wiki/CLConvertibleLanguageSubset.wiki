@@ -59,7 +59,8 @@ array.zip(array.map(_ * 2f)).zipWithIndex map {
 array.map(v => {
   var total = 0
   for (i <- 0 until 5) {
-    total += if (cos(v * i) < 0) i * v else i - v
+    val t = if (cos(v * i) < 0) i * v else i - v
+    total += t
   }
   total
 })
