@@ -27,7 +27,7 @@ is represented as the following array of flattened component buffers :
 Array[AnyRef](CLBuffer[Int], CLBuffer[Float], CLBuffer[Double], CLBuffer[Long], CLBuffer[Byte], CLBuffer[Short])
 }}}
 
-(see [http://code.google.com/p/nativelibs4java/source/browse/branches/OpenCL-BridJ/libraries/OpenCL/ScalaCL2/src/main/scala/scalacl/CLArray.scala sources] for more info)
+(see [http://code.google.com/p/nativelibs4java/source/browse/branches/OpenCL-BridJ/libraries/OpenCL/ScalaCL/src/main/scala/scalacl/CLArray.scala sources] for more info)
 
 = `CLFilteredArray[T]` =
 
