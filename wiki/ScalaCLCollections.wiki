@@ -39,19 +39,11 @@ Supports
   * asynchronous filter
   * size and toArray are computed using an intermediate prefix sum array (which still has to be greatly improved)
 
-= `CLArrayView[T]` = 
-
-Contains a reference to a `CLArray[T]` and a list of pending function applications (.map(f) and .filter(f) calls).
-
-When forced, it attempts to creates a single OpenCL kernel that is un on the target array.
-
-= `CLFilteredArrayView[T]` = 
-
-Same as `CLArrayView[T]`, but for `CLFilteredArray[T]` instances
-
 = `CLFunction[A, B]` =
 
-Takes an A, returns a B (A and B can be tuples or `AnyVal`s).
+It extends `A => B` (`Function1[A, B]`).
+
+A and B can be tuples or `AnyVal`s.
 
 One can create a `CLFunction` explicitely, but the best is to write a Scala function and let the [ScalaCLPlugin] translate it to a `CLFunction`.
 
