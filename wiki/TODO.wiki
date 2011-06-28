@@ -15,6 +15,12 @@ Please file new bugs [http://code.google.com/p/nativelibs4java/issues/list here]
 
 Important: care was taken so that isolated errors that occur during any optimization skip that optimization and don't prevent the rest of the compilation to succeed (you'll then get output that will invite you to report a bug and to set  the SCALACL_TRACE environment to 1).
 
+= Compiler Plugin TODO =
+
+  * Detect captured variables and have them fed to OpenCL
+  * Detect side-effects in functions (mark side-effect free functions recursively + add a `@sideEffectFree` annotation) and allow transform of a.map(f).map(g) into a.map(f.compose(g)) if f and/or g are side-effect-free)
+  * Detect symmetry in reduceLeft/Right functions (+ add a `@symmetric` annotation), to allow OpenCL acceleration
+
 = OpenCL Collections TODO =
 
 Also see [ScalaCLCollections].
