@@ -7,62 +7,34 @@
 
 Please file new bugs [http://code.google.com/p/nativelibs4java/issues/list here].
 
-  * _OK_ ~~[http://code.google.com/p/nativelibs4java/issues/detail?id=34 'no-symbol does not have owner' when optimizations take place in a trait] (reported by [http://twitter.com/ijuma @ijuma])~~
-  * _OK_ ~~Incorrect int range loops rewrite for negative 'by' values (reported by Rex Kerr)~~
-  * _OK_ ~~[http://code.google.com/p/nativelibs4java/issues/detail?id=32 Inline arrays crash loop optimizer]~~
-  * _OK_ ~~Compiler crashes in lambda lift phase with nested loops : `a.map(xx => { a.map(x => { def f = x ; f }) })`~~
-  * _OK_ ~~[http://code.google.com/p/nativelibs4java/issues/detail?id=33 Fails to optimize loops that yield tuples] (`val a = new Array[Int](10); for (i <- a) yield (i, i)`)~~
-
 Important: care was taken so that isolated errors that occur during any optimization skip that optimization and don't prevent the rest of the compilation to succeed (you'll then get output that will invite you to report a bug and to set  the SCALACL_TRACE environment to 1).
 
 = Compiler Plugin TODO =
 
   * Detect captured variables and have them fed to OpenCL
   * Detect side-effects in functions (mark side-effect free functions recursively + add a `@sideEffectFree` annotation) and allow transform of a.map(f).map(g) into a.map(f.compose(g)) if f and/or g are side-effect-free)
-  * Detect symmetry in reduceLeft/Right functions (+ add a `@symmetric` annotation), to allow OpenCL acceleration
+  * Detect symmetry in reduceLeft/Right functions (+ add a `@symmetric` annotation), to replace `reduceLeft` by `reduceSymmetrical`
 
 = OpenCL Collections TODO =
 
 Also see [ScalaCLCollections].
 
-  * _OK_ ~~`CLCollection`, `CLArray`, `CLFilteredArray`, `CLRange`, `Seq.cl` integrated to Scala collections~~
-  * _OK_ ~~`CLCollection.map`, `CLCollection.filter` : lambda function to OpenCL kernel~~
-  * _OK_ ~~`CLCollection.zip`, `CLCollection.zipWithIndex`~~
-  * _OK_ ~~`CLRange.toCLArray`, `CLFilteredArray.toCLArray`~~
   * Clone with copy-on-write for more efficient `zip` operations
-  * _OK_ ~~Much faster scan (for CLFilteredArray.toCLArray), using Apple's provided OpenCL samples~~
   * Finer support of double math functions (right now, we're forcing float computations)
-  * Implement `reduceSymmetrical` using optimized code
-  * Detect symmetrical functions to replace `reduceLeft` by `reduceSymmetrical`
-  * Implement scanLeft using new scan code
+  * Implement `reduceSymmetric` / `scanSymmetric`... using optimized code
   * CLArrayView, CLFilteredArrayView
-  * escape analysis, reuse of compatible outputs
-  * autovectorization
-  * auto-ScalaCL-ization
+  * escape analysis or arrays, reuse of compatible outputs
+  * autovectorization (mark read/write usage of OpenCL collections, then move up the tree until a loop is found (or more than one, as long as the code has no side-effect or does not capture anything not convertible to OpenCL)
+  * auto-ScalaCL-ization (not by default !)
 
 = Scala Collections TODO =
 
-Compilation optimizations planned (also see [ScalaCLPlugin]) :
-  * _OK_ ~~`Array.foreach`~~
-  * _OK_ ~~`Array.map`~~
-  * _OK_ ~~`for (i <- x to/until y [by z]) body`~~
-  * _OK_ ~~`for (i <- x to/until y [by z]; if test) body`~~
+Compilation optimizations not implemented (also see [ScalaCLPlugin]) :
   * `for (i <- range [by z][; if test]) body` (will be slower than `for (i <- x to y)` because we need to test Range.isInclusive)
-  * _OK_ ~~`Array.tabulate(n)`~~
-  * _OK_ ~~`Array.tabulate(n1, n2)`, `Array.tabulate(n1, n2, n3)`...~~
   * `Seq(x, y, z...).foreach -> Array(x, y, z...).foreach` (before the `Array.foreach` transform). Same for `List`
-  * _OK_ ~~`Array.reduceLeft` / `reduceRight`~~
-  * _OK_ ~~`Array.foldLeft` / `foldRight`~~
-  * _OK_ ~~`Array.scanLeft` / `scanRight`~~
-  * _OK_ ~~`Array.sum / List.sum`~~
-  * _OK_ ~~handle method references (as opposed to inline lambdas)~~
-  * _OK_ ~~`List.foreach`~~
-  * _OK_ ~~`List.(scan|fold|reduce)Left`~~ (won't write the -Right variants)
-  * _OK_ ~~`Array[T]/List[T].min, .max`~~
-  * _OK_ ~~`Array[T]/List[T].filter` and `.filterNot`~~
-  * `Array[T]/List[T].takeWhile` and `.dropWhile`
-  * `Array[T]/List[T].forall, .find` and others methods of the same style
-  * map-fuse : `col.map(f).map(g)` becomes `col.map(x => { val fx = f(x); g(fx) })` (avoids one iteration + creation of data structure)
+  * `Array[T].takeWhile` and `.dropWhile`
+  * `Array[T].find` and others methods of the same style
+  * map-fuse : `col.map(f).map(g)` becomes `col.map(x => { val fx = f(x); g(fx) })` (avoids one iteration + creation of data structure)... see compiler plugin task above (detect side-effects)
   * filter-fuse `col.filter(f).filter(g)` (avoids one iteration)
   * array filter/map-fuse `array.filter(f).map(g)` and `array.map(f).filter(g)` must be done in one iteration (same as for List)
   Combining the different fuses, one would only execute a single loop for the following statement :
