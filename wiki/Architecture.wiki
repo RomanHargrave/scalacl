@@ -1,0 +1,28 @@
+#summary Description of ScalaCL's architecture
+
+= Runtime Library =
+
+== CLArray ==
+
+=== Fibers and buffers ===
+
+=== Filtering and compacting ==
+
+== CLRange ==
+
+== Chaining events ==
+
+= Compiler Plugin =
+
+== Generalistic loops rewriter ==
+
+== Tuples rewriter ==
+
+== Code analysis ==
+
+  * Tuples matching (with complex case assignments)
+  * Side effects detection
+  * TODO Symmetry detection
+  * TODO Auto-vectorization
+
+== Scala-to-OpenCL converter ==
