@@ -20,7 +20,7 @@ is represented as the following array of flattened component buffers :
 Array(CLBuffer[Int], CLBuffer[Float], CLBuffer[Double], CLBuffer[Long], CLBuffer[Byte], CLBuffer[Short])
 }}}
 
-(a `CLBuffer[T]` is a primitive array stored in OpenCL)
+(a [http://nativelibs4java.sourceforge.net/javacl/api/stable/com/nativelibs4java/opencl/CLBuffer.html CLBuffer] is a primitive array stored in OpenCL)
 
 === Filtering and compacting ==
 
@@ -33,7 +33,28 @@ A filtered array can be compacted into a `CLArray[T]` with `CLFilteredArray[T].t
 
 == CLRange ==
 
+In Scala, a Range is composed of :
+  * start & end values (`Int`)
+  * a step (`Int`)
+  * an "inclusive" : whether the end value is included or not (`Boolean`)
+  
+In ScalaCL, a CLRange is hence naturally represented as a `CLBuffer[Int]` of 4 values.
+
+== CLFunction ==
+
+
+
 == Chaining events ==
+
+== Status ==
+
+Working :
+  * Tuploid elements
+  * map, filter, zip, zipWithIndex, size
+  
+TODO
+  * Symmetric reductions : reduceSymmetric / scanSymmetric / foldSymmetric
+  * Lazy copy-on-write clones for zip, zipWithIndex, filter...
 
 = Compiler Plugin =
 
