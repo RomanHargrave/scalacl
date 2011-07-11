@@ -7,7 +7,7 @@
 
 === Fibers and buffers ===
 
-OpenCL does not support heterogeneous structured tuples (but it does support some homogeneous tuples, such as int2, float4...).
+OpenCL does not support heterogeneous structured tuples (but it does support some homogeneous tuples, such as `int2`, `float4`...).
 
 To support arbitrary tuples in ScalaCL, we flatten them into fibers.
 
@@ -22,15 +22,19 @@ Array(CLBuffer[Int], CLBuffer[Float], CLBuffer[Double], CLBuffer[Long], CLBuffer
 
 (a [http://nativelibs4java.sourceforge.net/javacl/api/stable/com/nativelibs4java/opencl/CLBuffer.html CLBuffer] is a primitive array stored in OpenCL)
 
-=== Filtering and compacting ==
+=== Filtering and compacting : `CLFilteredArray` ==
 
 Filtering an array in parallel with OpenCL is a bit tricky : while applying the predicate function to each element is trivial to parallelize, an extra operation is needed to build the resulting filtered collection, called 'compaction'.
 
 Given the array of boolean results of the predicate (the presence array), applied to each input array, compaction is achieved by performing a parallel prefix sum (left scan) on the presence array, which yields the offset of each accepted value in the output array.
 
-As this operation is costly to perform in parallel, it isn't done as late as possible : `CLArray[T].filter` yields a `CLFilteredArray[T]` (which contains the original `CLArray[T]` values and a `CLArray[T]` presence buffer`. Calling `CLFilteredArray[T].map` will not require compaction nor memory copy, it will just yield a new `CLFilteredArray[T]` with the same values array and a new presence map.
-A filtered array can be compacted into a `CLArray[T]` with `CLFilteredArray[T].toCLArray` (compaction is not the only operation that requires a prefix sum : so does `CLFilteredArray[T].size`).
+As this operation is costly to perform in parallel, it's done as late as possible : 
+  * `CLArray[T].filter` yields a `CLFilteredArray[T]` (which contains the original `CLArray[T]` values and a `CLArray[Buffer]` presence array).
+  * Calling `CLFilteredArray[T].map` will not require compaction nor memory copy (it will just yield a new `CLFilteredArray[T]` with the same values array and a new presence map).
+  * A filtered array can be compacted into a `CLArray[T]` with `CLFilteredArray[T].toCLArray`.
 
+Note that compaction is not the only operation that requires a prefix sum : so does `CLFilteredArray[T].size`.
+  
 == CLRange ==
 
 In Scala, a Range is composed of :
@@ -40,11 +44,47 @@ In Scala, a Range is composed of :
   
 In ScalaCL, a CLRange is hence naturally represented as a `CLBuffer[Int]` of 4 values.
 
-== CLFunction ==
+== CLCode ==
 
+Per-context-cached OpenCL program, defined by its :
+  * sources (OpenCL dialect of C)
+  * preprocessor macros
+  * [http://www.khronos.org/registry/cl/sdk/1.0/docs/man/xhtml/clBuildProgram.html compiler arguments] (debug symbols, OpenCL numeric options...)
+
+It's trivial to write a program by hand it you're fluent in OpenCL : 
+{{{
+val code = CLSimpleCode(
+  sources = Array("""
+    __kernel void test(int size, float factor, __global const int* in, __global float* out) {
+      int i = get_global_id(0);
+      out[i] = in[i] * factor;
+    }
+  """),
+  compilerArguments = Array("-cl-fast-relaxed-math")
+)
+
+= `CLFunction[A, B]` =
+
+It extends `A => B` (`Function1[A, B]`).
+
+A and B can be tuples or `AnyVal`s.
 
 
 == Chaining events ==
+
+OpenCL is asynchronous by nature : all operations return an event, which is a ticket that can be waited upon to get notified of when the operation finished. Operations also take a list of dependent events that must be completed before execution.
+This allows for asynchronous operation chains : 
+  * write data into some OpenCL buffer
+  * run some OpenCL code when the write is finished
+  * run another code (2nd pass) when the first code is finished
+  * read the resulting data when the execution of the 2nd pass is finished
+  * wait for the read to finish in client side (or be notified via a callback, in OpenCL 1.1)
+
+Then to run it, you have to provide it with arguments, a list of elements read and written, and run it :
+{{{
+
+}}}
+
 
 == Status ==
 
