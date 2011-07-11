@@ -3,6 +3,6 @@
 
 ScalaCL's source code is currently hosted at the [http://code.google.com/p/nativelibs4java/ NativeLibs4Java] project.
 
-[http://code.google.com/p/nativelibs4java/source/browse/branches/OpenCL-BridJ/libraries/OpenCL/ You can browse ScalaCL's sources from here] (ScalaCL2 and ScalaCLPlugin sub-directories).
+[http://code.google.com/p/nativelibs4java/source/browse/trunk/libraries/OpenCL/ You can browse ScalaCL's sources from here] (ScalaCL2 and ScalaCLPlugin sub-directories).
 
-[http://code.google.com/p/nativelibs4java/source/browse/branches/OpenCL-BridJ/libraries/OpenCL/CHANGELOG Direct link to JavaCL's CHANGELOG]
+[http://code.google.com/p/nativelibs4java/source/browse/trunk/libraries/OpenCL/CHANGELOG Direct link to JavaCL's CHANGELOG]

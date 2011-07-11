@@ -7,7 +7,29 @@
 
 === Fibers and buffers ===
 
+OpenCL does not support heterogeneous structured tuples (but it does support some homogeneous tuples, such as int2, float4...).
+
+To support arbitrary tuples in ScalaCL, we flatten them into fibers.
+
+For instance the following array :
+{{{
+CLArray[(Int, Float, (Double, Long, (Byte, Short)))]
+}}}
+is represented as the following array of flattened component buffers :
+{{{
+Array(CLBuffer[Int], CLBuffer[Float], CLBuffer[Double], CLBuffer[Long], CLBuffer[Byte], CLBuffer[Short])
+}}}
+
+(a `CLBuffer[T]` is a primitive array stored in OpenCL)
+
 === Filtering and compacting ==
+
+Filtering an array in parallel with OpenCL is a bit tricky : while applying the predicate function to each element is trivial to parallelize, an extra operation is needed to build the resulting filtered collection, called 'compaction'.
+
+Given the array of boolean results of the predicate (the presence array), applied to each input array, compaction is achieved by performing a parallel prefix sum (left scan) on the presence array, which yields the offset of each accepted value in the output array.
+
+As this operation is costly to perform in parallel, it isn't done as late as possible : `CLArray[T].filter` yields a `CLFilteredArray[T]` (which contains the original `CLArray[T]` values and a `CLArray[T]` presence buffer`. Calling `CLFilteredArray[T].map` will not require compaction nor memory copy, it will just yield a new `CLFilteredArray[T]` with the same values array and a new presence map.
+A filtered array can be compacted into a `CLArray[T]` with `CLFilteredArray[T].toCLArray` (compaction is not the only operation that requires a prefix sum : so does `CLFilteredArray[T].size`).
 
 == CLRange ==
 

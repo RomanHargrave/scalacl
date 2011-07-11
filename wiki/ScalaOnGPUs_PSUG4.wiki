@@ -160,11 +160,11 @@ val mapped: CLArray[Float] = arr.map { case (i, f) => i + f } // cette fonction 
 
 Voici les sources du plugin ScalaCL v2 :
 
-http://code.google.com/p/nativelibs4java/source/browse/branches/OpenCL-BridJ/libraries/OpenCL/ScalaCLPlugin/src/main/scala/scalacl/
+http://code.google.com/p/nativelibs4java/source/browse/trunk/libraries/OpenCL/ScalaCLPlugin/src/main/scala/scalacl/
 
 Et celles des collections de ScalaCL v2 :
 
-http://code.google.com/p/nativelibs4java/source/browse/branches/OpenCL-BridJ/libraries/OpenCL/ScalaCL2/src/main/scala/scalacl/
+http://code.google.com/p/nativelibs4java/source/browse/trunk/libraries/OpenCL/ScalaCL2/src/main/scala/scalacl/
 
 = La suite =
 
