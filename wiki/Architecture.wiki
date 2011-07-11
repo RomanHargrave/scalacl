@@ -1,4 +1,5 @@
 #summary Description of ScalaCL's architecture
+<wiki:toc max_depth="3" />
 
 = Runtime Library =
 
