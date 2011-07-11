@@ -62,6 +62,7 @@ val code = CLSimpleCode(
   """),
   compilerArguments = Array("-cl-fast-relaxed-math")
 )
+}}}
 
 = `CLFunction[A, B]` =
 
