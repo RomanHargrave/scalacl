@@ -101,7 +101,70 @@ TODO
 
 == Generalistic loops rewriter ==
 
-== Tuples rewriter ==
+In Scala, the following for loop :
+{{{
+for (i <- 0 until n) {
+	...
+}
+}}}
+is internally represented as a call to a Range's foreach method :
+{{{
+(0 until n).foreach(i => {
+	...
+})
+}}}
+
+The problem is that the compiler does not try to make things faster here : it will effectively generate a closure (performing lambda lifting) that will be called by `Range.foreach` several times, incurring a method call overhead that might be very high compared to the loop's body.
+
+It turns out, the following code is strictly equivalent, yet up to 10x faster (depending on the loop's payload) :
+{{{
+var i = 0
+while (i < n) {
+	...
+	i += 1
+}
+}}}
+
+ScalaCL's compiler plugin rewrites such foreach loops into equivalent while loops.
+In addition, it rewrites the following operations on inline Ranges and Arrays :
+  * reduce/scan/fold|Left/Right
+  * forall, exists, count
+  * foreach, map, filter, filterNot,
+  * takeWhile, dropWhile
+  * Array.tabulate
+
+Scalac splits the work into many phases : parsing, resolution of types, transformation of closures to plain methods...
+It supports plugins that can work between any existing phases. Any work before the typer phase is hard, so ScalaCL plugs in right after it.
+The Scala AST is a bit hard to grasp at the beginning, and generating code is yet a bit harder, but you'll just need a few notions to get going.
+There are 3 parallel spaces that coexist in the AST : types, symbols and trees.
+- Types are what you'd expect
+- Symbols represent symbolic entities such as a class, a method, a variable... 
+	-> types have symbols and symbols have types...
+	-> Symbols have owner symbols : the owner of a method is its containing class, that of a parameter variable is its function/method... 
+- Trees hold the actual code, and are annotated with types and symbols (mostly in the typer phase)
+When matching the AST, trees and a bit of types are usually enough, but to generate code you MUST also use symbols otherwise scalac won't understand what you're talking about.
+  
+The plugin proceeds very naturally with tree matchers (in MiscMatchers trait) :
+  * IntRange(from, to, by, isUntil, filters)
+  * ArrayTree...
+And uses tree builders from the TreeBuilders trait :
+  * boolAnd(a, b)
+  * intAdd(a, b)
+  * incrementIntVar(target, value)
+  * whileLoop(condition, body...)
+
+It has grown from a small hack focused on Range.foreach into a huge hack that deals with many more methods.
+
+TODO :
+  * Refactoring of all rewrites for version 0.3 to support operation chains
+{{{
+a.map(f).map(g)
+}}}
+  into while-loop-rewritten equivalent of :
+{{{
+a.map(f.compose(g))
+}}}
+  BUT : NEEDS SIDE-EFFECT ANALYSIS ! (already have external variables detection to the rescue...)
 
 == Code analysis ==
 
@@ -111,3 +174,48 @@ TODO
   * TODO Auto-vectorization
 
 == Scala-to-OpenCL converter ==
+
+=== Tuples rewriter ===
+
+As we saw, OpenCL does not support heterogeneous tuples, so we need to get rid of them during compilation.
+
+This could prove to be useful in general Scala programs, but would require more work (setting the correct symbols and checking whether tuples can escape or not).
+
+The tuple rewrite algorithm uses a _normal form_ of Scala code (see `FlatCode` class) :
+  * list of outer declarations (functions, classes...)
+  * list of declarations (& statements)
+  * list of result values (without any statements or blocks, but valued if then is allowed)
+  
+Most code blocks can be transformed into that form :
+{{{
+val (a, (b, c)) = {
+	def test(x: Int) = x < 10
+	if (test(v)) {
+		val d = v * 10
+		(10, (20, d - 1))
+	} else
+		(20, (100, 0))
+}
+}}}
+Gives :
+{{{
+outerDeclarations = Seq(
+	def test(x: Int) = x < 10
+)
+declarations = Seq(
+	var a = 0,
+	var b = 0,
+	var c = 0,
+	var cond = test(v),
+	var d = 0,
+	if (cond) { d = v * 10 }
+)
+values = Seq(
+	if (cond) 10 else 20, // cond ? 10 : 20
+	if (cond) 20 else 100,
+	if (cond) d - 1 else 0
+) 
+}}}
+
+There are some gory details in how to perform the match of deconstructive tuple definitions even with nested tuples, but that's it for the general idea.
+
