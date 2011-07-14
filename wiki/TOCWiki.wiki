@@ -3,8 +3,9 @@
     * [Usage Install / Use]
     * [GettingStarted Getting Started in 3 minutes !]
     * [CLConvertibleLanguageSubset Supported Scala constructs]
-    * [ScalaCLCollections ScalaCL Collections]	 
-    * [ScalaCLPlugin ScalaCL Plugin]
+    * [Architecture]
+      * [ScalaCLCollections ScalaCL Collections]	 
+      * [ScalaCLPlugin ScalaCL Plugin]
     * [ScalaOnGPUs_PSUG4 First presentation of ScalaCL @ Paris Scala User Group]
   * Project
     * [TODO Status and TODO]	
