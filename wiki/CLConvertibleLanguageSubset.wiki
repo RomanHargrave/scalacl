@@ -79,7 +79,7 @@ val r2 =
     def someFun(x: Int) = // becomes a top-level function inside the OpenCL kernel
       exp(x / 1000).toInt
 
-    var pair @ (init, foo) = { // tuples will be flattened in the OpenCL kernel
+    val pair @ (init, foo) = { // tuples will be flattened in the OpenCL kernel
        val d = v - 10     // unless they match an OpenCL tuple type like int2
        (d * d, 1 / d)
     }
