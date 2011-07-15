@@ -134,14 +134,18 @@ In addition, it rewrites the following operations on inline Ranges and Arrays :
   * Array.tabulate
 
 Scalac splits the work into many phases : parsing, resolution of types, transformation of closures to plain methods...
+
 It supports plugins that can work between any existing phases. Any work before the typer phase is hard, so ScalaCL plugs in right after it.
+
 The Scala AST is a bit hard to grasp at the beginning, and generating code is yet a bit harder, but you'll just need a few notions to get going.
+
 There are 3 parallel spaces that coexist in the AST : types, symbols and trees.
-- Types are what you'd expect
-- Symbols represent symbolic entities such as a class, a method, a variable... 
-	-> types have symbols and symbols have types...
-	-> Symbols have owner symbols : the owner of a method is its containing class, that of a parameter variable is its function/method... 
-- Trees hold the actual code, and are annotated with types and symbols (mostly in the typer phase)
+  * Types are what you'd expect
+  * Symbols represent symbolic entities such as a class, a method, a variable... 
+    * types have symbols and symbols have types...
+    * Symbols have owner symbols : the owner of a method is its containing class, that of a parameter variable is its function/method... 
+  * Trees hold the actual code, and are annotated with types and symbols (mostly in the typer phase)
+
 When matching the AST, trees and a bit of types are usually enough, but to generate code you MUST also use symbols otherwise scalac won't understand what you're talking about.
   
 The plugin proceeds very naturally with tree matchers (in MiscMatchers trait) :
@@ -218,4 +222,3 @@ values = Seq(
 }}}
 
 There are some gory details in how to perform the match of deconstructive tuple definitions even with nested tuples, but that's it for the general idea.
-
