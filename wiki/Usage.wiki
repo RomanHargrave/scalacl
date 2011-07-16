@@ -5,6 +5,12 @@
 
 You can use the ScalaCLPlugin with *any of the following options* :
 
+= Prequisites =
+
+If you want to use [ScalaCLCollections ScalaCL Collections], you need to [http://code.google.com/p/javacl/wiki/Usage#OpenCL_implementation install an OpenCL implementation].
+
+You don't need any OpenCL implementation for the general loops rewrite stuff !
+
 = With scalac (using sbaz) : preferred method =
 
 == Install =
