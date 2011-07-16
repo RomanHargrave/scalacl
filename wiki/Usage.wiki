@@ -3,7 +3,7 @@
 #sidebar TOCWiki
 <wiki:toc max_depth="3" />
 
-You can use the ScalaCLPlugin with *any of the following options* :
+You can use the ScalaCLPlugin with *any of the following options* : sbaz, sbt, Maven, eclipse...
 
 = Prequisites =
 
