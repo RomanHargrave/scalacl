@@ -2,7 +2,7 @@
 
 = Documentation =
 
-  * Olivier Chafik's [http://scalacl.googlecode.com/svn/wiki/ScalaCL%20Scalathon%20Philadelphia%202011.pdf ScalaCL slides] from Scalathon's speech
+  * Olivier Chafik's [http://scalacl.googlecode.com/svn/wiki/ScalaCL%20Scalathon%20Philadelphia%202011.pdf ScalaCL slides from Scalathon's speech] 
   * Mirko Stocker's [http://scala-refactoring.org/wp-content/uploads/scala-refactoring.pdf Scala Refactoring] master's thesis contains lots of easy to understand documentation about the compiler's AST in its Appendix D.
 
 = Hack =
