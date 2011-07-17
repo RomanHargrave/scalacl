@@ -14,3 +14,18 @@ scalac -Xprint:typer test.scala
 {{{
 scalac -Xprint:typer -Yshow-trees test.scala
 }}}
+
+{{{
+scalac -Ybrowse:typer test.scala
+}}}
+
+You can replace `typer` by any other phase, such as `scalacl-loopstransform`.
+
+== Run the compiler ==
+
+{{{
+export SCALACL_TRACE=1
+export SCALACL_VERBOSE=1
+
+mvn scala:run -DmainClass=scalacl.plugin.Compile "-DaddArgs=Test.scala|-Xprint:scalacl-loopstransform|../ScalaCL/target/scalacl-0.3-SNAPSHOT-shaded.jar"
+}}}
