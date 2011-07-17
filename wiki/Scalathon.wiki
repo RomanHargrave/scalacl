@@ -1,3 +1,4 @@
+#summary How and what to hack ScalaCL for the Scalathon 2011 hacking session
 <wiki:toc max_depth="3" />
 
 = Documentation =
