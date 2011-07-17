@@ -56,12 +56,16 @@ mvn scala:run -DmainClass=scalacl.plugin.Compile "-DaddArgs=Test.scala|-Xprint:s
     # output some parallel code : maybe by building a `CLRange`...
   * add runtime + compilation support for images : 
 {{{
-trait CLImage2D[PixelType] { // name might conflict with JavaCL's com.nativelibs4java.opencl.CLImage2D
+trait CLImage2D[PixelType] {
+  lazy val img: com.nativelibs4java.opencl.CLImage2D
   def apply(x: Int, y: Int): PixelType
-  def apply(point: (Int, Int)): PixelType
+  def update(x: Int, y: Int, value: PixelType)
 }
 }}}
-  Also see [http://nativelibs4java.sourceforge.net/javacl/api/current/com/nativelibs4java/opencl/CLImage2D.html CLImage2D] in [http://code.google.com/p/javacl/ JavaCL]
+  Also see [http://nativelibs4java.sourceforge.net/javacl/api/current/com/nativelibs4java/opencl/CLImage2D.html CLImage2D] in [http://code.google.com/p/javacl/ JavaCL] (have to be careful reading / writing...)
+    * detect image reads/writes in code to say whether it's gonna be used as OpenCL input or output
+    * update OpenCLConverter to detect calls to `CLImage2D[T].apply` / `update` and replace them by [http://www.khronos.org/registry/cl/sdk/1.0/docs/man/xhtml/read_imagei2d.html read_imagei] or [http://www.khronos.org/registry/cl/sdk/1.0/docs/man/xhtml/read_imagef2d.html read_imagef] / write_image...
+    * implement the apply and update methods with calls to [http://nativelibs4java.sourceforge.net/javacl/api/current/com/nativelibs4java/opencl/CLImage2D.html#read(com.nativelibs4java.opencl.CLQueue, long, long, long, long, long, org.bridj.Pointer, boolean, com.nativelibs4java.opencl.CLEvent...) CLImage2D.read]... and dealing with the different image formats :-S
 - swallow functions defined in same compilation unit
 - simple lamda lift : forward captured symbols 
 - fix side-effects detection
