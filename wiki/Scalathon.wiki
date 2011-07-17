@@ -49,4 +49,23 @@ mvn scala:run -DmainClass=scalacl.plugin.Compile "-DaddArgs=Test.scala|-Xprint:s
   * symmetry detection : copy paste code from side-effects detection and get going :-)
   * sbt migration : `sbt test` fails, `mvn test` succeeds (except for side effects tests)
   * write your own plugin component : look at `MyComponent.scala`, then think of registering your component in `ScalaCLPlugin.scala`
+  * auto-vectorization :
+    # detect `CLArray.apply` "seeds" calls
+    # traverse up from these calls until you reach an `IntRange` + `Foreach` loop (see `MiscMatchers.scala`)
+    # see if the foreach is convertible to OpenCL (checking captured variables... see convertFunctionToCLFunction
+    # output some parallel code : maybe by building a `CLRange`...
+  * add runtime + compilation support for images : 
+{{{
+trait CLImage2D[PixelType] { // name might conflict with JavaCL's com.nativelibs4java.opencl.CLImage2D
+  def apply(x: Int, y: Int): PixelType
+  def apply(point: (Int, Int)): PixelType
+}
+}}}
+  Also see [http://nativelibs4java.sourceforge.net/javacl/api/current/com/nativelibs4java/opencl/CLImage2D.html CLImage2D] in [http://code.google.com/p/javacl/ JavaCL]
+- swallow functions defined in same compilation unit
+- simple lamda lift : forward captured symbols 
+- fix side-effects detection
+- speedup tests / fix sbt tests
+- find a way to debug-break into the plugin in any IDE !
+
   * other ideas ? (look at [http://scalacl.googlecode.com/svn/wiki/ScalaCL%20Scalathon%20Philadelphia%202011.pdf the slides] :-))
