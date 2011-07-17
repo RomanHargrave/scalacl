@@ -12,4 +12,5 @@
     * [CompileScalaCL Compiling ScalaCL]
     * [WritingScalaCompilerPlugins Notes on writing Scala Compiler Plugins]
     * [ScalaCLv1 ScalaCLv1 : early defunc prototype]
+    * [Scalathon]
   * [http://code.google.com/p/bridj/wiki/CreditsAndLicense Credits and License] (outer link)
