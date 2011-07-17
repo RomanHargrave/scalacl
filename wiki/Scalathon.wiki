@@ -33,6 +33,12 @@ export SCALACL_VERBOSE=1
 mvn scala:run -DmainClass=scalacl.plugin.Compile "-DaddArgs=Test.scala|-Xprint:scalacl-loopstransform|../ScalaCL/target/scalacl-0.3-SNAPSHOT-shaded.jar"
 }}}
 
+== Workflow ==
+
+  * Use sbt to ~compile your code as you write it
+  * Use maven to run tests (or help fix scalacl's tests with sbt 0.10.1 :-))
+  * Use maven to run (or help fix scalacl + sbt run : scalacl.plugin.Compile does not seem to run fine in sbt :-S)
+
 = What can you hack ? =
 
   * moving code generation from runtime library to compiler plugin : look for `println("sourceData = " + sourceData)` in `ScalaCLFunctionsTransformComponent.scala`
