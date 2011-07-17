@@ -46,4 +46,5 @@ mvn scala:run -DmainClass=scalacl.plugin.Compile "-DaddArgs=Test.scala|-Xprint:s
   * side-effects detection (still completely broken) : see code in `CodeAnalysis.scala`
   * symmetry detection : copy paste code from side-effects detection and get going :-)
   * sbt migration : `sbt test` fails, `mvn test` succeeds (except for side effects tests)
+  * write your own plugin component : look at `MyComponent.scala`, then think of registering your component in `ScalaCLPlugin.scala`
   * other ideas ? (look at [http://scalacl.googlecode.com/svn/wiki/ScalaCL%20Scalathon%20Philadelphia%202011.pdf the slides] :-))
