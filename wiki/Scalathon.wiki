@@ -1,3 +1,6 @@
+
+<wiki:toc max_depth="3" />
+
 = Documentation =
 
 Mirko Stocker's [http://scala-refactoring.org/wp-content/uploads/scala-refactoring.pdf Scala Refactoring] master's thesis contains lots of easy to understand documentation about the compiler's AST in its Appendix D.
