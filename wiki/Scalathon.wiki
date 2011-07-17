@@ -29,3 +29,11 @@ export SCALACL_VERBOSE=1
 
 mvn scala:run -DmainClass=scalacl.plugin.Compile "-DaddArgs=Test.scala|-Xprint:scalacl-loopstransform|../ScalaCL/target/scalacl-0.3-SNAPSHOT-shaded.jar"
 }}}
+
+== Hacks leads ==
+
+  * moving code generation from runtime library to compiler plugin : look for `println("sourceData = " + sourceData)` in `ScalaCLFunctionsTransformComponent.scala`
+  * implementing the new design of loops rewriting : look for `StreamOps.scala` vs. `TraversalOps.scala` vs. `LoopsTransformComponent.scala`
+  * side-effects detection (still completely broken) : see code in `CodeAnalysis.scala`
+  * symmetry detection : copy paste code from side-effects detection and get going :-)
+  * sbt migration : `sbt test` fails, `mvn test` succeeds (except for side effects tests)
