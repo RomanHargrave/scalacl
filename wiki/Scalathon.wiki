@@ -1,6 +1,10 @@
 #summary How and what to hack ScalaCL during the Scalathon 2011 hacking session
 <wiki:toc max_depth="3" />
 
+I ([http://twitter.com/#!/ochafik @ochafik]) was lucky enough to be invited for a presentation and many beers to [http://scalathon.org/ Scalathon], a community-driven event in Philadelphia (hosted at UPenn) organized with maestria by Brian Clapper, Yuvi Masori and an amazingly dedicated team.
+
+Many people expressed interest in hacking with ScalaCL, so I've put up some basic information on this page to help them getting started.
+
 = Documentation =
 
   * Olivier Chafik's [http://scalacl.googlecode.com/svn/wiki/ScalaCL%20Scalathon%20Philadelphia%202011.pdf ScalaCL slides from Scalathon's speech] 
