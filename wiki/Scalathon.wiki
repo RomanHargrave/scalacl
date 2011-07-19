@@ -34,10 +34,10 @@ You can replace `typer` by any other phase, such as `scalacl-loopstransform`.
 
 With sbt 0.10.1 :
 {{{
-sbt run test.scala
+sbt "run test.scala"
 }}}
 {{{
-sbt run "test.scala -cp mylib.jar ..."
+sbt "run test.scala -cp mylib.jar ..."
 }}}
 
 With maven (you'll have to edit the `scalacl` script file to add JAR dependencies, since this will only take one file argument) :
