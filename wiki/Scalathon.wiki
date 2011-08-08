@@ -53,7 +53,7 @@ With maven (you'll have to edit the `scalacl` script file to add JAR dependencie
 = What can you hack ? =
 
   * moving code generation from runtime library to compiler plugin : look for `println("sourceData = " + sourceData)` in `ScalaCLFunctionsTransformComponent.scala`, and for `CLFunction`'s constructor : constructor needs to be modified to take the actual OpenCL code, rather than the normalized code's intermediate form
-  * finish the implementation of the new design of loops rewriting : look at all the `Stream*.scala` files.
+  * *MOSTLY DONE* finish the implementation of the new design of loops rewriting : look at all the `Stream*.scala` files.
   Set `SCALACL_STREAM=1` to enable operation streams rewrites.
   * side-effects detection (still completely broken) : see code in `CodeAnalysis.scala` ; this is needed for streams rewrites to be enabled by default
   * symmetry detection : copy paste code from side-effects detection and get going :-)
