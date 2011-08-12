@@ -52,7 +52,7 @@ Après ces premiers essais, je me suis tourné vers la librairie UJMP (http://ww
 J'ai rapidement compris que j'avais tout intérêt à exploiter le caractère asynchrone d'OpenCL : lorsqu'on ajoute un job à file d'exécution, l'appel retourne un CLEvent, un objet que l'on pourra poller et sur lequel on pourra attendre pour s'assurer que le job est fini. Mais on peut également dire à d'autres jobs d'attendre des events.
 Du coup, la multiplication a.mmult(b).mmult(c) retourne tout de suite une Matrix, mais celle-ci n'est pas encore calculée (elle le sera en background, et la lecture d'une de ses composantes bloquera tant que les deux multiplications ne seront pas terminées).
 
-[http://code.google.com/p/nativelibs4java/source/browse/trunk/libraries/OpenCL/Blas/ Les sources de JavaCL BLAS sont ici].
+[https://github.com/ochafik/nativelibs4java/tree/master/libraries/OpenCL/Blas/ Les sources de JavaCL BLAS sont ici].
 
 Après avoir ajouté un certain nombre d'opérations vectorielles, je me suis rendu à l'évidence : on peut généraliser ça (on peut le faire, donc on doit le faire :-)), retour à la case Scala !
 
@@ -160,11 +160,11 @@ val mapped: CLArray[Float] = arr.map { case (i, f) => i + f } // cette fonction 
 
 Voici les sources du plugin ScalaCL v2 :
 
-http://code.google.com/p/nativelibs4java/source/browse/trunk/libraries/OpenCL/ScalaCLPlugin/src/main/scala/scalacl/
+https://github.com/ochafik/nativelibs4java/tree/master/libraries/OpenCL/ScalaCLPlugin/src/main/scala/scalacl/
 
 Et celles des collections de ScalaCL v2 :
 
-http://code.google.com/p/nativelibs4java/source/browse/trunk/libraries/OpenCL/ScalaCL2/src/main/scala/scalacl/
+https://github.com/ochafik/nativelibs4java/tree/master/libraries/OpenCL/ScalaCL2/src/main/scala/scalacl/
 
 = La suite =
 
