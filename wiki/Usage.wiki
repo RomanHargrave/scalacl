@@ -70,7 +70,7 @@ libraryDependencies += "com.nativelibs4java" % "scalacl" % "0.2"
 
 autoCompilerPlugins := true
 
-addCompilerPlugin("com.nativelibs4java" % "scalacl" % "0.2")
+addCompilerPlugin("com.nativelibs4java" % "scalacl-compiler-plugin" % "0.2")
 }}}
 
 For sbt 0.7.x versions, here's what your project file (say, `project/build/ScalaCLTest.scala`) should look like :
@@ -80,7 +80,7 @@ class ScalaCLTest(info: ProjectInfo) extends DefaultProject(info) with AutoCompi
 {
   val nativelibs4javaRepo = "NativeLibs4Java Repository" at "http://nativelibs4java.sourceforge.net/maven/"
   // Current preferred beta version :
-  val scalacl = compilerPlugin("com.nativelibs4java" % "scalacl" % "0.2")
+  val scalacl = compilerPlugin("com.nativelibs4java" % "scalacl-compiler-plugin" % "0.2")
   // Current development version : 
   //val scalacl = compilerPlugin("com.nativelibs4java" % "scalacl" % "0.3-SNAPSHOT")
 }
