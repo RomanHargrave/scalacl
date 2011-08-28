@@ -60,9 +60,20 @@ sbaz remove scalacl
 sbaz install scalacl/0.2.final
 }}}
 
-= With sbt (simple-build-tool) =
+= With sbt =
 
-To use ScalaCL's collections and/or compiler plugin with [http://code.google.com/p/simple-build-tool/ sbt], please make your project file look like this (`project/build/ScalaCLTest.scala`) :
+To use ScalaCL's collections and/or compiler plugin with [http://code.google.com/p/simple-build-tool/ sbt] 0.10.x, please make your `build.sbt` file look like this :
+{{{
+resolvers += "NativeLibs4Java Repository" at "http://nativelibs4java.sourceforge.net/maven/"
+
+libraryDependencies += "com.nativelibs4java" % "scalacl" % "0.2"
+
+autoCompilerPlugins := true
+
+addCompilerPlugin("com.nativelibs4java" % "scalacl" % "0.2")
+}}}
+
+For sbt 0.7.x versions, here's what your project file (say, `project/build/ScalaCLTest.scala`) should look like :
 {{{
 import sbt._
 class ScalaCLTest(info: ProjectInfo) extends DefaultProject(info) with AutoCompilerPlugins
@@ -74,7 +85,8 @@ class ScalaCLTest(info: ProjectInfo) extends DefaultProject(info) with AutoCompi
   //val scalacl = compilerPlugin("com.nativelibs4java" % "scalacl" % "0.3-SNAPSHOT")
 }
 }}}
-Then run this to grab the package (re-run each time you want to update to the latest version of ScalaCL) :
+
+Of course, do not forget to update to grab the package(s) :
 {{{
 sbt update
 }}}
