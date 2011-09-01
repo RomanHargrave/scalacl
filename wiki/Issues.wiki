@@ -1,3 +1,5 @@
-#summary One-sentence summary of this page.
+#summary Issues for ScalaCL
 
-Please use the [http://code.google.com/p/nativelibs4java/issues/list NativeLibs4Java Issue Tracker] with a title starting by `[ScalaCL] ...`
+`NativeLibs4Java`'s Issue Tracker 
+
+Please use [https://github.com/ochafik/nativelibs4java/issues?sort=created&direction=desc&state=open NativeLibs4Java's GitHub Issues] to report bugs and request enhancements with a title starting by `ScalaCL: ...`
