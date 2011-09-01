@@ -28,3 +28,5 @@ cd ScalaCLPlugin
 sbt update compile
 cd ..
 }}}
+
+See some more details in [Scalathon].
