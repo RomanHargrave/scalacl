@@ -83,3 +83,9 @@ Please see the [http://code.google.com/p/bridj/wiki/CreditsAndLicense Credits an
   * On the [http://groups.google.com/group/nativelibs4java NativeLibs4Java user group].
   [http://code.google.com/p/nativelibs4java/ NativeLibs4Java] is the umbrella project of [http://code.google.com/p/javacl/ JavaCL], ScalaCL, [http://code.google.com/p/bridj/ BridJ] and [http://code.google.com/p/jnaerator/ JNAerator].
   * On [http://twitter.com/ochafik Twitter : @ochafik]
+
+= I get a 'java.lang.ClassNotFoundException: scala.Serializable' ! =
+
+You're probably not using the same version of Scala that ScalaCL was built for.
+
+Please have a look at ScalaCL's [Usage prequisites].
