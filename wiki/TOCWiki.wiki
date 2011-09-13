@@ -1,7 +1,7 @@
   * [FAQ]
+  * [Usage Install / Use]
+  * [GettingStarted Getting Started in 3 minutes !]
   * Documentation
-    * [Usage Install / Use]
-    * [GettingStarted Getting Started in 3 minutes !]
     * [CLConvertibleLanguageSubset Supported Scala constructs]
     * [Architecture]
       * [ScalaCLCollections ScalaCL Collections]	 
