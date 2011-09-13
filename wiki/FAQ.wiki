@@ -89,3 +89,14 @@ Please see the [http://code.google.com/p/bridj/wiki/CreditsAndLicense Credits an
 You're probably not using the same version of Scala that ScalaCL was built for.
 
 Please have a look at ScalaCL's [Usage prequisites].
+
+= What about List rewrites ? =
+
+Rewriting loop operations on Lists into while loops does not always result in a speedup.
+
+In fact, a simple foreach on a List won't be faster once rewritten into a while loop in most cases. That's why List rewrites were disabled in ScalaCL 0.2 by default.
+
+However, ScalaCL 0.3-SNAPSHOT supports streams rewrites, so List(1, 2, 3).map(...).foreach(...).max will be rewritten in a single while loop (if there are no side-effects in the closures), and in fact the data structure will even be switched to Array(1, 2, 3), which is faster to create and iterate upon.
+
+You can have a look at the code that decides whether a stream rewrite is worth the pain (look at the List case : it takes 2 closures at least in the stream) :
+https://github.com/ochafik/nativelibs4java/blob/master/libraries/OpenCL/ScalaCLPlugin/src/main/scala/scalacl/plugin/StreamTransformComponent.scala#L297
