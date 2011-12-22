@@ -60,6 +60,19 @@ sbaz remove scalacl
 sbaz install scalacl/0.2.final
 }}}
 
+= With scalac (manually) =
+
+  * Download the latest version of ScalaCL Plugin :
+  [http://nativelibs4java.sourceforge.net/maven/com/nativelibs4java/scalacl-compiler-plugin/0.3-SNAPSHOT/scalacl-compiler-plugin-0.3-SNAPSHOT.jar scalacl-compiler-plugin-0.3-SNAPSHOT.jar]
+  * Make sure you've uninstalled any version of ScalaCL Plugin previously installed with sbaz :
+{{{
+sbaz remove scalacl
+}}}
+  * Use it like this (please do not rename the JAR or it won't work)
+{{{
+scalac -Xplugin:scalacl-compiler-plugin-0.3-SNAPSHOT.jar ...
+}}}
+
 = With sbt =
 
 == sbt 0.10.x ==
