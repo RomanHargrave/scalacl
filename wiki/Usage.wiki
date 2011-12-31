@@ -63,7 +63,7 @@ sbaz install scalacl/0.2.final
 = With scalac (manually) =
 
   * Download the latest version of ScalaCL Plugin :
-  [http://nativelibs4java.sourceforge.net/maven/com/nativelibs4java/scalacl-compiler-plugin/0.3-SNAPSHOT/scalacl-compiler-plugin-0.3-SNAPSHOT.jar scalacl-compiler-plugin-0.3-SNAPSHOT.jar]
+  [http://oss.sonatype.org/content/groups/public/com/nativelibs4java/scalacl-compiler-plugin/0.3-SNAPSHOT/ scalacl-compiler-plugin-0.3-SNAPSHOT.jar]
   * Make sure you've uninstalled any version of ScalaCL Plugin previously installed with sbaz :
 {{{
 sbaz remove scalacl
@@ -79,6 +79,8 @@ scalac -Xplugin:scalacl-compiler-plugin-0.3-SNAPSHOT.jar ...
 
 To use ScalaCL's collections and/or compiler plugin with [http://code.google.com/p/simple-build-tool/ sbt] 0.10.x, please make your `build.sbt` file look like this :
 {{{
+resolvers += "Sonatype OSS Snapshots Repository" at "http://oss.sonatype.org/content/groups/public/"
+
 resolvers += "NativeLibs4Java Repository" at "http://nativelibs4java.sourceforge.net/maven/"
 
 libraryDependencies += "com.nativelibs4java" % "scalacl" % "0.2"
@@ -95,6 +97,7 @@ For sbt 0.7.x versions, here's what your project file (say, `project/build/Scala
 import sbt._
 class ScalaCLTest(info: ProjectInfo) extends DefaultProject(info) with AutoCompilerPlugins
 {
+  val sonatypeSnapshotsRepo = "Sonatype OSS Snapshots Repository" at "http://oss.sonatype.org/content/groups/public/"
   val nativelibs4javaRepo = "NativeLibs4Java Repository" at "http://nativelibs4java.sourceforge.net/maven/"
   // Current preferred beta version :
   val scalaclPlugin = compilerPlugin("com.nativelibs4java" % "scalacl-compiler-plugin" % "0.2")
@@ -117,6 +120,11 @@ The ScalaCL plugin can be used with [http://maven.apache.org/ Maven], simply edi
 ...
   <repositories>
     ...
+    <repository>
+      <id>sonatype</id>
+      <name>Sonatype OSS Snapshots Repository</name>
+      <url>http://oss.sonatype.org/content/groups/public</url>
+    </repository>
     <repository>
       <id>nativelibs4java</id>
       <name>nativelibs4java Maven2 Repository</name>
@@ -161,7 +169,7 @@ If you choose the development version, Maven will automatically update the plugi
 == Configure the ScalaCL Compiler Plugin == 
 
 Here's how to configure an [http://www.scala-ide.org/ Eclipse Scala] project so it uses the ScalaCL Compiler Plugin :
-  * Download the [http://nativelibs4java.sourceforge.net/maven/com/nativelibs4java/scalacl-compiler-plugin/0.2/scalacl-compiler-plugin-0.2.jar latest stable version of the ScalaCL Compiler Plugin] (or the [http://nativelibs4java.sourceforge.net/maven/com/nativelibs4java/scalacl-compiler-plugin/0.3-SNAPSHOT/scalacl-compiler-plugin-0.3-SNAPSHOT.jar latest development version])
+  * Download the [http://nativelibs4java.sourceforge.net/maven/com/nativelibs4java/scalacl-compiler-plugin/0.2/scalacl-compiler-plugin-0.2.jar latest stable version of the ScalaCL Compiler Plugin] (or the [http://oss.sonatype.org/content/groups/public/com/nativelibs4java/scalacl-compiler-plugin/0.3-SNAPSHOT/ latest development version])
   * Open the section "Scala Compiler Properties" of Eclipse project's properties
   * Check "Use Project Settings" to enable the configuration items below
   * Fill the `Xplugin` field with the full path to the JAR you've downloaded, for instance :
