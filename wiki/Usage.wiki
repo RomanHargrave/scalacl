@@ -63,7 +63,8 @@ sbaz install scalacl/0.2.final
 = With scalac (manually) =
 
   * Download the latest version of ScalaCL Plugin :
-  [http://oss.sonatype.org/content/groups/public/com/nativelibs4java/scalacl-compiler-plugin/0.3-SNAPSHOT/ scalacl-compiler-plugin-0.3-SNAPSHOT.jar]
+  [http://oss.sonatype.org/content/groups/public/com/nativelibs4java/scalacl-compiler-plugin/0.3-SNAPSHOT/ scalacl-compiler-plugin-0.3-SNAPSHOT.jar] (make sure to download the latest snapshot)
+  * Rename the timestamped snapshot file exactly to `scalacl-compiler-plugin-0.3-SNAPSHOT.jar` (i.e. replace the timestamp by `SNAPSHOT`), otherwise the compiler plugin mechanism won't work :-S
   * Make sure you've uninstalled any version of ScalaCL Plugin previously installed with sbaz :
 {{{
 sbaz remove scalacl
@@ -170,6 +171,7 @@ If you choose the development version, Maven will automatically update the plugi
 
 Here's how to configure an [http://www.scala-ide.org/ Eclipse Scala] project so it uses the ScalaCL Compiler Plugin :
   * Download the [http://nativelibs4java.sourceforge.net/maven/com/nativelibs4java/scalacl-compiler-plugin/0.2/scalacl-compiler-plugin-0.2.jar latest stable version of the ScalaCL Compiler Plugin] (or the [http://oss.sonatype.org/content/groups/public/com/nativelibs4java/scalacl-compiler-plugin/0.3-SNAPSHOT/ latest development version])
+  * In case you downloaded a development version, rename the timestamped snapshot file exactly to `scalacl-compiler-plugin-0.3-SNAPSHOT.jar` (i.e. replace the timestamp by `SNAPSHOT`), otherwise the compiler plugin mechanism won't work :-S
   * Open the section "Scala Compiler Properties" of Eclipse project's properties
   * Check "Use Project Settings" to enable the configuration items below
   * Fill the `Xplugin` field with the full path to the JAR you've downloaded, for instance :
