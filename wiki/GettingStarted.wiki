@@ -22,11 +22,13 @@ resolvers += Resolver.sonatypeRepo("snapshots")
 
 resolvers += "NativeLibs4Java Repository" at "http://nativelibs4java.sourceforge.net/maven/"
 
-libraryDependencies += "com.nativelibs4java" % "scalacl" % "0.3-SNAPSHOT"
+libraryDependencies += "com.nativelibs4java" % "scalacl" % "0.2"
+
+libraryDependencies += "com.nativelibs4java" % "javacl" % "1.0.0-RC2" // force latest JavaCL version
 
 autoCompilerPlugins := true
 
-addCompilerPlugin("com.nativelibs4java" % "scalacl-compiler-plugin" % "0.3-SNAPSHOT")
+addCompilerPlugin("com.nativelibs4java" % "scalacl-compiler-plugin" % "0.2")
 }}}
   # Create the following `Test.scala` file ([CLConvertibleLanguageSubset see supported syntax]), or type the code in the Scala console (without the object and def definitions) :
 {{{
@@ -63,7 +65,7 @@ resolvers += "NativeLibs4Java Repository" at "http://nativelibs4java.sourceforge
 
 autoCompilerPlugins := true
 
-addCompilerPlugin("com.nativelibs4java" % "scalacl-compiler-plugin" % "0.3-SNAPSHOT")
+addCompilerPlugin("com.nativelibs4java" % "scalacl-compiler-plugin" % "0.2")
 }}}
   # Create the following `Test.scala` file :
 {{{
