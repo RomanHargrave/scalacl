@@ -16,10 +16,17 @@
 
 = The real stuff : OpenCL collections = 
 
-  # Install ScalaCL with [http://www.scala-lang.org/node/93 sbaz], which is part of the Scala distribution (see [Usage] for other install methods) :
+  # Use the following `build.sbt` file (see [Usage] for other install methods) :
 {{{
-sbaz update
-sbaz install scalacl
+resolvers += Resolver.sonatypeRepo("snapshots")
+
+resolvers += "NativeLibs4Java Repository" at "http://nativelibs4java.sourceforge.net/maven/"
+
+libraryDependencies += "com.nativelibs4java" % "scalacl" % "0.3-SNAPSHOT"
+
+autoCompilerPlugins := true
+
+addCompilerPlugin("com.nativelibs4java" % "scalacl-compiler-plugin" % "0.3-SNAPSHOT")
 }}}
   # Create the following `Test.scala` file ([CLConvertibleLanguageSubset see supported syntax]), or type the code in the Scala console (without the object and def definitions) :
 {{{
@@ -48,10 +55,15 @@ Wanna know more ? See the [CLConvertibleLanguageSubset supported constructs] and
 
 If you don't want to use OpenCL-backed collections but are interested in making you regular Scala code faster, you can [ScalaCLPlugin have ScalaCL rewrite your array, list and (inline) range loops into much faster while loops].
 
-  # Install ScalaCL with [http://www.scala-lang.org/node/93 sbaz], which is part of the Scala distribution (see [Usage] for other install methods) :
+  # Use the following `build.sbt` file (see [Usage] for other install methods) :
 {{{
-sbaz update
-sbaz install scalacl
+resolvers += Resolver.sonatypeRepo("snapshots")
+
+resolvers += "NativeLibs4Java Repository" at "http://nativelibs4java.sourceforge.net/maven/"
+
+autoCompilerPlugins := true
+
+addCompilerPlugin("com.nativelibs4java" % "scalacl-compiler-plugin" % "0.3-SNAPSHOT")
 }}}
   # Create the following `Test.scala` file :
 {{{
