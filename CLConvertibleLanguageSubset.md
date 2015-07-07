@@ -1,0 +1,123 @@
+
+
+Scala offers nice and varied syntactic constructs. Not all of them translate easily to C / OpenCL, so we had to pick the easiest + most useful.
+
+For now, we're focusing on tuples (access, creation and case-matching), for/while loops (or anything that can be converted to a while loop by [ScalaCL's compiler plugin](ScalaCLPlugin.md)) and external val capture.
+
+# Important note : (not) everything is supported #
+
+Strictly speaking, all possible valid Scala constructs should _work_ with [ScalaCL collections](ScalaCLCollections.md) : your code will run and will produce correct results, but the code might be slow as hell : when a function is not OpenCL-enabled (which is done by the [compiler plugin](ScalaCLPlugin.md)), ScalaCL runs it in the Scala/Java land. The problem is that the data of [ScalaCL collections](ScalaCLCollections.md) is stored in the OpenCL land (e.g. on the GPU), so it has to be copied over to Java and probably back to OpenCL.
+
+To make sure you're actually executing your `map` and `filter` operations in OpenCL-mode, you can set the `SCALACL_VERBOSE` environment variable to `1` (see [FAQ](FAQ.md)).
+
+You can also disable the execution of OpenCL kernels by setting the environment variable `SCALACL_USE_SCALA_FUNCTION` to `1`, which will force all functions to be executed in Scala/Java land (this will be slower, but you'll be able to set breakpoints in your favourite debugger !).
+
+# Constructs currently supported #
+
+The following constructs are supported in the latest development version of ScalaCL, typically available on sbaz (see [Usage](Usage.md) for how to install / use it).
+
+All of the following examples can be tested in the Scala console (after installing ScalaCL via sbt, see [Usage](Usage.md)), with the following preliminary definitions :
+```
+import scalacl._
+import scala.math._
+implicit val context = Context.best 
+  // prefer CPUs ? Context.best(CPU)
+val array = (100 until 300).cl
+```
+
+Here's a highlight of what should be supported in the current version
+  * Accelerated map, filter, zip, zipWithIndex, toArray on CLArray, CLFilteredArray, CLRange collections
+```
+array.zipWithIndex.filter({ case (v, i) => (v % 2) != 0 }).map(_._1).toArray
+```
+  * External math functions : right now you can use `scala.math` functions (the ones that have [direct OpenCL counterparts](http://www.khronos.org/registry/cl/sdk/1.0/docs/man/xhtml/mathFunctions.html)), such as exp, cos, atan2...
+  * Internal functions :
+```
+array.map(v => {
+  def sq(x: Int) = x * x
+  (v, sq(v))
+})
+```
+  * Tuples are supported in many ways : matching / deconstruction, creation, component access, block return values...
+```
+// Map to / from tuples, zip(WithIndex) :
+array.zip(array.map(_ * 2f)).zipWithIndex.map(t => {
+  val ((a, b), i) = t
+  (exp(a / 1000.0f).toFloat + b + i, a)
+})
+
+// Same :
+array.zip(array.map(_ * 2f)).zipWithIndex map { 
+  case ((a, b), i) => 
+    (exp(a / 1000.0f).toFloat + b + i, a) 
+}
+```
+  * Simple statements (if, inline range for...) :
+```
+array.map(v => {
+  var total = 0
+  for (i <- 0 until 5) {
+    val t = if (cos(v * i) < 0) i * v else i - v
+    total += t
+  }
+  total
+})
+```
+
+Doesn't work for you ? Please [report it](Issues.md) !
+
+# Constructs planned to be supported in next ScalaCL release (0.2) #
+
+The translation engine is being rewritten to allow a much broader set of constructs :
+  * Rich statements with blocks, filtered loops (at least on inline ranges) :
+```
+val r2 = 
+  array.map(v => {
+
+    def someFun(x: Int) = // becomes a top-level function inside the OpenCL kernel
+      exp(x / 1000).toInt
+
+    val pair @ (init, foo) = { // tuples will be flattened in the OpenCL kernel
+       val d = v - 10     // unless they match an OpenCL tuple type like int2
+       (d * d, 1 / d)
+    }
+    var sum = init + 1.0
+    for (i <- 0 until 10; if (i % 2) != 0) {
+       sum += cos(v) * i + someFun(pair._2 - foo)
+    }
+    (sum, foo)
+  })
+```
+  * Captured constants (here, `extVal`) :
+```
+val extVal = 10
+val r2 = 
+  array.map(v => {
+    var sum = 0.0
+    for (i <- 0 until extVal) {
+       sum += cos(v * i) * i
+    }
+    sum
+  })
+```
+  * Captured functions :
+```
+def extFun(x: Int) => x + 1
+val r2 = 
+  array.map(v => extFun(v) * 2)
+```
+
+# Constructs planned to be supported later #
+
+```
+{
+  def swallowedFromOutside(x: Int) = x + 1
+  CLArray(1, 2, 3).map(v => (v, swallowedFromOutside(v))) // function is "swallowed" inside converted OpenCL function
+  
+  CLArray(1, 2, 3).map(v => {
+    def inside(x: Int) = x + 1 
+    (v, inside(v))
+  })
+```
+
+Have suggestions on something easy and useful to support ? Please [request it](Issues.md) !

@@ -1,0 +1,53 @@
+
+
+**Work in progress**
+
+ScalaCL's collection use the [BridJ](http://code.google.com/p/bridj/) port of [JavaCL](http://code.google.com/p/javacl/), which has a much lower overhead than the regular JavaCL build (this helps improving BridJ, as new real-world use-cases emerge).
+
+Reading and writing to / from collections hence uses the [BridJ Pointer class](http://nativelibs4java.sourceforge.net/bridj/api/stable/org/bridj/Pointer.html) rather than NIO Buffers, but it is trivial to wrap direct NIO Buffers as BridJ Pointers and vice-versa.
+
+# `CLArray[T]` #
+
+Supports :
+  * T of AnyVal types and of tuples of AnyVals or tuples (unlimited nesting of tuples up to arity 8, with AnyVal leaves)
+  * read/write from/to a BridJ [Pointer](http://nativelibs4java.sourceforge.net/bridj/api/stable/org/bridj/Pointer.html)
+  * asynchronous OpenCL implementation for map, filter and clone operations
+  * OpenCL implementation for min, max, product, sum operations
+  * respect of the order of read/write operations (attempting to read a buffer for which many write operations are still queued will block until these operations are completed)
+
+A `CLArray[T]` is represented as an array of component buffers (tuples components are flattened). For instance the following array :
+```
+CLArray[(Int, Float, (Double, Long, (Byte, Short)))]
+```
+is represented as the following array of flattened component buffers :
+```
+Array[AnyRef](CLBuffer[Int], CLBuffer[Float], CLBuffer[Double], CLBuffer[Long], CLBuffer[Byte], CLBuffer[Short])
+```
+
+(see [sources](https://github.com/ochafik/nativelibs4java/tree/master/libraries/OpenCL/ScalaCL/src/main/scala/scalacl/CLArray.scala) for more info)
+
+# `CLFilteredArray[T]` #
+
+Composed of a `CLArray[T]` and a presence map (for now, a `CLArray[Boolean]`).
+
+Supports
+  * Same types as `CLArray[T]`
+  * asynchronous map
+  * asynchronous filter
+  * size and toArray are computed using an intermediate prefix sum array (which still has to be greatly improved)
+
+# `CLFunction[A, B]` #
+
+It extends `A => B` (`Function1[A, B]`).
+
+A and B can be tuples or `AnyVal`s.
+
+One can create a `CLFunction` explicitely, but the best is to write a Scala function and let the [ScalaCLPlugin](ScalaCLPlugin.md) translate it to a `CLFunction`.
+
+Translation by the compiler plugin creates a unique identifier with which each function is cached globally.
+
+Then each `CLFunction` can be instantiated (and cached) for a particular `ScalaCLContext` and specific input and output types.
+
+Indeed it is possible to apply the same function on a `CLArray[T]` and on a `CLFilteredArray[T]`, even though this obviously requires different kernels (the filtered array contains a presence buffer that needs to be checked).
+
+Function composition is also cached efficiently, using a cached composition graph (each function keeps track of the composed function that can be built from it using another function). This helps making `CLView`s efficient.

@@ -1,0 +1,186 @@
+Suite à notre petit atelier **Scala on GPUs** au [Paris Scala User Group](http://groups.google.com/group/paris-scala-user-group) du 21 septembre 2010 chez Xebia, voici une restitution (peut-être un peu trop académique) des sujets abordés.
+
+# Qu'est-ce qu'OpenCL ? #
+
+OpenCL est une API multi-plateforme qui permet d'exécuter du code généraliste sur les cartes graphiques (ou sur le processeur central, ou les deux). L'architecture des cartes graphiques se prêtant naturellement aux calculs massivement parallèles, ceci permet d'effectuer des calculs numérique bien plus rapidement qu'en Java, Scala ou même C ou Fortran.
+
+Les principaux concurrents d'OpenCL sont CUDA (uniquement sur les cartes NVidia) et Direct Compute de Microsoft (uniquement sous Windows et XBox 360, je présume).
+
+Depuis Java (et donc Scala) il existe plusieurs librairies permettant d'accéder à OpenCL, dont JavaCL (dont je suis l'auteur).
+
+Avec JavaCL (comme avec OpenCL directement en C), on doit fournir un code source en C (augmenté de spécificités OpenCL comme les tuples), et le driver OpenCL se charge de le compiler et de l'installer sur la carte graphique. On peut ensuite lui demander de créer des tableaux directement sur la carte graphique, y lire et y écrire avec des buffers NIO directs, et ajouter des "jobs" à la file d'exécution.
+
+Un "job" est une demande d'exécution d'un programme OpenCL (appelé "kernel").
+Il peut s'agir d'une tâche en one shot, comme un simple appel de fonction, ou d'un appel vectoriel (par exemple, un million d'appel de la même fonction en parallèle, chaque exécution pouvant connaître son indice et n'opérer que sur une tranche de données).
+
+C'est bien entendu le mode parallèle qui nous intéresse :-)
+
+# ScalaCL v1 #
+
+Le principal défaut d'OpenCL du point de vue d'un novice est qu'il faut apprendre un sous-ensemble du C pour le maîtriser.
+
+L'idée que j'ai eue avec la première version de ScalaCL est de créer un DSL (Domain-Specific Language) en Scala qui permettrait de masquer le langage C pour des cas simples.
+
+Voici un exemple :
+```
+class VectAdd(i: Dim) extends Program(i) {
+	val a = FloatsVar
+	val b = FloatsVar
+	val result = FloatsVar
+	content = result := a + b
+}
+var list = List(1f, 2f, 3f, 4f);
+prog.a.write(list)
+prog.b.write(list)
+prog ! // execute the program
+for (i <- 0 to 10)
+	println(prog1.result.get(i))
+```
+
+Le gros problème avec cette approche (outre la naïveté de son architecture, c'était mon premier projet Scala), c'est que le code ne ressemble guère à du Scala. Si l'on a évacué le besoin d'apprendre le C, on a en fait créé un autre language (un DSL limité) qu'il faut apprendre.
+
+De plus, il n'y a pas ou peu de structure de contrôle, ni de support des données structurées, bref : une jolie Proof-of-Concept, mais du pipi de chat pour des tâches plus avancées.
+
+# UJMP + OpenCL #
+
+Après ces premiers essais, je me suis tourné vers la librairie UJMP (http://www.ujmp.org), qui fournit une API unifiée pour la plupart des librairies d'algèble linéaire en Java en plus de fournir ses propres implémentations.
+
+J'ai rapidement compris que j'avais tout intérêt à exploiter le caractère asynchrone d'OpenCL : lorsqu'on ajoute un job à file d'exécution, l'appel retourne un CLEvent, un objet que l'on pourra poller et sur lequel on pourra attendre pour s'assurer que le job est fini. Mais on peut également dire à d'autres jobs d'attendre des events.
+Du coup, la multiplication a.mmult(b).mmult(c) retourne tout de suite une Matrix, mais celle-ci n'est pas encore calculée (elle le sera en background, et la lecture d'une de ses composantes bloquera tant que les deux multiplications ne seront pas terminées).
+
+[Les sources de JavaCL BLAS sont ici](https://github.com/ochafik/nativelibs4java/tree/master/libraries/OpenCL/Blas/).
+
+Après avoir ajouté un certain nombre d'opérations vectorielles, je me suis rendu à l'évidence : on peut généraliser ça (on peut le faire, donc on doit le faire :-)), retour à la case Scala !
+
+# ScalaCL v2 #
+
+Comment garder la puissance d'un AST (Abstract Syntax Tree : arbre qui représente un programme et qu'on peut analyser et transformer aisément) sans retomber dans le piège du DSL ?
+
+Facile, en utilisant une combinaison de collections OpenCL et d'un plugin de compilateur Scala !
+
+## Des collections OpenCL ##
+
+### L'inspiration : Scala 2.8.0 ###
+
+Les collections Scala sont très riches et bien conçues.
+
+Personnellement en pratique j'utilise principalement les types et méthodes suivants :
+  * IndexedSeq (Array), Map, Set, IntRange
+  * map, flatMap, filter, foreach, grouped, view + force, size, head / tail / last / init
+
+Pour implémenter des collections proches par leur design et leur utilisation des collections standard, OpenCL ne nous propose comme matériau que des tableaux natifs un peu frustes.
+
+On peut utiliser des tableaux de structs (des assemblages de valeurs qui sont l'équivalent C des classes), mais les différences entre implémentations et matériels cibles rendent leur utilisation très ardue (problèmes d'alignement, d'endianness...).
+
+### `CLArray[T]` ###
+
+C'est assez naturellement que j'ai commencé par un équivalent de `Array[T]`, `CLArray[T]`.
+
+On pourrait contraindre T en AnyVal (types primitifs), assimiler ainsi un `CLArray[T]` à un tableau natif OpenCL et s'arrêter là, mais cette structure ne serait alors guère utile.
+
+J'ai donc décidé d'accepter les tuples, eventuellement imbriqués (jusqu'à une arité de 8, mais sans contrainte de profondeur maximale d'imbrication).
+
+Le tableau :
+```
+CLArray[(Int, Float, (Double, Long, (Byte, Short)))]
+```
+est alors modélisé très simplement par un tableau de composantes aplaties :
+```
+Array[AnyRef](CLBuffer[Int], CLBuffer[Float], CLBuffer[Double], CLBuffer[Long], CLBuffer[Byte], CLBuffer[Short])
+```
+
+Que fait-on de ce tableau ?
+  * On lit ou écrit dedans avec un NIO Buffer ou un pointeur [BridJ](http://code.google.com/p/bridj/)
+  * On le mappe vers un autre tableau de façon asynchrone, en respectant les events d'écriture et de lecture associés au tableau (opérations en cours)
+  * On le filtre vers... un CLFilteredArray[T](T.md).
+
+### `CLFilteredArray[T]` ###
+
+C'est juste l'assemblage d'un `CLArray[T]` et d'un `CLArray[Boolean]` qui indique si la case correspondante est présente ou pas (non filtrée).
+
+Qu'en fait-on ?
+  * On le convertit en `CLArray[T]` avec toCLArray (il faut le compacter, ce qu'on peut faire par exemple en deux passes : une somme préfixée du bitmap de présence et une copie utilisant la somme préfixée)
+  * On calcule sa taille en prenant la dernière valeur de la somme préfixée
+  * On le mappe en un nouveau `CLFilteredArray[V]` avec `f: T => V` en copiant le bitmap de présence et en n'opérant `f` que sur les cases présentes.
+
+### Les autres collections ###
+
+Nous ne nous y attarderons pas ici, mais `CLRange[T]` permet de modéliser un intervalle et `CLView[T]` permet d'accumuler des opérations pour ne pas créer des structures temporaires.
+
+### Et... ? ###
+
+Tout ceci est très bien, me direz vous, mais où sont nos fonctions ?
+
+# L'exode vers le GPU #
+
+On voudrait tout naturellement écrire des fonctions en Scala et les voir transformées en code source OpenCL sous le capot.
+
+Grâce à l'architecture de plugins de compilation du compilateur Scala, nous allons pouvoir éviter la case DSL pour récupérer le précieux AST qui va nous servir à générer le code OpenCL correspondant.
+
+## Un mot sur le compilateur Scala ##
+
+Le compilateur Scala opère en de nombreuses passes (nommées phases, cf. http://www.scala-lang.org/docu/files/tools/scalac.html) et nous permet de créer nos propres phases de compilation.
+
+Une [API riche](http://www.scala-lang.org/api/current/scala/reflect/generic/Universe.html) exploitant habilement le pattern matching et des visiteurs permet d'écrire des analyses et transformations de code très facilement.
+
+Le principe est simple, sa mise en application l'est à peine moins :
+  * on part du [projet exemple plugintemplate](http://lampsvn.epfl.ch/svn-repos/scala/scala/trunk/docs/examples/plugintemplate/) (dans les sources de Scala) qui nous permet de disposer d'un plugin en qq minutes
+  * on utilise les options `-Xprint:phase` et/ou `-Yshow-trees` pour comprendre les patterns que l'on va essayer de matcher
+  * on matche les expressions que l'on souhaite et on les transforme comme on veut (attention à bien utiliser des blocks `atOwner(tree.symbol) { ... }` pour transformer l'arbre si on est dans un Transformer).
+
+Voici par exemple comment on matche `Seq[String](a, b)` :
+```
+tree match {
+    case Apply(
+	  TypeApply(
+		Select(
+		  Select(Select(Ident(N("scala")), N("collection")), N("Seq")),
+		  N("apply")
+		),
+		List(typeExpr)
+	  ),
+	  List(a, b)
+	) =>
+	if (typeExpr.toString.contains("String")) // ugly
+		println("Youhou !")
+}
+```
+
+## ScalaCL v2: Le Plugin ##
+
+J'ai donc décidé de créer un plugin qui pourrait transformer les fonctions Scala en code source OpenCL dès qu'il aperçoit un appel à filter, foreach ou map sur une de mes collections OpenCL :
+```
+val arr = new CLArray[(Int, Float)](10000)
+val mapped: CLArray[Float] = arr.map { case (i, f) => i + f } // cette fonction doit s'exécuter sur la carte graphique !!!
+```
+
+Voici les sources du plugin ScalaCL v2 :
+
+https://github.com/ochafik/nativelibs4java/tree/master/libraries/OpenCL/ScalaCLPlugin/src/main/scala/scalacl/
+
+Et celles des collections de ScalaCL v2 :
+
+https://github.com/ochafik/nativelibs4java/tree/master/libraries/OpenCL/ScalaCL2/src/main/scala/scalacl/
+
+# La suite #
+
+## Ce que font les autres ##
+
+François, du PSUG, m'a pointé vers des threads très intéressants concernant les problématiques d'optimisation du code Scala d'une part ([1](http://scala-programming-language.1934581.n4.nabble.com/Compiler-plugin-how-to-access-predefined-types-td2441815.html#a2441815) et [2](http://scala-programming-language.1934581.n4.nabble.com/optimizing-simple-fors-td2545502.html#a2545502)), et l'[utilisation du GPU depuis Scala](http://scala-programming-language.1934581.n4.nabble.com/JavaCL-ScalaCL-vs-JNA-JNI-OpenCL-or-CUDA-td2401785.html#a2401785) d'autre part.
+
+Nous avons également évoqué [Delite, du Stanford Pervasive Parallel Laboratory](http://ppl.stanford.edu/wiki/index.php/Delite), qui a l'air très avancé et très intéressant.
+
+## Pistes de développement ##
+
+Comme je ne compte pas m'arrêter en si bon chemin, voici qq pistes que j'aimerais explorer :
+  * autovectorisation des boucles s'y prêtant (c'est plein de pièges, donc intéressant)
+  * transformation automatique de `col.map(f).map(g)` en `col.map(f.compose(g))`
+  * détection des collections "qui ne sortent pas" et qui peuvent être mutées sur place : `a.filter(f).toCLArray.map(_ * 2)` (le CLArray créé peut reservir pour stocker le résultat final)
+  * pré-cache des sommes préfixées de `CLFilteredArray[T]` en fonction des appels ultérieurs à .size ou .toCLArray détéctés par le compilateur.
+  * transformation automatique des `Array[T]` en `CLArray[T]` : **ScalaCL peut devenir un compilateur optimisant généraliste !**
+
+## Participer ##
+
+Vous pouvez [vous inscrire sur le groupe de discussion de NativeLibs4Java](http://groups.google.com/group/nativelibs4java) si vous souhaitez être tenus au courant des évolutions de JavaCL, ScalaCL, BridJ et JNAerator.
+
+Voilà, merci pour votre attention, amusez-vous bien !!!

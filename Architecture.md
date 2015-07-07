@@ -1,0 +1,223 @@
+
+
+# Runtime Library #
+
+## CLArray ##
+
+### Fibers and buffers ###
+
+OpenCL does not support heterogeneous structured tuples (but it does support some homogeneous tuples, such as `int2`, `float4`...).
+
+To support arbitrary tuples in ScalaCL, we flatten them into fibers.
+
+For instance the following array :
+```
+CLArray[(Int, Float, (Double, Long, (Byte, Short)))]
+```
+is represented as the following array of flattened component buffers :
+```
+Array(CLBuffer[Int], CLBuffer[Float], CLBuffer[Double], CLBuffer[Long], CLBuffer[Byte], CLBuffer[Short])
+```
+
+(a [CLBuffer](http://nativelibs4java.sourceforge.net/javacl/api/stable/com/nativelibs4java/opencl/CLBuffer.html) is a primitive array stored in OpenCL)
+
+### Filtering and compacting : `CLFilteredArray` ###
+
+Filtering an array in parallel with OpenCL is a bit tricky : while applying the predicate function to each element is trivial to parallelize, an extra operation is needed to build the resulting filtered collection, called 'compaction'.
+
+Given the array of boolean results of the predicate (the presence array), applied to each input array, compaction is achieved by performing a parallel prefix sum (left scan) on the presence array, which yields the offset of each accepted value in the output array.
+
+As this operation is costly to perform in parallel, it's done as late as possible :
+  * `CLArray[T].filter` yields a `CLFilteredArray[T]` (which contains the original `CLArray[T]` values and a `CLArray[Buffer]` presence array).
+  * Calling `CLFilteredArray[T].map` will not require compaction nor memory copy (it will just yield a new `CLFilteredArray[T]` with the same values array and a new presence map).
+  * A filtered array can be compacted into a `CLArray[T]` with `CLFilteredArray[T].toCLArray`.
+
+Note that compaction is not the only operation that requires a prefix sum : so does `CLFilteredArray[T].size`.
+
+## CLRange ##
+
+In Scala, a Range is composed of :
+  * start & end values (`Int`)
+  * a step (`Int`)
+  * an "inclusive" : whether the end value is included or not (`Boolean`)
+
+In ScalaCL, a CLRange is hence naturally represented as a `CLBuffer[Int]` of 4 values.
+
+## CLCode ##
+
+Per-context-cached OpenCL program, defined by its :
+  * sources (OpenCL dialect of C)
+  * preprocessor macros
+  * [compiler arguments](http://www.khronos.org/registry/cl/sdk/1.0/docs/man/xhtml/clBuildProgram.html) (debug symbols, OpenCL numeric options...)
+
+It's trivial to write a program by hand it you're fluent in OpenCL :
+```
+val code = CLSimpleCode(
+  sources = Array("""
+    __kernel void test(int size, float factor, __global const int* in, __global float* out) {
+      int i = get_global_id(0);
+      out[i] = in[i] * factor;
+    }
+  """),
+  compilerArguments = Array("-cl-fast-relaxed-math")
+)
+```
+
+# `CLFunction[A, B]` #
+
+It extends `A => B` (`Function1[A, B]`).
+
+A and B can be tuples or `AnyVal`s.
+
+
+## Chaining events ##
+
+OpenCL is asynchronous by nature : all operations return an event, which is a ticket that can be waited upon to get notified of when the operation finished. Operations also take a list of dependent events that must be completed before execution.
+This allows for asynchronous operation chains :
+  * write data into some OpenCL buffer
+  * run some OpenCL code when the write is finished
+  * run another code (2nd pass) when the first code is finished
+  * read the resulting data when the execution of the 2nd pass is finished
+  * wait for the read to finish in client side (or be notified via a callback, in OpenCL 1.1)
+
+Then to run it, you have to provide it with arguments, a list of elements read and written, and run it :
+```
+
+```
+
+
+## Status ##
+
+Working :
+  * Tuploid elements
+  * map, filter, zip, zipWithIndex, size
+
+TODO
+  * Symmetric reductions : reduceSymmetric / scanSymmetric / foldSymmetric
+  * Lazy copy-on-write clones for zip, zipWithIndex, filter...
+
+# Compiler Plugin #
+
+## Generalistic loops rewriter ##
+
+In Scala, the following for loop :
+```
+for (i <- 0 until n) {
+	...
+}
+```
+is internally represented as a call to a Range's foreach method :
+```
+(0 until n).foreach(i => {
+	...
+})
+```
+
+The problem is that the compiler does not try to make things faster here : it will effectively generate a closure (performing lambda lifting) that will be called by `Range.foreach` several times, incurring a method call overhead that might be very high compared to the loop's body.
+
+It turns out, the following code is strictly equivalent, yet up to 10x faster (depending on the loop's payload) :
+```
+var i = 0
+while (i < n) {
+	...
+	i += 1
+}
+```
+
+ScalaCL's compiler plugin rewrites such foreach loops into equivalent while loops.
+In addition, it rewrites the following operations on inline Ranges and Arrays :
+  * reduce/scan/fold|Left/Right
+  * forall, exists, count
+  * foreach, map, filter, filterNot,
+  * takeWhile, dropWhile
+  * Array.tabulate
+
+Scalac splits the work into many phases : parsing, resolution of types, transformation of closures to plain methods...
+
+It supports plugins that can work between any existing phases. Any work before the typer phase is hard, so ScalaCL plugs in right after it.
+
+The Scala AST is a bit hard to grasp at the beginning, and generating code is yet a bit harder, but you'll just need a few notions to get going.
+
+There are 3 parallel spaces that coexist in the AST : types, symbols and trees.
+  * Types are what you'd expect
+  * Symbols represent symbolic entities such as a class, a method, a variable...
+    * types have symbols and symbols have types...
+    * Symbols have owner symbols : the owner of a method is its containing class, that of a parameter variable is its function/method...
+  * Trees hold the actual code, and are annotated with types and symbols (mostly in the typer phase)
+
+When matching the AST, trees and a bit of types are usually enough, but to generate code you MUST also use symbols otherwise scalac won't understand what you're talking about.
+
+The plugin proceeds very naturally with tree matchers (in MiscMatchers trait) :
+  * IntRange(from, to, by, isUntil, filters)
+  * ArrayTree...
+And uses tree builders from the TreeBuilders trait :
+  * boolAnd(a, b)
+  * intAdd(a, b)
+  * incrementIntVar(target, value)
+  * whileLoop(condition, body...)
+
+It has grown from a small hack focused on Range.foreach into a huge hack that deals with many more methods.
+
+TODO :
+  * Refactoring of all rewrites for version 0.3 to support operation chains
+```
+a.map(f).map(g)
+```
+> into while-loop-rewritten equivalent of :
+```
+a.map(f.compose(g))
+```
+> BUT : NEEDS SIDE-EFFECT ANALYSIS ! (already have external variables detection to the rescue...)
+
+## Code analysis ##
+
+  * Tuples matching (with complex case assignments)
+  * Side effects detection
+  * TODO Symmetry detection
+  * TODO Auto-vectorization
+
+## Scala-to-OpenCL converter ##
+
+### Tuples rewriter ###
+
+As we saw, OpenCL does not support heterogeneous tuples, so we need to get rid of them during compilation.
+
+This could prove to be useful in general Scala programs, but would require more work (setting the correct symbols and checking whether tuples can escape or not).
+
+The tuple rewrite algorithm uses a _normal form_ of Scala code (see `FlatCode` class) :
+  * list of outer declarations (functions, classes...)
+  * list of declarations (& statements)
+  * list of result values (without any statements or blocks, but valued if then is allowed)
+
+Most code blocks can be transformed into that form :
+```
+val (a, (b, c)) = {
+	def test(x: Int) = x < 10
+	if (test(v)) {
+		val d = v * 10
+		(10, (20, d - 1))
+	} else
+		(20, (100, 0))
+}
+```
+Gives :
+```
+outerDeclarations = Seq(
+	def test(x: Int) = x < 10
+)
+declarations = Seq(
+	var a = 0,
+	var b = 0,
+	var c = 0,
+	var cond = test(v),
+	var d = 0,
+	if (cond) { d = v * 10 }
+)
+values = Seq(
+	if (cond) 10 else 20, // cond ? 10 : 20
+	if (cond) 20 else 100,
+	if (cond) d - 1 else 0
+) 
+```
+
+There are some gory details in how to perform the match of deconstructive tuple definitions even with nested tuples, but that's it for the general idea.

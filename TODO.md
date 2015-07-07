@@ -1,0 +1,50 @@
+
+
+
+# General Bugs #
+
+Please file new bugs [here](http://code.google.com/p/nativelibs4java/issues/list).
+
+Important: care was taken so that isolated errors that occur during any optimization skip that optimization and don't prevent the rest of the compilation to succeed (you'll then get output that will invite you to report a bug and to set  the SCALACL\_TRACE environment to 1).
+
+# Compiler Plugin TODO #
+
+  * Detect captured variables and have them fed to OpenCL
+  * Detect side-effects in functions (mark side-effect free functions recursively + add a `@sideEffectFree` annotation) and allow transform of a.map(f).map(g) into a.map(f.compose(g)) if f and/or g are side-effect-free)
+  * Detect symmetry in reduceLeft/Right functions (+ add a `@symmetric` annotation), to replace `reduceLeft` by `reduceSymmetrical`
+
+# OpenCL Collections TODO #
+
+Also see [ScalaCLCollections](ScalaCLCollections.md).
+
+  * Clone with copy-on-write for more efficient `zip` operations
+  * Finer support of double math functions (right now, we're forcing float computations)
+  * Implement `reduceSymmetric` / `scanSymmetric`... using optimized code
+  * CLArrayView, CLFilteredArrayView
+  * escape analysis or arrays, reuse of compatible outputs
+  * autovectorization (mark read/write usage of OpenCL collections, then move up the tree until a loop is found (or more than one, as long as the code has no side-effect or does not capture anything not convertible to OpenCL)
+  * auto-ScalaCL-ization (not by default !)
+
+# Scala Collections TODO #
+
+Compilation optimizations not implemented (also see [ScalaCLPlugin](ScalaCLPlugin.md)) :
+  * `for (i <- range [by z][; if test]) body` (will be slower than `for (i <- x to y)` because we need to test Range.isInclusive)
+  * `Seq(x, y, z...).foreach -> Array(x, y, z...).foreach` (before the `Array.foreach` transform). Same for `List`
+  * `Array[T].takeWhile` and `.dropWhile`
+  * `Array[T].find` and others methods of the same style
+  * map-fuse : `col.map(f).map(g)` becomes `col.map(x => { val fx = f(x); g(fx) })` (avoids one iteration + creation of data structure)... see compiler plugin task above (detect side-effects)
+  * filter-fuse `col.filter(f).filter(g)` (avoids one iteration)
+  * array filter/map-fuse `array.filter(f).map(g)` and `array.map(f).filter(g)` must be done in one iteration (same as for List)
+> Combining the different fuses, one would only execute a single loop for the following statement :
+```
+array.map(f1).filter(f2).map(f3).map(f4).filter(f5).foreach(f6)
+```
+  * use usage- escape-analysis to move constant expressions out of loops (pass to detect expressions that are not aliased for sure, pass to mark side-effect-free code transitively - with dependency graph, each variable node in the graph being versioned -, pass to build timeline of updates and accesses for each var)
+
+Optimizations suggested by thirdparties:
+  * [runtime cases for WrappedArray](http://twitter.com/#!/retronym/status/26527256634) (by [@retronym](http://twitter.com/#!/retronym))
+
+# Misc TODO #
+  * create more serious benchmarks :
+    * http://www.ibm.com/developerworks/library/j-jtp12214/
+    * http://blog.juma.me.uk/2009/10/26/new-jvm-options-and-scala-iteration-performance/

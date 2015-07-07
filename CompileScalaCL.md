@@ -1,0 +1,29 @@
+To build compile ScalaCL from sources :
+  * Clone the [NativeLibs4Java Git tree](https://github.com/ochafik/nativelibs4java) :
+```
+git clone git://github.com/ochafik/nativelibs4java.git
+cd nativelibs4java/libraries/OpenCL
+```
+  * Build ScalaCL Collections :
+```
+cd ScalaCL
+mvn install
+ls -l target/scalacl-*.jar
+cd ..
+```
+  * Build ScalaCL Compiler Plugin (you can also use sbt :
+```
+cd ScalaCLPlugin
+mvn install -DskipTests
+ls -l target/scalacl-compiler-plugin-*.jar
+cd ..
+```
+
+You can also build the ScalaCL Compiler Plugin with sbt (but not for tests : they currently only work with Maven) :
+```
+cd ScalaCLPlugin
+sbt update compile
+cd ..
+```
+
+See some more details in [Scalathon](Scalathon.md).
